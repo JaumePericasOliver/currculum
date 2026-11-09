@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atributs HTML | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Què són els atributs HTML i com s'escriuen amb el format nom=valor.">
+  <meta name="keywords" content="HTML, atributs, id, class, style, title, src, alt, href">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Atributs HTML">
+  <meta property="og:description" content="Què són els atributs HTML i com s'escriuen amb el format nom=valor.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="atributs.html" aria-current="page">Atributs HTML</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Atributs HTML</h1>
+        <p>HTML bàsic · Què són els atributs HTML i com s'escriuen amb el format nom=valor.</p>
+      </header>
+
+      <section>
+        <h2>Què són els atributs?</h2>
+        <p>Els atributs en HTML afegeixen informació extra a les etiquetes HTML per modificar-ne el comportament o l'aparença.</p>
+        <p>Aquests atributs sempre es col·loquen dins de l'etiqueta d'obertura i segueixen el format <code>nom="valor"</code>.</p>
+      </section>
+
+      <section>
+        <h2>Exemple</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello world&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 id="titol"&gt;Títol 1&lt;/h1&gt;
+  &lt;h2 class="important"&gt;Títol 2&lt;/h2&gt;
+  &lt;h3 style="color: blue; text-align: center;"&gt;Títol 3&lt;/h3&gt;
+  &lt;h4 title="Informació addicional"&gt;Títol 4&lt;/h4&gt;
+  &lt;img src="https://picsum.photos/300/300?random=1" alt="Descripció de la imatge"&gt;
+  &lt;a href="https://www.exemple.com"&gt;Enllaç&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Atributs de l'exemple</h2>
+        <table>
+          <caption>Atributs utilitzats a l'exemple</caption>
+          <thead>
+            <tr>
+              <th scope="col">Atribut</th>
+              <th scope="col">Funció</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>id</code></td><td>Identificador únic de l'element dins de la pàgina.</td></tr>
+            <tr><td><code>class</code></td><td>Nom de classe per agrupar elements.</td></tr>
+            <tr><td><code>style</code></td><td>Estils CSS en línia.</td></tr>
+            <tr><td><code>title</code></td><td>Informació addicional que es mostra en passar el ratolí per damunt.</td></tr>
+            <tr><td><code>src</code></td><td>Ruta de la imatge (vegeu <a href="imatges.html">Inserció d'imatges</a>).</td></tr>
+            <tr><td><code>alt</code></td><td>Text alternatiu de la imatge.</td></tr>
+            <tr><td><code>href</code></td><td>Destinació de l'enllaç (vegeu <a href="enllacos.html">Enllaços</a>).</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="elements_anidament.html" rel="prev">Anterior: Elements HTML i anidament</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="text_formatat.html" rel="next">Següent: Text formatat</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

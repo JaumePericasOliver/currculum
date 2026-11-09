@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'emmagatzematge de dades | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Com es representen les dades en un ordinador: format binari, dades de text, codificacions ASCII i Unicode, dades binàries i metadades.">
+  <meta name="keywords" content="emmagatzematge, binari, bits, ASCII, Unicode, UTF-8, UTF-16, UTF-32, metadades">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="L'emmagatzematge de dades">
+  <meta property="og:description" content="Com es representen les dades en un ordinador: format binari, dades de text, codificacions ASCII i Unicode, dades binàries i metadades.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="emmagatzematge.html" aria-current="page">L'emmagatzematge de dades</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>L'emmagatzematge de dades</h1>
+        <p>Anàlisi de codi · Com es representen les dades en un ordinador: format binari, dades de text, codificacions ASCII i Unicode, dades binàries i metadades.</p>
+      </header>
+
+      <section>
+        <h2>Representació binària</h2>
+        <p>L'emmagatzematge de dades és un component clau en els sistemes informàtics, ja que permet la representació, la manipulació i la recuperació d'informació de manera eficient.</p>
+        <p>Les dades en ordinadors es representen utilitzant el format binari, que consisteix en una sèrie de dígits binaris, coneguts com a bits, que poden tenir el valor 1 o 0. Aquesta representació és la base del funcionament de qualsevol sistema informàtic, ja que els ordinadors processen la informació mitjançant operacions binàries.</p>
+      </section>
+
+      <section>
+        <h2>Dades de text</h2>
+        <ul>
+          <li>Les dades de text són llegibles per humans i estructurades mitjançant codificacions de caràcters, com ASCII o Unicode. Això significa que cada lletra, número o símbol es representa a través d'un codi específic que després es tradueix a binari.</li>
+          <li>Aquest tipus de dades es troben sovint en documents, correus electrònics o pàgines web, on és essencial mantenir la llegibilitat per a les persones. El format text és molt flexible i fàcil d'editar, però també pot ser menys eficient en termes d'emmagatzematge en comparació amb altres formats més compactes.</li>
+        </ul>
+        <table>
+          <caption>Comparació de les codificacions de caràcters</caption>
+          <thead>
+            <tr><th scope="col">Característica</th><th scope="col">ASCII</th><th scope="col">Unicode (UTF-8)</th><th scope="col">Unicode (UTF-16)</th><th scope="col">Unicode (UTF-32)</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Nombre de caràcters</th><td>128 caràcters</td><td>Més de 143.000 caràcters</td><td>Més de 143.000 caràcters</td><td>Més de 143.000 caràcters</td></tr>
+            <tr><th scope="row">Bits per caràcter</th><td>7 bits (1 byte, ja que el byte conté 8 bits, però se'n fan servir 7)</td><td>1 a 4 bytes (8 a 32 bits)</td><td>2 o 4 bytes (16 o 32 bits)</td><td>4 bytes fixos (32 bits)</td></tr>
+            <tr><th scope="row">Compatibilitat</th><td>Compatible amb l'anglès i caràcters bàsics</td><td>Retrocompatible amb ASCII</td><td>Compatible amb tots els caràcters Unicode</td><td>Compatible amb tots els caràcters Unicode</td></tr>
+            <tr><th scope="row">Idiomes suportats</th><td>Només anglès i símbols bàsics</td><td>Totes les llengües i símbols, incloent-hi emojis</td><td>Totes les llengües i símbols, especialment eficient per a idiomes asiàtics</td><td>Totes les llengües i símbols</td></tr>
+            <tr><th scope="row">Espai d'emmagatzematge</th><td>Molt eficient (només 1 byte per caràcter)</td><td>Eficient per a idiomes amb caràcters bàsics (anglès), però pot requerir fins a 4 bytes per a altres caràcters complexos</td><td>Eficaç per a caràcters que requereixen més espai, però consumeix més memòria per a caràcters simples</td><td>Menys eficient perquè sempre utilitza 4 bytes, fins i tot per a caràcters senzills</td></tr>
+            <tr><th scope="row">Ús</th><td>Aplicacions antigues i sistemes simples</td><td>Molt utilitzat en aplicacions web, bases de dades i sistemes moderns</td><td>Usat en aplicacions que necessiten codificació d'alta densitat (idiomes asiàtics)</td><td>Utilitzat en aplicacions especials, amb necessitats de precisió o simplicitat en el processament</td></tr>
+            <tr><th scope="row">Avantatges</th><td>Lleuger i simple</td><td>Retrocompatible amb ASCII, àmpliament adoptat</td><td>Eficient per a caràcters complexos com els idiomes asiàtics</td><td>Codificació uniforme, fàcil de processar</td></tr>
+            <tr><th scope="row">Inconvenients</th><td>Només suporta l'anglès i alguns símbols bàsics</td><td>Pot consumir més espai per a caràcters complexos</td><td>Més consum d'espai per a caràcters simples</td><td>Alt consum d'espai per a dades senzilles</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Dades binàries</h2>
+        <ul>
+          <li>Les dades binàries són dades que no segueixen una estructura definida que pugui ser fàcilment llegida per humans. Inclouen fitxers com imatges, vídeos, àudio i altres formats multimèdia, que es codifiquen directament en bits sense que els humans puguin interpretar-los sense un programa especialitzat.</li>
+          <li>A més de la informació principal, les dades binàries poden incloure metadades, que són dades addicionals que descriuen el contingut o altres propietats del fitxer. Per exemple, en una fotografia, les metadades poden incloure informació com la data en què es va fer la foto, el dispositiu utilitzat i altres detalls rellevants.</li>
+          <li>Aquestes dades poden requerir més espai d'emmagatzematge i són manipulades per programes especialitzats que saben com interpretar els bits que les conformen.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Metadades</h2>
+        <p>Les metadades són informació addicional que descriu o proporciona context sobre les dades principals. Aquestes dades sobre les dades poden incloure informació com el tipus de fitxer, la data de creació, l'autor, les etiquetes de classificació, o fins i tot detalls tècnics sobre com s'ha creat o editat el fitxer. Les metadades són extremadament útils per organitzar, buscar i interpretar la informació emmagatzemada, i ajuden a optimitzar processos com l'arxivat o la indexació de documents.</p>
+        <ul>
+          <li><strong>Funció:</strong> optimitzen l'emmagatzematge i la recuperació d'informació, ja que permeten als sistemes saber què són les dades i com s'han d'interpretar sense necessitat de llegir tot el contingut del fitxer. Per exemple, en una fotografia digital, les metadades poden incloure informació sobre la càmera, la data, l'exposició i la ubicació GPS on es va prendre la imatge.</li>
+          <li><strong>Problemes potencials:</strong> les metadades poden causar complicacions en la compartició de dades entre sistemes. Si el programa o sistema que intenta recuperar la informació no entén o no coneix el format de les metadades, pot no ser capaç d'interpretar correctament les dades principals. Això pot provocar pèrdua d'informació o problemes de compatibilitat.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="dades.html" rel="prev">Anterior: Les dades</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="formats_fitxer.html" rel="next">Següent: Formats de fitxer</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

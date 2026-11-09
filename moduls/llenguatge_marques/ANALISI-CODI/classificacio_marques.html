@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classificació dels llenguatges de marques | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Llenguatges de presentació i descriptius: característiques d'HTML, XML i JSON, comparació i quan utilitzar cada un.">
+  <meta name="keywords" content="llenguatges de marques, classificació, HTML, CSS, XML, JSON">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Classificació dels llenguatges de marques">
+  <meta property="og:description" content="Llenguatges de presentació i descriptius: característiques d'HTML, XML i JSON, comparació i quan utilitzar cada un.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="classificacio_marques.html" aria-current="page">Classificació dels llenguatges de marques</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Classificació dels llenguatges de marques</h1>
+        <p>Anàlisi de codi · Llenguatges de presentació i descriptius: característiques d'HTML, XML i JSON, comparació i quan utilitzar cada un.</p>
+      </header>
+
+      <section>
+        <h2>Tipus de llenguatges</h2>
+        <ul>
+          <li><strong>Llenguatges procedimentals i de presentació:</strong> com HTML, defineixen com es mostraran les dades, centrant-se en la seva estructura i format visual. HTML organitza els elements d'una pàgina web (textos, imatges, enllaços), mentre que CSS s'encarrega d'estilitzar aquests elements per donar-los un aspecte atractiu i coherent en els navegadors.</li>
+          <li><strong>Llenguatges descriptius:</strong> com XML i JSON, descriuen l'estructura de les dades sense indicar com s'han de mostrar. Són com una llista d'elements: XML detalla els components amb precisió, mentre que JSON n'ofereix una versió més simple i fàcil de llegir.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>HTML (<i lang="en">HyperText Markup Language</i>)</h2>
+        <p>HTML és un llenguatge de marques dissenyat específicament per a la presentació d'informació a la web. A diferència d'XML, HTML se centra en com mostrar la informació, però presenta limitacions en la reutilització de la informació i en la seva interpretació per programes automàtics.</p>
+        <p>HTML ha estat un dels primers llenguatges de marques utilitzats per crear pàgines web, i la seva evolució ha estat influenciada per la necessitat de millorar la interacció amb els usuaris i la presentació de continguts.</p>
+      </section>
+
+      <section>
+        <h2>XML (<i lang="en">eXtensible Markup Language</i>)</h2>
+        <p>XML és un llenguatge de marques que destaca per la seva capacitat d'extensibilitat. Permet la definició de documents amb etiquetes personalitzades, la qual cosa el fa molt útil en diverses aplicacions, com la presentació de pàgines web i la gestió de dades. XML permet una millor estructuració i reutilització de les dades, separant clarament les dades de la seva presentació.</p>
+      </section>
+
+      <section>
+        <h2>JSON (<i lang="en">JavaScript Object Notation</i>)</h2>
+        <p>JSON ha guanyat molta popularitat com a alternativa a XML per a l'intercanvi de dades, especialment en aplicacions web. A diferència d'XML, JSON utilitza una sintaxi més lleugera i fàcil de llegir tant per a humans com per a màquines, cosa que fa que sigui més eficient en termes de transmissió i processament de dades.</p>
+      </section>
+
+      <section>
+        <h2>Comparació</h2>
+        <table>
+          <caption>XML i JSON davant d'HTML</caption>
+          <thead>
+            <tr><th scope="col">Característica</th><th scope="col">XML/JSON</th><th scope="col">HTML</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Propòsit principal</th><td>Emmagatzemar i transportar dades de manera estructurada</td><td>Presentar dades en un navegador web</td></tr>
+            <tr><th scope="row">Etiquetes</th><td>Definides per l'usuari (personalitzades)</td><td>Predefinides per a elements web (títols, paràgrafs, imatges, etc.)</td></tr>
+            <tr><th scope="row">Flexibilitat</th><td>Molt flexible, adaptable a qualsevol tipus de dades</td><td>Menys flexible, enfocat en l'estructura bàsica d'una pàgina web</td></tr>
+            <tr><th scope="row">Reutilització de dades</th><td>Excel·lent, les dades poden ser utilitzades en múltiples aplicacions</td><td>Limitada, les dades estan més lligades a la seva presentació</td></tr>
+            <tr><th scope="row">Interpretació per màquines</th><td>Fàcil d'analitzar per ordinadors, ideal per al processament de dades</td><td>Més difícil d'analitzar per màquines, enfocat en la visualització humana</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Quan utilitzar cada un</h2>
+        <h3>XML/JSON</h3>
+        <ul>
+          <li><strong>Configuració d'aplicacions:</strong> definir les opcions i preferències d'una aplicació.</li>
+          <li><strong>Intercanvi de dades:</strong> transmetre dades entre diferents sistemes (per exemple, entre un servidor i una aplicació mòbil).</li>
+          <li><strong>Creació de formats de dades personalitzats:</strong> definir estructures de dades específiques per a una aplicació o domini.</li>
+        </ul>
+        <h3>HTML</h3>
+        <ul>
+          <li><strong>Creació de pàgines web:</strong> donar estructura i contingut a les pàgines web.</li>
+          <li><strong>Disseny d'interfícies d'usuari:</strong> crear l'aparença visual d'una pàgina web.</li>
+          <li><strong>Accessibilitat del contingut:</strong> assegurar que les persones amb discapacitats puguin accedir al contingut d'una pàgina web.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="llenguatges_marques.html" rel="prev">Anterior: Introducció als llenguatges de marques</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="tasca_investigacio.html" rel="next">Següent: Tasca d'investigació</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

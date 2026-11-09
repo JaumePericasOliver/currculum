@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 i etiquetes semàntiques | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="L'evolució d'HTML5 i les etiquetes semàntiques section, article, aside, header, footer, nav, figure i figcaption.">
+  <meta name="keywords" content="HTML5, semàntica, section, article, aside, header, footer, nav, figure">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="HTML5 i etiquetes semàntiques">
+  <meta property="og:description" content="L'evolució d'HTML5 i les etiquetes semàntiques section, article, aside, header, footer, nav, figure i figcaption.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="html5.html" aria-current="page">HTML5 i etiquetes semàntiques</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>HTML5 i etiquetes semàntiques</h1>
+        <p>HTML avançat · L'evolució d'HTML5 i les etiquetes semàntiques section, article, aside, header, footer, nav, figure i figcaption.</p>
+      </header>
+
+      <section>
+        <h2>L'evolució d'HTML5</h2>
+        <p>HTML5 és una evolució important respecte a les versions anteriors d'HTML. Introdueix noves etiquetes i funcionalitats que permeten una millor gestió del contingut multimèdia, formularis avançats i millores en la semàntica de la pàgina web.</p>
+      </section>
+
+      <section>
+        <h2>Etiquetes semàntiques</h2>
+        <table>
+          <caption>Etiquetes d'estructura d'HTML5</caption>
+          <thead>
+            <tr><th scope="col">Etiqueta</th><th scope="col">Ús</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>&lt;section&gt;</code></td><td>Agrupa contingut relacionat dins d'una pàgina.</td></tr>
+            <tr><td><code>&lt;article&gt;</code></td><td>Bloc de contingut autònom, com un article d'un blog, una notícia o un post, que pot existir independentment del lloc web.</td></tr>
+            <tr><td><code>&lt;aside&gt;</code></td><td>Contingut relacionat amb el principal però no essencial: barres laterals, anuncis o informació complementària.</td></tr>
+            <tr><td><code>&lt;header&gt;</code> i <code>&lt;footer&gt;</code></td><td>Capçaleres i peus de pàgina.</td></tr>
+            <tr><td><code>&lt;nav&gt;</code></td><td>Barres de navegació del lloc web.</td></tr>
+            <tr><td><code>&lt;figure&gt;</code> i <code>&lt;figcaption&gt;</code></td><td>Agrupen elements multimèdia (com imatges o vídeos) i les seves descripcions.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Exemple de pàgina amb HTML5</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Pàgina web amb HTML5&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Benvinguts al meu lloc web&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#home"&gt;Inici&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#sobre"&gt;Sobre nosaltres&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Contacte&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Sobre nosaltres&lt;/h2&gt;
+    &lt;p&gt;Som una empresa dedicada al desenvolupament web i serveis digitals.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Projecte destacat&lt;/h2&gt;
+    &lt;p&gt;Vam desenvolupar una aplicació web per a una gran empresa amb les últimes tecnologies.&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;
+    &lt;h3&gt;Notícies recents&lt;/h3&gt;
+    &lt;p&gt;Explora les últimes novetats del nostre blog.&lt;/p&gt;
+  &lt;/aside&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 Empresa XYZ. Tots els drets reservats.&lt;/p&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#politica-privacitat"&gt;Política de privacitat&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#avis-legal"&gt;Avís legal&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+        <p>Aquesta mateixa pàgina d'apunts està construïda amb aquestes etiquetes: obre'n el codi font per veure-ho.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques per utilitzar els elements d'estructura</h2>
+        <ol>
+          <li>Utilitza elements semàntics per organitzar millor la pàgina. Això la fa més comprensible per als navegadors, cercadors i lectors de pantalla.</li>
+          <li>Evita l'ús excessiu de <code>&lt;div&gt;</code> (<i lang="en">divitis</i>) i aprofita etiquetes com <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> i <code>&lt;aside&gt;</code>.</li>
+          <li>Proporciona enllaços de navegació clars dins de <code>&lt;header&gt;</code> i <code>&lt;footer&gt;</code> per millorar l'experiència d'usuari i l'accessibilitat.</li>
+          <li>No abusis d'<code>&lt;aside&gt;</code>: ha de contenir informació complementària i no essencial per al contingut principal.</li>
+        </ol>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="../HTML-BASIC/eines.html" rel="prev">Anterior: Eines inicials</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="formularis.html" rel="next">Següent: Formularis</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

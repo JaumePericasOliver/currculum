@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintaxi de JSON | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Estructura i regles sintàctiques de JSON, problemes dels documents mal formats i alternatives als espais de noms.">
+  <meta name="keywords" content="JSON, sintaxi, document mal format, espais de noms, objectes, llistes">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sintaxi de JSON">
+  <meta property="og:description" content="Estructura i regles sintàctiques de JSON, problemes dels documents mal formats i alternatives als espais de noms.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="sintaxi_json.html" aria-current="page">Sintaxi de JSON</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Sintaxi de JSON</h1>
+        <p>Anàlisi de codi · Estructura i regles sintàctiques de JSON, problemes dels documents mal formats i alternatives als espais de noms.</p>
+      </header>
+
+      <section>
+        <h2>Estructura</h2>
+        <p>El JSON (<i lang="en">JavaScript Object Notation</i>) és un format lleuger per emmagatzemar i intercanviar dades, especialment utilitzat en aplicacions web.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>{
+  "titol": "Programació en Python",
+  "autor": "Joan López",
+  "preu": 19.99,
+  "moneda": "EUR"
+}</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Regles sintàctiques</h2>
+        <ul>
+          <li>Les claus i les cadenes de text han d'estar entre cometes dobles (<code>" "</code>).</li>
+          <li>Els elements han d'estar separats per comes.</li>
+          <li>Els objectes es defineixen amb claus (<code>{}</code>) i les llistes amb claudàtors (<code>[]</code>).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Problemes dels documents mal formats</h2>
+        <p>Si un document JSON està mal format, les aplicacions no podran carregar ni processar les dades.</p>
+      <figure>
+        <figcaption>Exemple de document mal format</figcaption>
+<pre><code>{
+  "titol": "Programació en Python",
+  "autor": "Joan López"
+  "preu": 19.99
+}</code></pre>
+      </figure>
+        <p><strong>Conseqüència:</strong> falta una coma després de <code>"Joan López"</code>, la qual cosa provocarà un error de sintaxi en intentar carregar les dades.</p>
+      </section>
+
+      <section>
+        <h2>Espais de noms</h2>
+        <p>El JSON no utilitza espais de noms com l'XML, però els objectes en poden simular l'ús utilitzant claus dins d'estructures imbricades.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>{
+  "llibres": {
+    "titol": "Programació en Python",
+    "preu": 19.99
+  }
+}</code></pre>
+      </figure>
+        <p><strong>Avantatge:</strong> en lloc de tenir conflictes de noms, els objectes permeten mantenir separats diferents conjunts de dades en un sol document.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="sintaxi_csv.html" rel="prev">Anterior: Sintaxi de CSV</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="../HTML-BASIC/introduccio.html" rel="next">Següent: Introducció a HTML</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

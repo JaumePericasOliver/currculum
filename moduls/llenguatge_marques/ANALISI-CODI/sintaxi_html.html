@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintaxi d'HTML | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Estructura i regles sintàctiques d'HTML, problemes dels documents mal formats i espais de noms.">
+  <meta name="keywords" content="HTML, sintaxi, document mal format, espais de noms, SVG, xmlns">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sintaxi d'HTML">
+  <meta property="og:description" content="Estructura i regles sintàctiques d'HTML, problemes dels documents mal formats i espais de noms.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="sintaxi_html.html" aria-current="page">Sintaxi d'HTML</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Sintaxi d'HTML</h1>
+        <p>Anàlisi de codi · Estructura i regles sintàctiques d'HTML, problemes dels documents mal formats i espais de noms.</p>
+      </header>
+
+      <section>
+        <h2>Estructura</h2>
+        <p>L'HTML és un llenguatge de marques que s'utilitza per estructurar continguts web. Segueix una estructura jeràrquica on hi ha etiquetes d'obertura i tancament, i una sintaxi ben definida que el navegador ha d'interpretar correctament.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Exemple de pàgina&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Aquest és un títol&lt;/h1&gt;
+  &lt;p&gt;Aquest és un paràgraf de text.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Regles sintàctiques</h2>
+        <ol>
+          <li>Cada etiqueta d'obertura (<code>&lt;h1&gt;</code>) ha de tenir la seva corresponent etiqueta de tancament (<code>&lt;/h1&gt;</code>), excepte els elements buits, com <code>&lt;br&gt;</code> o <code>&lt;img&gt;</code>.</li>
+          <li>L'estructura ha de seguir un ordre correcte: dins del <code>&lt;body&gt;</code> no hi pot haver elements de capçalera (<code>&lt;head&gt;</code>).</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Problemes dels documents mal formats</h2>
+        <p>Si un document HTML està mal format, pot provocar que la pàgina web es mostri incorrectament o que algunes parts no es visualitzin.</p>
+      <figure>
+        <figcaption>Exemple de document mal format</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Exemple mal format&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Aquest és un títol
+  &lt;p&gt;Un paràgraf sense tancar.
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+        <p><strong>Conseqüència:</strong> alguns navegadors intenten corregir automàticament els errors, però altres podrien mostrar el contingut de manera errònia.</p>
+      </section>
+
+      <section>
+        <h2>Espais de noms</h2>
+        <p>En HTML, els espais de noms no són tan utilitzats com en XML, però són importants en casos d'incrustació de llenguatges o tecnologia externa, com SVG (gràfics vectorials escalables).</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"&gt;
+  &lt;circle cx="50" cy="50" r="40" stroke="green" fill="yellow"/&gt;
+&lt;/svg&gt;</code></pre>
+      </figure>
+        <p><strong>Avantatge:</strong> l'ús de l'espai de noms <code>xmlns</code> per a SVG permet que el navegador sàpiga que el contingut dins d'aquestes etiquetes és gràfic vectorial, no HTML.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="tasca_investigacio.html" rel="prev">Anterior: Tasca d'investigació</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="sintaxi_xml.html" rel="next">Següent: Sintaxi d'XML</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

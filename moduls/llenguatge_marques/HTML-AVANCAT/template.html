@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantilles: template | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="L'etiqueta template per definir fragments d'HTML reutilitzables que no es mostren en carregar la pàgina.">
+  <meta name="keywords" content="HTML5, template, plantilles, DOM">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Plantilles: template">
+  <meta property="og:description" content="L'etiqueta template per definir fragments d'HTML reutilitzables que no es mostren en carregar la pàgina.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="template.html" aria-current="page">Plantilles: template</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Plantilles: template</h1>
+        <p>HTML avançat · L'etiqueta template per definir fragments d'HTML reutilitzables que no es mostren en carregar la pàgina.</p>
+      </header>
+
+      <section>
+        <h2>L'etiqueta <code>&lt;template&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;template&gt;</code> s'utilitza per definir fragments d'HTML reutilitzables que no es mostren immediatament quan la pàgina es carrega. El contingut d'un <code>&lt;template&gt;</code> no s'afegeix al document fins que es manipula explícitament amb JavaScript, cosa que permet crear plantilles que es poden clonar i inserir al DOM de manera dinàmica.</p>
+        <p>Aquest element és ideal quan vols tenir estructures HTML preparades per afegir al document en temps real, sense que es mostrin inicialment.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;template id="mevaPlantilla"&gt;
+  &lt;div class="producte"&gt;
+    &lt;h2&gt;Nom del producte&lt;/h2&gt;
+    &lt;p&gt;Descripció del producte&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </figure>
+        <p>Just aquí sota hi ha aquesta plantilla dins del codi d'aquesta pàgina, però el navegador no la mostra:</p>
+        <template id="mevaPlantilla">
+          <div class="producte">
+            <h2>Nom del producte</h2>
+            <p>Descripció del producte</p>
+          </div>
+        </template>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li><strong>Mantén les plantilles simples i modulars</strong> per poder-les reutilitzar fàcilment en diferents seccions de la pàgina.</li>
+          <li><strong>Clona les plantilles amb JavaScript:</strong> el contingut no es mostra fins que l'invoques, cosa que et dona control total sobre quan i com s'afegeix al DOM.</li>
+          <li><strong>Utilitza plantilles per generar contingut dinàmicament:</strong> llistes, formularis o targetes de productes.</li>
+          <li><strong>No incloguis contingut actiu dins de la plantilla:</strong> els scripts no s'executaran fins que el contingut s'afegeixi al DOM.</li>
+        </ul>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="hr.html" rel="prev">Anterior: Separador temàtic: hr</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="iframe.html" rel="next">Següent: Contingut incrustat: iframe</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintaxi d'XML | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Estructura i regles sintàctiques d'XML, problemes dels documents mal formats i espais de noms.">
+  <meta name="keywords" content="XML, sintaxi, document mal format, espais de noms, parser, xmlns">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sintaxi d'XML">
+  <meta property="og:description" content="Estructura i regles sintàctiques d'XML, problemes dels documents mal formats i espais de noms.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="sintaxi_xml.html" aria-current="page">Sintaxi d'XML</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Sintaxi d'XML</h1>
+        <p>Anàlisi de codi · Estructura i regles sintàctiques d'XML, problemes dels documents mal formats i espais de noms.</p>
+      </header>
+
+      <section>
+        <h2>Estructura</h2>
+        <p>L'XML és un llenguatge de marques dissenyat per emmagatzemar i transportar dades. També segueix una estructura jeràrquica amb etiquetes d'obertura i tancament.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;llibre&gt;
+  &lt;titol&gt;Programació en Python&lt;/titol&gt;
+  &lt;autor&gt;Joan López&lt;/autor&gt;
+  &lt;preu moneda="EUR"&gt;19.99&lt;/preu&gt;
+&lt;/llibre&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Regles sintàctiques</h2>
+        <ul>
+          <li>Les etiquetes han d'estar correctament tancades.</li>
+          <li>Els elements han d'estar correctament imbricats (no es pot tancar un element abans que l'anterior estigui completament tancat).</li>
+          <li>XML distingeix entre majúscules i minúscules (<i lang="en">case-sensitive</i>), és a dir, <code>&lt;titol&gt;</code> i <code>&lt;Titol&gt;</code> són etiquetes diferents.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Problemes dels documents mal formats</h2>
+        <p>Un document XML mal format pot impedir completament que sigui processat, ja que els analitzadors XML (<i lang="en">parsers</i>) són molt estrictes.</p>
+      <figure>
+        <figcaption>Exemple de document mal format</figcaption>
+<pre><code>&lt;llibre&gt;
+  &lt;titol&gt;Programació en Python&lt;/titol&gt;
+  &lt;preu moneda="EUR"&gt;19.99&lt;/pre&gt;
+&lt;/llibre&gt;</code></pre>
+      </figure>
+        <p><strong>Conseqüència:</strong> l'element <code>&lt;preu&gt;</code> no està correctament tancat amb <code>&lt;/preu&gt;</code>, la qual cosa impedirà que el document sigui llegit correctament.</p>
+      </section>
+
+      <section>
+        <h2>Espais de noms</h2>
+        <p>Els espais de noms en XML són especialment útils quan es combinen dades de diverses fonts.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;llib xmlns:llib="http://example.com/llibres"&gt;
+  &lt;llib:titol&gt;Programació en Python&lt;/llib:titol&gt;
+&lt;/llib&gt;</code></pre>
+      </figure>
+        <p><strong>Avantatge:</strong> diferencia elements d'una mateixa estructura que podrien tenir el mateix nom, i evita conflictes en combinar dades.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="sintaxi_html.html" rel="prev">Anterior: Sintaxi d'HTML</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="sintaxi_csv.html" rel="next">Següent: Sintaxi de CSV</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inserció d'imatges | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="L'etiqueta img per inserir imatges en HTML i els seus atributs src, alt, width i height.">
+  <meta name="keywords" content="HTML, img, imatges, src, alt, width, height, accessibilitat">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Inserció d'imatges">
+  <meta property="og:description" content="L'etiqueta img per inserir imatges en HTML i els seus atributs src, alt, width i height.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="imatges.html" aria-current="page">Inserció d'imatges</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Inserció d'imatges</h1>
+        <p>HTML bàsic · L'etiqueta img per inserir imatges en HTML i els seus atributs src, alt, width i height.</p>
+      </header>
+
+      <section>
+        <h2>L'etiqueta <code>&lt;img&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;img&gt;</code> s'utilitza per inserir imatges en una pàgina web.</p>
+        <p>No té etiqueta de tancament, ja que és un element auto-tancat.</p>
+        <p>És essencial proporcionar informació sobre la imatge perquè es mostri correctament i per millorar l'accessibilitat.</p>
+      </section>
+
+      <section>
+        <h2>Atributs d'imatges</h2>
+        <ol>
+          <li><strong><code>src</code></strong> (<i lang="en">source</i>): defineix la font o el camí de la imatge. Pot ser un camí relatiu o una URL completa.</li>
+          <li><strong><code>alt</code></strong> (<i lang="en">alternate text</i>): proporciona un text alternatiu que es mostra si la imatge no es carrega o que llegeixen els lectors de pantalla. És fonamental per a l'accessibilitat i el SEO.</li>
+          <li><strong><code>width</code> i <code>height</code></strong>: especifiquen l'amplada i l'alçada de la imatge en píxels o percentatges. Són importants per controlar la mida de la imatge a la pàgina.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Exemples</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;img src="imatge.jpg" alt="Descripció de la imatge" width="400" height="300"&gt;
+
+&lt;img src="imatge.jpg" alt="Imatge adaptada a la pantalla" style="width: 100%;"&gt;
+
+&lt;img src="https://picsum.photos/300/300" alt="Imatge des d'una URL externa"&gt;</code></pre>
+      </figure>
+        <figure>
+          <img src="https://picsum.photos/id/1015/300/200" alt="Paisatge amb un riu entre muntanyes" width="300" height="200">
+          <figcaption>Imatge carregada des d'una URL externa amb <code>width</code> i <code>height</code>.</figcaption>
+        </figure>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Sempre utilitza l'atribut <code>alt</code> per garantir una bona accessibilitat i SEO.</li>
+          <li>Evita inserir imatges molt grans sense reduir-ne la mida, ja que pot afectar el rendiment de la pàgina.</li>
+          <li>Si les imatges són responsives (s'adapten a diferents dispositius), utilitza percentatges en lloc de píxels per a <code>width</code> i <code>height</code>.</li>
+        </ul>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="comentaris.html" rel="prev">Anterior: Comentaris en HTML</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="enllacos.html" rel="next">Següent: Enllaços</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

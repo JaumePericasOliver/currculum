@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metadades | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Metadades en HTML: charset, viewport, description, keywords, author, robots, Open Graph, favicon i atribut lang.">
+  <meta name="keywords" content="HTML, metadades, meta, charset, viewport, description, keywords, robots, Open Graph, favicon, lang">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Metadades">
+  <meta property="og:description" content="Metadades en HTML: charset, viewport, description, keywords, author, robots, Open Graph, favicon i atribut lang.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="metadades.html" aria-current="page">Metadades</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Metadades</h1>
+        <p>HTML avançat · Metadades en HTML: charset, viewport, description, keywords, author, robots, Open Graph, favicon i atribut lang.</p>
+      </header>
+
+      <section>
+        <h2>Què són les metadades?</h2>
+        <p>Les metadades són informació que es col·loca dins del document HTML per descriure'n característiques com l'autor, la descripció, les paraules clau o les instruccions per a motors de cerca i navegadors.</p>
+        <p>S'inclouen dins de l'etiqueta <code>&lt;head&gt;</code> i no es mostren directament a la pàgina. Ajuden els navegadors, motors de cerca i aplicacions a comprendre millor el contingut.</p>
+      </section>
+
+      <section>
+        <h2>Charset (conjunt de caràcters)</h2>
+        <p>Defineix el conjunt de caràcters utilitzat en el document, com UTF-8, que suporta gairebé tots els caràcters.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Viewport (disseny adaptable)</h2>
+        <p>Configura la visualització de la pàgina en dispositius mòbils perquè el contingut s'adapti a diferents mides de pantalla.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Descripció de la pàgina</h2>
+        <p>Proporciona una breu descripció del contingut. Els motors de cerca la utilitzen per mostrar descripcions als resultats.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta name="description" content="Aquest és un lloc web que ofereix informació sobre HTML5."&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Paraules clau (<i lang="en">keywords</i>)</h2>
+        <p>Defineix un conjunt de paraules clau que descriuen el contingut. Els motors de cerca ja no les utilitzen gaire, però poden ser útils per a altres aplicacions.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta name="keywords" content="HTML5, desenvolupament web, CSS, JavaScript"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Autor de la pàgina</h2>
+        <p>Indica el nom de l'autor o l'empresa responsable del contingut.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta name="author" content="Jaume Pericàs"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Instruccions per a robots de cerca</h2>
+        <p>Indica als motors de cerca com indexar i rastrejar el contingut de la pàgina.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta name="robots" content="index, follow"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Open Graph (xarxes socials)</h2>
+        <p>Metadades que fan servir les xarxes socials per mostrar previsualitzacions personalitzades quan es comparteix un enllaç.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;meta property="og:title" content="Títol de la pàgina"&gt;
+&lt;meta property="og:description" content="Descripció de la pàgina"&gt;
+&lt;meta property="og:image" content="imatge.jpg"&gt;
+&lt;meta property="og:url" content="https://www.exemple.com"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Aplicacions mòbils</h2>
+        <p>Millora com es veu la pàgina quan es desa a la pantalla d'inici d'un dispositiu mòbil.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;link rel="apple-touch-icon" href="icon.png"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Favicon</h2>
+        <p>Tot i que no és un <code>&lt;meta&gt;</code>, el favicon és una metadada visual important que es mostra a la pestanya del navegador.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;link rel="icon" href="logo.ico" type="image/x-icon"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Atribut <code>lang</code></h2>
+        <p>L'atribut <code>lang</code> es defineix a l'etiqueta <code>&lt;html&gt;</code> per especificar l'idioma general de la pàgina, o a qualsevol altra etiqueta per marcar l'idioma d'una part del contingut.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+  ...
+&lt;/html&gt;</code></pre>
+      </figure>
+        <p>En aquests apunts, les paraules en anglès estan marcades amb <code>lang="en"</code>, per exemple: <i lang="en">viewport</i>.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques per a l'ús de metadades</h2>
+        <ol>
+          <li>Utilitza el conjunt de caràcters UTF-8 per garantir que tots els caràcters especials es mostrin correctament.</li>
+          <li>Inclou una descripció rellevant de la pàgina per ajudar els motors de cerca a comprendre millor el contingut.</li>
+          <li>Optimitza per a mòbils amb l'etiqueta <code>viewport</code>.</li>
+          <li>Inclou etiquetes Open Graph si vols que la pàgina es mostri de manera atractiva quan es comparteixi a les xarxes socials.</li>
+          <li>Utilitza les metadades de robots per controlar com vols que els motors de cerca indexin la pàgina.</li>
+        </ol>
+        <p>Totes les pàgines d'aquests apunts segueixen aquestes pràctiques: consulta'n el <code>&lt;head&gt;</code> al codi font.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="iframe.html" rel="prev">Anterior: Contingut incrustat: iframe</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

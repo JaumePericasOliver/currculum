@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formularis | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Formularis en HTML: form, input, label, textarea, select, option, button, radio buttons i checkboxes.">
+  <meta name="keywords" content="HTML, formularis, form, input, label, textarea, select, button, radio, checkbox">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Formularis">
+  <meta property="og:description" content="Formularis en HTML: form, input, label, textarea, select, option, button, radio buttons i checkboxes.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="formularis.html" aria-current="page">Formularis</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Formularis</h1>
+        <p>HTML avançat · Formularis en HTML: form, input, label, textarea, select, option, button, radio buttons i checkboxes.</p>
+      </header>
+
+      <section>
+        <h2>L'etiqueta <code>&lt;form&gt;</code></h2>
+        <p>Els formularis són una de les eines més importants d'HTML perquè permeten als usuaris enviar dades a un servidor. Amb HTML5, els formularis han guanyat noves funcionalitats que milloren la seva usabilitat i validació.</p>
+        <p>Un formulari es crea amb l'etiqueta <code>&lt;form&gt;</code>, que actua com el contenidor de tots els elements d'entrada (text, botons, seleccions, etc.). Cada camp del formulari s'envia com a dades a un servidor quan l'usuari l'envia.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;form action="submit.php" method="POST"&gt;
+  &lt;!-- Aquí van els camps del formulari --&gt;
+&lt;/form&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2><code>&lt;input&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;input&gt;</code> és l'element més versàtil per crear camps d'entrada. El tipus de camp es defineix amb l'atribut <code>type</code>.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;input type="text" name="nom" placeholder="Escriu el teu nom"&gt;
+&lt;input type="email" name="email" placeholder="Escriu el teu correu electrònic"&gt;
+&lt;input type="password" name="password" placeholder="Escriu la teva contrasenya"&gt;</code></pre>
+      </figure>
+        <p>Consulta tots els <a href="tipus_entrada.html">tipus d'entrada especials</a>.</p>
+      </section>
+
+      <section>
+        <h2><code>&lt;label&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;label&gt;</code> s'utilitza per etiquetar camps de formulari i millorar l'accessibilitat. L'atribut <code>for</code> ha de coincidir amb l'<code>id</code> del camp.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;label for="nom"&gt;Nom:&lt;/label&gt;
+&lt;input type="text" id="nom" name="nom"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2><code>&lt;textarea&gt;</code></h2>
+        <p>Per a textos llargs, com comentaris o descripcions, s'utilitza <code>&lt;textarea&gt;</code>, que permet una àrea de text més gran.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;textarea name="comentari" rows="4" cols="50" placeholder="Escriu el teu comentari aquí"&gt;&lt;/textarea&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2><code>&lt;select&gt;</code> i <code>&lt;option&gt;</code></h2>
+        <p><code>&lt;select&gt;</code> es fa servir per crear llistes desplegables de selecció. Cada opció dins de la llista es defineix amb <code>&lt;option&gt;</code>.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;label for="ciutat"&gt;Selecciona la teva ciutat:&lt;/label&gt;
+&lt;select id="ciutat" name="ciutat"&gt;
+  &lt;option value="barcelona"&gt;Barcelona&lt;/option&gt;
+  &lt;option value="madrid"&gt;Madrid&lt;/option&gt;
+  &lt;option value="valencia"&gt;València&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+      </figure>
+        <h3>Atribut <code>multiple</code></h3>
+        <p>Permet seleccionar múltiples opcions en una llista de selecció.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;select name="interessos" multiple&gt;
+  &lt;option value="programacio"&gt;Programació&lt;/option&gt;
+  &lt;option value="disseny"&gt;Disseny&lt;/option&gt;
+  &lt;option value="marketing"&gt;Màrqueting&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2><code>&lt;button&gt;</code></h2>
+        <p>S'utilitza per crear botons d'enviament o d'altres accions dins del formulari.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;button type="submit"&gt;Enviar&lt;/button&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Radio buttons</h2>
+        <p>Permeten seleccionar una opció d'un conjunt de possibilitats. Totes les opcions del grup comparteixen el mateix <code>name</code>.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;label&gt;&lt;input type="radio" name="sexe" value="home"&gt; Home&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" name="sexe" value="dona"&gt; Dona&lt;/label&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Checkboxes</h2>
+        <p>Permeten seleccionar diverses opcions independents.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;label&gt;&lt;input type="checkbox" name="subscripcio" value="noticies"&gt; Subscriu-me a les notícies&lt;/label&gt;
+&lt;label&gt;&lt;input type="checkbox" name="subscripcio" value="ofertes"&gt; Subscriu-me a les ofertes&lt;/label&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Exemple complet</h2>
+      <figure>
+        <figcaption>Resultat al navegador</figcaption>
+<form action="#" method="post">
+  <fieldset>
+    <legend>Dades de contacte</legend>
+    <p>
+      <label for="demo-nom">Nom:</label>
+      <input type="text" id="demo-nom" name="nom" placeholder="Escriu el teu nom" autocomplete="name">
+    </p>
+    <p>
+      <label for="demo-ciutat">Selecciona la teva ciutat:</label>
+      <select id="demo-ciutat" name="ciutat">
+        <option value="barcelona">Barcelona</option>
+        <option value="madrid">Madrid</option>
+        <option value="valencia">València</option>
+      </select>
+    </p>
+    <p>
+      <label for="demo-comentari">Comentari:</label><br>
+      <textarea id="demo-comentari" name="comentari" rows="4" cols="50" placeholder="Escriu el teu comentari aquí"></textarea>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Subscripcions</legend>
+    <p>
+      <label><input type="checkbox" name="subscripcio" value="noticies"> Subscriu-me a les notícies</label><br>
+      <label><input type="checkbox" name="subscripcio" value="ofertes"> Subscriu-me a les ofertes</label>
+    </p>
+  </fieldset>
+  <p><button type="submit">Enviar</button></p>
+</form>
+      </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="html5.html" rel="prev">Anterior: HTML5 i etiquetes semàntiques</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="validacio_formularis.html" rel="next">Següent: Validació de formularis</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

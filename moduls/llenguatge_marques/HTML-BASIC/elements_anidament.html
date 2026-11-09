@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elements HTML i anidament | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Diferència entre etiqueta i element HTML, i com s'aniden correctament els elements.">
+  <meta name="keywords" content="HTML, etiqueta, element, anidament">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Elements HTML i anidament">
+  <meta property="og:description" content="Diferència entre etiqueta i element HTML, i com s'aniden correctament els elements.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="elements_anidament.html" aria-current="page">Elements HTML i anidament</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Elements HTML i anidament</h1>
+        <p>HTML bàsic · Diferència entre etiqueta i element HTML, i com s'aniden correctament els elements.</p>
+      </header>
+
+      <section>
+        <h2>Diferència entre etiquetes i elements</h2>
+        <table>
+          <caption>Etiqueta i element en HTML</caption>
+          <thead>
+            <tr>
+              <th scope="col">Concepte</th>
+              <th scope="col">Etiqueta (<i lang="en">tag</i>)</th>
+              <th scope="col">Element</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Definició</th>
+              <td>És la part que defineix l'inici i el final d'un component en HTML.</td>
+              <td>Inclou l'etiqueta d'obertura, el contingut (si n'hi ha) i l'etiqueta de tancament.</td>
+            </tr>
+            <tr>
+              <th scope="row">Característiques</th>
+              <td>Es delimita amb els símbols <code>&lt; &gt;</code>.</td>
+              <td>Els elements poden ser buits o contenir altres elements dins.</td>
+            </tr>
+            <tr>
+              <th scope="row">Exemples</th>
+              <td><code>&lt;p&gt;</code>, <code>&lt;/p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;/h1&gt;</code></td>
+              <td><code>&lt;p&gt;Aquest és un paràgraf.&lt;/p&gt;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Elements anidats</h2>
+        <p>Anidament es refereix a col·locar un element HTML dins d'un altre element.</p>
+        <p>És important seguir correctament l'ordre de les etiquetes: <strong>la primera que s'obre és l'última que es tanca</strong>.</p>
+      <figure>
+        <figcaption>Anidament correcte</figcaption>
+<pre><code>&lt;p&gt;Aquest text és &lt;strong&gt;important&lt;/strong&gt;.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Anidament incorrecte</figcaption>
+<pre><code>&lt;p&gt;Aquest text és &lt;strong&gt;important&lt;/p&gt;&lt;/strong&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Document complet: head i body estan anidats dins d'html</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello world&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Títol 1&lt;/h1&gt;
+  &lt;h2&gt;Títol 2&lt;/h2&gt;
+  &lt;p&gt;Aquest és un paràgraf amb informació.&lt;/p&gt;
+  &lt;p&gt;Aquest text es dividirà&lt;br&gt;en dues línies.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="etiquetes_basiques.html" rel="prev">Anterior: Etiquetes bàsiques</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="atributs.html" rel="next">Següent: Atributs HTML</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

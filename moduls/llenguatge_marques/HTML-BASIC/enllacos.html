@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enllaços | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="L'etiqueta a per crear enllaços en HTML i els atributs href i target.">
+  <meta name="keywords" content="HTML, a, enllaços, href, target, _blank">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Enllaços">
+  <meta property="og:description" content="L'etiqueta a per crear enllaços en HTML i els atributs href i target.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="enllacos.html" aria-current="page">Enllaços</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Enllaços</h1>
+        <p>HTML bàsic · L'etiqueta a per crear enllaços en HTML i els atributs href i target.</p>
+      </header>
+
+      <section>
+        <h2>L'etiqueta <code>&lt;a&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;a&gt;</code> s'utilitza per crear enllaços (<i lang="en">links</i>) a altres pàgines web, documents, seccions dins de la mateixa pàgina o qualsevol altre recurs.</p>
+        <p>L'element essencial per als enllaços és l'atribut <code>href</code>, que defineix l'URL a la qual es redirigeix l'usuari.</p>
+        <p>El text entre l'etiqueta d'obertura i la de tancament és el que els usuaris veuran i podran clicar.</p>
+      </section>
+
+      <section>
+        <h2>Atributs d'enllaços</h2>
+        <ol>
+          <li><strong><code>href</code></strong> (<i lang="en">hypertext reference</i>): defineix la URL de destinació de l'enllaç. Pot ser un enllaç absolut (una URL completa) o relatiu (camí dins del mateix domini).</li>
+          <li><strong><code>target</code></strong>: defineix on s'obrirà l'enllaç. Els valors més habituals són:
+            <ul>
+              <li><code>_blank</code>: obre l'enllaç en una nova pestanya.</li>
+              <li><code>_self</code>: obre l'enllaç a la mateixa pestanya (valor predeterminat).</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Exemples</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;a href="https://www.google.com"&gt;Cerca a Google&lt;/a&gt;
+
+&lt;a href="#capitol1"&gt;Anar al Capítol 1&lt;/a&gt;
+&lt;h2 id="capitol1"&gt;Capítol 1&lt;/h2&gt;
+
+&lt;a href="https://www.exemple.com" target="_blank"&gt;Obre en una nova pestanya&lt;/a&gt;</code></pre>
+      </figure>
+        <p>Enllaç dins de la mateixa pàgina: <a href="#bones-practiques">anar a les bones pràctiques dels enllaços</a>.</p>
+        <p>Enllaç relatiu dins del mateix lloc: <a href="imatges.html">apunts d'inserció d'imatges</a>.</p>
+        <p>Enllaç absolut a un altre lloc: <a href="https://www.google.com">cerca a Google</a>.</p>
+      </section>
+
+      <aside id="bones-practiques">
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Utilitza enllaços descriptius en lloc de genèrics com «Clica aquí». Això millora l'accessibilitat i el SEO.
+            <ul>
+              <li>Correcte: «Visita la pàgina de Contacte».</li>
+              <li>Incorrecte: «Clica aquí».</li>
+            </ul>
+          </li>
+          <li>Utilitza <code>target="_blank"</code> només quan sigui realment necessari, ja que obrir enllaços en noves pestanyes pot confondre alguns usuaris.</li>
+          <li>Assegura't que els enllaços siguin accessibles afegint una descripció adequada per a usuaris amb lectors de pantalla.</li>
+        </ul>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="imatges.html" rel="prev">Anterior: Inserció d'imatges</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="llistes.html" rel="next">Següent: Llistes</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

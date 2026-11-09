@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintaxi de CSV | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Estructura i regles sintàctiques de CSV i problemes dels documents mal formats.">
+  <meta name="keywords" content="CSV, sintaxi, document mal format, delimitador, dades tabulars">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sintaxi de CSV">
+  <meta property="og:description" content="Estructura i regles sintàctiques de CSV i problemes dels documents mal formats.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="sintaxi_csv.html" aria-current="page">Sintaxi de CSV</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Sintaxi de CSV</h1>
+        <p>Anàlisi de codi · Estructura i regles sintàctiques de CSV i problemes dels documents mal formats.</p>
+      </header>
+
+      <section>
+        <h2>Estructura</h2>
+        <p>El CSV (<i lang="en">Comma-Separated Values</i>) és un format molt senzill per emmagatzemar dades tabulars, com en un full de càlcul. No utilitza etiquetes, sinó que separa les dades per comes o altres delimitadors.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>nom,edat,ciutat
+Joan,25,Barcelona
+Anna,30,València</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Regles sintàctiques</h2>
+        <ul>
+          <li>Cada línia representa un registre de dades.</li>
+          <li>Els camps estan separats per comes (o un altre delimitador especificat).</li>
+          <li>És important mantenir la mateixa estructura per a cada fila.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Problemes dels documents mal formats</h2>
+        <p>Si un document CSV no segueix la mateixa estructura per a totes les línies, les dades es processaran de manera incorrecta.</p>
+      <figure>
+        <figcaption>Exemple de document mal format</figcaption>
+<pre><code>nom,edat,ciutat
+Joan,25,Barcelona
+Anna,30</code></pre>
+      </figure>
+        <p><strong>Conseqüència:</strong> al segon registre (el d'Anna) hi falta el camp <code>ciutat</code>, la qual cosa pot generar un error o deixar el camp buit en alguns sistemes.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="sintaxi_xml.html" rel="prev">Anterior: Sintaxi d'XML</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="sintaxi_json.html" rel="next">Següent: Sintaxi de JSON</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

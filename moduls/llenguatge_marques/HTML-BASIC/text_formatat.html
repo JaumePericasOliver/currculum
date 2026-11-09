@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text formatat | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Etiquetes per formatar text en HTML: negreta, cursiva, subratllat, ratllat, superíndex i subíndex.">
+  <meta name="keywords" content="HTML, b, strong, i, em, u, s, sup, sub">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Text formatat">
+  <meta property="og:description" content="Etiquetes per formatar text en HTML: negreta, cursiva, subratllat, ratllat, superíndex i subíndex.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="text_formatat.html" aria-current="page">Text formatat</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Text formatat</h1>
+        <p>HTML bàsic · Etiquetes per formatar text en HTML: negreta, cursiva, subratllat, ratllat, superíndex i subíndex.</p>
+      </header>
+
+      <section>
+        <h2>Etiquetes de format</h2>
+        <table>
+          <caption>Etiquetes de text formatat</caption>
+          <thead>
+            <tr>
+              <th scope="col">Etiqueta</th>
+              <th scope="col">Efecte</th>
+              <th scope="col">Descripció</th>
+              <th scope="col">Exemple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>&lt;b&gt;</code></td><td>Negreta</td><td>Aplica negreta sense indicar cap importància semàntica.</td><td><b>text en negreta</b></td></tr>
+            <tr><td><code>&lt;strong&gt;</code></td><td>Negreta</td><td>Aplica negreta i indica que el text és important.</td><td><strong>text important</strong></td></tr>
+            <tr><td><code>&lt;i&gt;</code></td><td>Cursiva</td><td>Aplica cursiva sense implicar èmfasi.</td><td><i>text en cursiva</i></td></tr>
+            <tr><td><code>&lt;em&gt;</code></td><td>Cursiva</td><td>Aplica cursiva amb èmfasi, indicant que el text té importància.</td><td><em>text emfatitzat</em></td></tr>
+            <tr><td><code>&lt;u&gt;</code></td><td>Subratllat</td><td>S'utilitza per subratllar text.</td><td><u>text subratllat</u></td></tr>
+            <tr><td><code>&lt;s&gt;</code></td><td>Ratllat</td><td>Indica que el text està esborrat o ja no és rellevant.</td><td><s>text ratllat</s></td></tr>
+            <tr><td><code>&lt;sup&gt;</code></td><td>Superíndex</td><td>Eleva el text, com en exponents matemàtics.</td><td>x<sup>2</sup></td></tr>
+            <tr><td><code>&lt;sub&gt;</code></td><td>Subíndex</td><td>Posa el text en posició de subíndex, sovint en fórmules químiques.</td><td>H<sub>2</sub>O</td></tr>
+          </tbody>
+        </table>
+        <p>L'etiqueta <code>&lt;strike&gt;</code> també ratlla el text, però està obsoleta a HTML5: utilitza <code>&lt;s&gt;</code>.</p>
+      </section>
+
+      <section>
+        <h2>Exemple</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;p&gt;Aquest és un &lt;b&gt;text en negreta&lt;/b&gt;.&lt;/p&gt;
+&lt;p&gt;Aquest és un &lt;strong&gt;text important&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Aquest és un &lt;i&gt;text en cursiva&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;Aquest és un &lt;em&gt;text emfatitzat&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Aquest és un &lt;u&gt;text subratllat&lt;/u&gt;.&lt;/p&gt;
+&lt;p&gt;Aquest és un &lt;s&gt;text ratllat&lt;/s&gt;.&lt;/p&gt;
+&lt;p&gt;El quadrat de x és x&lt;sup&gt;2&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;La fórmula de l'aigua és H&lt;sub&gt;2&lt;/sub&gt;O.&lt;/p&gt;
+&lt;p&gt;Aquest és un text amb &lt;strong&gt;negreta&lt;/strong&gt;, &lt;em&gt;cursiva&lt;/em&gt; i &lt;u&gt;subratllat&lt;/u&gt;.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Resultat al navegador</figcaption>
+<p>Aquest és un <b>text en negreta</b>.</p>
+<p>Aquest és un <strong>text important</strong>.</p>
+<p>Aquest és un <i>text en cursiva</i>.</p>
+<p>Aquest és un <em>text emfatitzat</em>.</p>
+<p>Aquest és un <u>text subratllat</u>.</p>
+<p>Aquest és un <s>text ratllat</s>.</p>
+<p>El quadrat de x és x<sup>2</sup>.</p>
+<p>La fórmula de l'aigua és H<sub>2</sub>O.</p>
+<p>Aquest és un text amb <strong>negreta</strong>, <em>cursiva</em> i <u>subratllat</u>.</p>
+      </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="atributs.html" rel="prev">Anterior: Atributs HTML</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="comentaris.html" rel="next">Següent: Comentaris en HTML</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

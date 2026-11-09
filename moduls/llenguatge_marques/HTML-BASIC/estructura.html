@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura bàsica d'un document HTML | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Estructura jeràrquica d'un document HTML: DOCTYPE, html, head i body.">
+  <meta name="keywords" content="HTML, estructura, DOCTYPE, html, head, body">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Estructura bàsica d'un document HTML">
+  <meta property="og:description" content="Estructura jeràrquica d'un document HTML: DOCTYPE, html, head i body.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="estructura.html" aria-current="page">Estructura bàsica d'un document HTML</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Estructura bàsica d'un document HTML</h1>
+        <p>HTML bàsic · Estructura jeràrquica d'un document HTML: DOCTYPE, html, head i body.</p>
+      </header>
+
+      <section>
+        <h2>Estructura general</h2>
+        <ol>
+          <li>Un document HTML es basa en una estructura jeràrquica d'etiquetes que defineixen les diferents parts d'una pàgina.</li>
+          <li>Cada pàgina HTML segueix una estructura similar, començant pel <code>&lt;!DOCTYPE&gt;</code>, seguit de les etiquetes <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> i <code>&lt;body&gt;</code>.</li>
+        </ol>
+      <figure>
+        <figcaption>Esquelet mínim d'un document HTML</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Les parts del document</h2>
+        <ul>
+          <li><code>&lt;!DOCTYPE html&gt;</code>: indica al navegador que el document és HTML5.</li>
+          <li><code>&lt;html&gt;</code>: element arrel que conté tot el document.</li>
+          <li><code>&lt;head&gt;</code>: capçalera amb informació sobre el document (títol, metadades). No es mostra a la pàgina.</li>
+          <li><code>&lt;body&gt;</code>: cos amb el contingut visible de la pàgina.</li>
+        </ul>
+        <p>Consulta les <a href="../HTML-AVANCAT/metadades.html">metadades en HTML</a> per completar el <code>&lt;head&gt;</code> correctament.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="introduccio.html" rel="prev">Anterior: Introducció a HTML</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="etiquetes_basiques.html" rel="next">Següent: Etiquetes bàsiques</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

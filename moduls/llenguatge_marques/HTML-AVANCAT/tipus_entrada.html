@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipus d'entrada especials | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Tipus d'entrada especials d'HTML5: email, url, tel, number, range, date, time, color, file i més.">
+  <meta name="keywords" content="HTML5, input, type, email, url, tel, number, range, date, color, file">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Tipus d'entrada especials">
+  <meta property="og:description" content="Tipus d'entrada especials d'HTML5: email, url, tel, number, range, date, time, color, file i més.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="tipus_entrada.html" aria-current="page">Tipus d'entrada especials</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Tipus d'entrada especials</h1>
+        <p>HTML avançat · Tipus d'entrada especials d'HTML5: email, url, tel, number, range, date, time, color, file i més.</p>
+      </header>
+
+      <section>
+        <h2>Tipus d'entrada d'HTML5</h2>
+        <p>Aquests tipus permeten validar i mostrar els camps de formulari de manera més adequada segons el tipus de dades que esperes obtenir de l'usuari.</p>
+        <table>
+          <caption>Valors de l'atribut type d'input</caption>
+          <thead>
+            <tr><th scope="col">Tipus</th><th scope="col">Dada que recull</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>&lt;input type="password"&gt;</code></td><td>Contrasenya: amaga els caràcters escrits.</td></tr>
+            <tr><td><code>&lt;input type="email"&gt;</code></td><td>Adreça de correu electrònic.</td></tr>
+            <tr><td><code>&lt;input type="url"&gt;</code></td><td>Adreça web.</td></tr>
+            <tr><td><code>&lt;input type="tel"&gt;</code></td><td>Número de telèfon.</td></tr>
+            <tr><td><code>&lt;input type="number"&gt;</code></td><td>Nombre, amb <code>min</code>, <code>max</code> i <code>step</code>.</td></tr>
+            <tr><td><code>&lt;input type="range"&gt;</code></td><td>Control lliscant entre un mínim i un màxim.</td></tr>
+            <tr><td><code>&lt;input type="date"&gt;</code></td><td>Data.</td></tr>
+            <tr><td><code>&lt;input type="time"&gt;</code></td><td>Hora.</td></tr>
+            <tr><td><code>&lt;input type="datetime-local"&gt;</code></td><td>Data i hora.</td></tr>
+            <tr><td><code>&lt;input type="month"&gt;</code></td><td>Mes i any.</td></tr>
+            <tr><td><code>&lt;input type="week"&gt;</code></td><td>Setmana de l'any.</td></tr>
+            <tr><td><code>&lt;input type="color"&gt;</code></td><td>Selector de color.</td></tr>
+            <tr><td><code>&lt;input type="file"&gt;</code></td><td>Selecció d'un fitxer per carregar.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Exemple</h2>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;form action="submit.php" method="POST"&gt;
+  &lt;label for="nom"&gt;Nom:&lt;/label&gt;
+  &lt;input type="text" id="nom" name="nom" placeholder="Escriu el teu nom" required&gt;
+
+  &lt;label for="password"&gt;Contrasenya:&lt;/label&gt;
+  &lt;input type="password" id="password" name="password" placeholder="Escriu la teva contrasenya" required&gt;
+
+  &lt;label for="email"&gt;Correu electrònic:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" placeholder="Escriu el teu correu electrònic" required&gt;
+
+  &lt;label for="web"&gt;Lloc web:&lt;/label&gt;
+  &lt;input type="url" id="web" name="web" placeholder="Escriu l'URL del teu lloc web"&gt;
+
+  &lt;label for="telefon"&gt;Telèfon:&lt;/label&gt;
+  &lt;input type="tel" id="telefon" name="telefon" placeholder="Escriu el teu número de telèfon"&gt;
+
+  &lt;label for="edat"&gt;Edat:&lt;/label&gt;
+  &lt;input type="number" id="edat" name="edat" min="0" max="100" step="1" placeholder="Escriu la teva edat"&gt;
+
+  &lt;label for="satisfaccio"&gt;Nivell de satisfacció:&lt;/label&gt;
+  &lt;input type="range" id="satisfaccio" name="satisfaccio" min="1" max="10" step="1"&gt;
+
+  &lt;label for="naixement"&gt;Data de naixement:&lt;/label&gt;
+  &lt;input type="date" id="naixement" name="data-naixement"&gt;
+
+  &lt;label for="hora-reunio"&gt;Hora de la reunió:&lt;/label&gt;
+  &lt;input type="time" id="hora-reunio" name="hora-reunio"&gt;
+
+  &lt;label for="data-reunio"&gt;Data i hora de la reunió:&lt;/label&gt;
+  &lt;input type="datetime-local" id="data-reunio" name="data-reunio"&gt;
+
+  &lt;label for="mes"&gt;Mes preferit:&lt;/label&gt;
+  &lt;input type="month" id="mes" name="mes-preferit"&gt;
+
+  &lt;label for="setmana"&gt;Setmana de l'any:&lt;/label&gt;
+  &lt;input type="week" id="setmana" name="setmana-seleccionada"&gt;
+
+  &lt;label for="color"&gt;Color preferit:&lt;/label&gt;
+  &lt;input type="color" id="color" name="color-preferit"&gt;
+
+  &lt;label for="arxiu"&gt;Carrega un fitxer:&lt;/label&gt;
+  &lt;input type="file" id="arxiu" name="document"&gt;
+
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Resultat al navegador</figcaption>
+<form action="#" method="post">
+  <p><label for="nom">Nom:</label> <input type="text" id="nom" name="nom" placeholder="Escriu el teu nom" required autocomplete="name"></p>
+  <p><label for="password">Contrasenya:</label> <input type="password" id="password" name="password" placeholder="Escriu la teva contrasenya" required autocomplete="new-password"></p>
+  <p><label for="email">Correu electrònic:</label> <input type="email" id="email" name="email" placeholder="Escriu el teu correu electrònic" required autocomplete="email"></p>
+  <p><label for="web">Lloc web:</label> <input type="url" id="web" name="web" placeholder="Escriu l'URL del teu lloc web" autocomplete="url"></p>
+  <p><label for="telefon">Telèfon:</label> <input type="tel" id="telefon" name="telefon" placeholder="Escriu el teu número de telèfon" autocomplete="tel"></p>
+  <p><label for="edat">Edat:</label> <input type="number" id="edat" name="edat" min="0" max="100" step="1" placeholder="Escriu la teva edat"></p>
+  <p><label for="satisfaccio">Nivell de satisfacció:</label> <input type="range" id="satisfaccio" name="satisfaccio" min="1" max="10" step="1"></p>
+  <p><label for="naixement">Data de naixement:</label> <input type="date" id="naixement" name="data-naixement"></p>
+  <p><label for="hora-reunio">Hora de la reunió:</label> <input type="time" id="hora-reunio" name="hora-reunio"></p>
+  <p><label for="data-reunio">Data i hora de la reunió:</label> <input type="datetime-local" id="data-reunio" name="data-reunio"></p>
+  <p><label for="mes">Mes preferit:</label> <input type="month" id="mes" name="mes-preferit"></p>
+  <p><label for="setmana">Setmana de l'any:</label> <input type="week" id="setmana" name="setmana-seleccionada"></p>
+  <p><label for="color">Color preferit:</label> <input type="color" id="color" name="color-preferit"></p>
+  <p><label for="arxiu">Carrega un fitxer:</label> <input type="file" id="arxiu" name="document"></p>
+  <p><button type="submit">Enviar</button></p>
+</form>
+      </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="validacio_formularis.html" rel="prev">Anterior: Validació de formularis</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="multimedia.html" rel="next">Següent: Multimèdia</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

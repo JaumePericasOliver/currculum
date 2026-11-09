@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taules | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Taules en HTML: table, tr, td, th, thead i tbody, amb exemples i bones pràctiques.">
+  <meta name="keywords" content="HTML, taules, table, tr, td, th, thead, tbody">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Taules">
+  <meta property="og:description" content="Taules en HTML: table, tr, td, th, thead i tbody, amb exemples i bones pràctiques.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="taules.html" aria-current="page">Taules</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Taules</h1>
+        <p>HTML bàsic · Taules en HTML: table, tr, td, th, thead i tbody, amb exemples i bones pràctiques.</p>
+      </header>
+
+      <section>
+        <h2>Taules bàsiques</h2>
+        <ul>
+          <li><code>&lt;table&gt;</code>: defineix la taula i actua com el contenidor principal.</li>
+          <li><code>&lt;tr&gt;</code> (<i lang="en">table row</i>): defineix una fila dins de la taula.</li>
+          <li><code>&lt;td&gt;</code> (<i lang="en">table data</i>): crea una cel·la dins d'una fila de la taula.</li>
+        </ul>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Maria&lt;/td&gt;
+    &lt;td&gt;25&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Joan&lt;/td&gt;
+    &lt;td&gt;30&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Atributs de taula</h2>
+        <ol>
+          <li><code>border</code>: afegeix una vora a la taula i a les cel·les.</li>
+          <li><code>cellpadding</code>: defineix l'espai entre el contingut de la cel·la i la vora de la cel·la.</li>
+          <li><code>cellspacing</code>: controla l'espai entre les cel·les de la taula.</li>
+        </ol>
+        <p>Aquests atributs són obsolets a HTML5: el disseny de les taules s'ha de fer amb CSS.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;table border="1" cellpadding="10" cellspacing="5"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nom&lt;/td&gt;
+    &lt;td&gt;Edat&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Joan&lt;/td&gt;
+    &lt;td&gt;28&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Maria&lt;/td&gt;
+    &lt;td&gt;32&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Encapçalament i cos de la taula</h2>
+        <ul>
+          <li><code>&lt;thead&gt;</code> (<i lang="en">table head</i>): defineix l'encapçalament de la taula, agrupant les files d'encapçalament (habitualment les que contenen <code>&lt;th&gt;</code>).</li>
+          <li><code>&lt;tbody&gt;</code> (<i lang="en">table body</i>): agrupa el cos de la taula, és a dir, les files de dades. Se sol fer servir per separar les dades dels encapçalaments.</li>
+          <li><code>&lt;th&gt;</code> (<i lang="en">table header</i>): crea una cel·la d'encapçalament. El text dins de <code>&lt;th&gt;</code> apareix en negreta i centrat per defecte.</li>
+        </ul>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Producte&lt;/th&gt;
+      &lt;th&gt;Preu&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Poma&lt;/td&gt;
+      &lt;td&gt;1.50&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Plàtan&lt;/td&gt;
+      &lt;td&gt;1.00&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Resultat al navegador</figcaption>
+<table>
+  <caption>Preus de la fruita (euros per quilo)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Producte</th>
+      <th scope="col">Preu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Poma</td>
+      <td>1.50</td>
+    </tr>
+    <tr>
+      <td>Plàtan</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+      </figure>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ol>
+          <li>Utilitza <code>&lt;thead&gt;</code> i <code>&lt;tbody&gt;</code> per organitzar les taules, especialment les més grans, per separar clarament l'encapçalament del cos.</li>
+          <li>Mantén les taules simples per a dades tabulades i utilitza CSS per al disseny més avançat (colors, mida de la font, etc.).</li>
+        </ol>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="llistes.html" rel="prev">Anterior: Llistes</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="eines.html" rel="next">Següent: Eines inicials</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

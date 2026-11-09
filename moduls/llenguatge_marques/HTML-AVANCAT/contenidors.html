@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contenidors: div, span i center | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Les etiquetes contenidor div i span, i l'etiqueta obsoleta center.">
+  <meta name="keywords" content="HTML, div, span, center, contenidors, bloc, en línia">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Contenidors: div, span i center">
+  <meta property="og:description" content="Les etiquetes contenidor div i span, i l'etiqueta obsoleta center.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="contenidors.html" aria-current="page">Contenidors: div, span i center</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Contenidors: div, span i center</h1>
+        <p>HTML avançat · Les etiquetes contenidor div i span, i l'etiqueta obsoleta center.</p>
+      </header>
+
+      <section>
+        <h2><code>&lt;div&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;div&gt;</code> (abreviatura de <i lang="en">division</i>) s'utilitza per crear contenidors de bloc. És una etiqueta de nivell de bloc: ocupa tot l'ample disponible i comença en una línia nova.</p>
+        <p>No té significat semàntic en si mateixa; simplement agrupa altres elements i sol ser estilitzada amb CSS. És útil per organitzar i dissenyar diferents seccions d'una pàgina web.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;div&gt;
+  &lt;h2&gt;Secció 1&lt;/h2&gt;
+  &lt;p&gt;Aquest és un paràgraf dins d'un div.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </figure>
+        <p><strong>Important:</strong> un dels errors més comuns és l'ús excessiu de <code>&lt;div&gt;</code> per a qualsevol cosa quan existeixen etiquetes semàntiques més adequades com <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> o <code>&lt;footer&gt;</code>. Utilitza <code>&lt;div&gt;</code> per agrupar elements que formen una unitat lògica o visual només quan no hi hagi una etiqueta semàntica més adequada.</p>
+      </section>
+
+      <section>
+        <h2><code>&lt;span&gt;</code></h2>
+        <p>L'etiqueta <code>&lt;span&gt;</code> és una etiqueta en línia (<i lang="en">inline</i>) que serveix per estilitzar o manipular petites porcions de text. A diferència de <code>&lt;div&gt;</code>, no ocupa tot l'ample disponible, sinó només l'espai necessari.</p>
+        <p>També és una etiqueta no semàntica, usada principalment per aplicar estils o funcionalitat a una part concreta d'un text.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;p&gt;Aquest és un
+&lt;span style="color: red;"&gt;text en vermell&lt;/span&gt;.
+&lt;/p&gt;</code></pre>
+      </figure>
+        <p><strong>Important:</strong></p>
+        <ul>
+          <li>Fes servir <code>&lt;span&gt;</code> per estilitzar text en línia i evita'n l'ús excessiu.</li>
+          <li>Combina <code>&lt;span&gt;</code> amb CSS per mantenir el codi net.</li>
+          <li>Només per a elements en línia: no l'usis per crear contenidors sense necessitat.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><code>&lt;center&gt;</code> (obsoleta)</h2>
+        <p>L'etiqueta <code>&lt;center&gt;</code> s'utilitzava en versions antigues d'HTML per centrar el contingut dins d'una pàgina web, tant text com imatges o altres elements.</p>
+        <p><strong>Està obsoleta a HTML5 i no s'ha d'utilitzar.</strong> Avui dia es fa servir CSS per centrar els elements.</p>
+      <figure>
+        <figcaption>Codi obsolet: no l'utilitzis</figcaption>
+<pre><code>&lt;center&gt;
+  &lt;h1&gt;Benvinguts al meu lloc web&lt;/h1&gt;
+&lt;/center&gt;</code></pre>
+      </figure>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="multimedia.html" rel="prev">Anterior: Multimèdia</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="hr.html" rel="next">Següent: Separador temàtic: hr</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

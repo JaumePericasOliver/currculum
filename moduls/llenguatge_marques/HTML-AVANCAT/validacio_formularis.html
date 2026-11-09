@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validació de formularis | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Validació nativa de formularis amb HTML5: atributs required i pattern, i bones pràctiques.">
+  <meta name="keywords" content="HTML5, formularis, validació, required, pattern, autocomplete, fieldset">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Validació de formularis">
+  <meta property="og:description" content="Validació nativa de formularis amb HTML5: atributs required i pattern, i bones pràctiques.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="validacio_formularis.html" aria-current="page">Validació de formularis</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Validació de formularis</h1>
+        <p>HTML avançat · Validació nativa de formularis amb HTML5: atributs required i pattern, i bones pràctiques.</p>
+      </header>
+
+      <section>
+        <h2>Validació nativa amb HTML5</h2>
+        <p>HTML5 introdueix una sèrie de nous atributs i tipus d'entrada per validar els formularis de manera nativa, sense necessitat de JavaScript.</p>
+      </section>
+
+      <section>
+        <h2>Atribut <code>required</code></h2>
+        <p>Marca un camp com a obligatori.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;input type="text" name="nom" required placeholder="Escriu el teu nom"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Atribut <code>pattern</code></h2>
+        <p>Permet definir un patró amb expressions regulars per validar l'entrada de l'usuari.</p>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;input type="text" name="telefon" pattern="\d{9}" placeholder="Escriu el teu telèfon"&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Prova-ho</h2>
+      <figure>
+        <figcaption>Resultat al navegador</figcaption>
+<form action="#" method="post">
+  <fieldset>
+    <legend>Informació personal</legend>
+    <p>
+      <label for="val-nom">Nom (obligatori):</label>
+      <input type="text" id="val-nom" name="nom" required placeholder="Escriu el teu nom" autocomplete="name">
+    </p>
+    <p>
+      <label for="val-telefon">Telèfon (9 xifres):</label>
+      <input type="tel" id="val-telefon" name="telefon" pattern="[0-9]{9}" placeholder="Escriu el teu telèfon" autocomplete="tel">
+    </p>
+    <p>
+      <label for="val-edat">Edat (0 a 100):</label>
+      <input type="number" id="val-edat" name="edat" min="0" max="100">
+    </p>
+  </fieldset>
+  <p><button type="submit">Enviar</button></p>
+</form>
+      </figure>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques per crear formularis</h2>
+        <p>Seguint aquestes recomanacions, milloraràs l'experiència d'usuari, l'accessibilitat, la seguretat i l'eficiència dels formularis:</p>
+        <ul>
+          <li>Utilitza l'etiqueta <code>&lt;label&gt;</code> per millorar l'accessibilitat.</li>
+          <li>Utilitza els <a href="tipus_entrada.html">tipus d'entrada</a> adequats.</li>
+          <li>Defineix l'atribut <code>required</code> per als camps obligatoris.</li>
+          <li>Afegeix la validació nativa amb <code>pattern</code> i <code>min</code>/<code>max</code>.</li>
+          <li>Usa <code>placeholder</code> per proporcionar pistes.</li>
+          <li>Organitza els camps del formulari en grups lògics amb <code>&lt;fieldset&gt;</code> i <code>&lt;legend&gt;</code>.</li>
+          <li>Proporciona informació clara sobre els errors.</li>
+          <li>Utilitza <code>autocomplete</code> per millorar l'experiència d'usuari.</li>
+        </ul>
+      <figure>
+        <figcaption>Agrupar camps amb fieldset i legend</figcaption>
+<pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Informació personal&lt;/legend&gt;
+  &lt;label for="nom"&gt;Nom:&lt;/label&gt;
+  &lt;input type="text" id="nom" name="nom" required&gt;
+  &lt;!-- altres camps --&gt;
+&lt;/fieldset&gt;</code></pre>
+      </figure>
+      <figure>
+        <figcaption>Missatge d'error personalitzat (requereix JavaScript)</figcaption>
+<pre><code>&lt;input type="email" name="email" required placeholder="Escriu el teu correu electrònic"
+       oninvalid="this.setCustomValidity('Si us plau, introdueix una adreça de correu vàlida')"&gt;</code></pre>
+      </figure>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="formularis.html" rel="prev">Anterior: Formularis</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="tipus_entrada.html" rel="next">Següent: Tipus d'entrada especials</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

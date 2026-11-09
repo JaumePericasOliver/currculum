@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimèdia | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Imatges, vídeo i àudio natius amb HTML5: etiquetes img, video i audio i els seus atributs.">
+  <meta name="keywords" content="HTML5, multimèdia, img, video, audio, controls, autoplay, loop, muted">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Multimèdia">
+  <meta property="og:description" content="Imatges, vídeo i àudio natius amb HTML5: etiquetes img, video i audio i els seus atributs.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="multimedia.html" aria-current="page">Multimèdia</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1>Multimèdia</h1>
+        <p>HTML avançat · Imatges, vídeo i àudio natius amb HTML5: etiquetes img, video i audio i els seus atributs.</p>
+      </header>
+
+      <section>
+        <h2>Multimèdia amb HTML5</h2>
+        <p>HTML5 ha introduït maneres noves i eficients d'integrar multimèdia a les pàgines web, incloent-hi imatges, vídeos i àudio sense necessitat de connectors externs com Flash. Això ha millorat la compatibilitat i la usabilitat en múltiples dispositius, especialment en mòbils.</p>
+      </section>
+
+      <section>
+        <h2>Imatges</h2>
+        <p>L'etiqueta <code>&lt;img&gt;</code> és auto-tancada (no té etiqueta de tancament). Atributs principals:</p>
+        <ol>
+          <li><code>src</code>: especifica la ruta de la imatge.</li>
+          <li><code>alt</code>: proporciona un text alternatiu, útil per a l'accessibilitat i el SEO.</li>
+          <li><code>width</code> i <code>height</code>: controlen la mida de la imatge.</li>
+        </ol>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;img src="imatge.jpg" alt="Descripció de la imatge" width="300" height="200"&gt;</code></pre>
+      </figure>
+        <p>Més detalls a <a href="../HTML-BASIC/imatges.html">Inserció d'imatges</a>.</p>
+      </section>
+
+      <section>
+        <h2>Vídeos: <code>&lt;video&gt;</code></h2>
+        <p>HTML5 introdueix l'etiqueta <code>&lt;video&gt;</code> per inserir vídeos de manera nativa, sense connectors externs. Atributs principals:</p>
+        <ul>
+          <li><code>src</code>: ruta del fitxer de vídeo.</li>
+          <li><code>controls</code>: mostra els controls del vídeo (reproduir, pausa, volum, etc.).</li>
+          <li><code>autoplay</code>: el vídeo es reprodueix automàticament quan es carrega la pàgina.</li>
+          <li><code>loop</code>: el vídeo es reprodueix en bucle.</li>
+          <li><code>muted</code>: reprodueix el vídeo sense so.</li>
+        </ul>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;video src="video.mp4" controls width="400" height="300"&gt;
+  El teu navegador no suporta el vídeo.
+&lt;/video&gt;</code></pre>
+      </figure>
+      </section>
+
+      <section>
+        <h2>Àudio: <code>&lt;audio&gt;</code></h2>
+        <p>De manera similar als vídeos, HTML5 permet inserir àudio natiu amb l'etiqueta <code>&lt;audio&gt;</code>. Atributs principals:</p>
+        <ul>
+          <li><code>src</code>: ruta del fitxer d'àudio.</li>
+          <li><code>controls</code>: mostra els controls de reproducció.</li>
+          <li><code>autoplay</code>: reprodueix automàticament l'àudio en carregar la pàgina.</li>
+          <li><code>loop</code>: l'àudio es reprodueix en bucle.</li>
+          <li><code>muted</code>: reprodueix l'àudio sense so inicialment.</li>
+        </ul>
+      <figure>
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;audio src="audio.mp3" controls&gt;
+  El teu navegador no suporta l'àudio.
+&lt;/audio&gt;</code></pre>
+      </figure>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques per integrar multimèdia</h2>
+        <ol>
+          <li>Proporciona formats de fitxer compatibles amb els diferents navegadors per a àudio i vídeo (com MP4, WebM o OGG).</li>
+          <li>Utilitza l'atribut <code>alt</code> a les imatges per millorar l'accessibilitat i optimitzar el SEO.</li>
+          <li>No facis servir <code>autoplay</code> en àudio i vídeo, ja que pot interrompre l'experiència de l'usuari, especialment en dispositius mòbils.</li>
+          <li>Controla la mida dels fitxers multimèdia per evitar temps de càrrega llargs.</li>
+        </ol>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="tipus_entrada.html" rel="prev">Anterior: Tipus d'entrada especials</a></li>
+        <li><a href="../index.html">Índex de Llenguatges de marques</a></li>
+        <li><a href="contenidors.html" rel="next">Següent: Contenidors: div, span i center</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>
