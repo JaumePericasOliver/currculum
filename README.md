@@ -266,31 +266,6 @@ Detalls a tenir en compte:
 - **Exemples de codi**: dins d'un `<figure>` amb `<figcaption>Codi d'exemple</figcaption>` i `<pre><code>`, escapant `<` i `>` com a `&lt;` i `&gt;`. Quan és útil, a continuació s'afegeix un segon `<figure>` amb `<figcaption>Resultat al navegador</figcaption>` que mostra l'HTML renderitzat.
 - **Termes en anglès**: marcats amb `<i lang="en">`.
 
-## Com afegir un apunt nou
-
-1. Copia un apunt existent del mateix bloc (per exemple `HTML-BASIC/llistes.html`) amb un nom nou.
-2. Actualitza `<title>`, `description`, `keywords`, `og:title` i `og:description`.
-3. Canvia l'últim element del *breadcrumb* (text, `href` i `aria-current`).
-4. Escriu el contingut dins de `<article>`, amb un `<h1>` i seccions `<section>` amb `<h2>`.
-5. Afegeix l'enllaç a l'índex del mòdul ([moduls/llenguatge_marques/index.html](moduls/llenguatge_marques/index.html)), dins del bloc corresponent, amb el format `<li><a href="BLOC/fitxer.html">Títol</a>: descripció breu.</li>`.
-
-## Com afegir un mòdul nou
-
-1. Crea la carpeta `moduls/nom_modul/` amb un `index.html` copiat d'un mòdul existent.
-2. Afegeix l'enllaç al **menú de navegació principal** de *totes* les pàgines del lloc (cal fer-ho a mà, ja que no hi ha plantilles compartides). Una cerca i substitució a tot el projecte és la manera més ràpida.
-3. Afegeix el mòdul a l'**Índex de coneixements** d'[index.html](index.html).
-
-## Tasques pendents
-
-- [ ] Personalitzar el resum professional, l'experiència i la formació del currículum (marcats amb `<!-- TODO -->` a [index.html](index.html)).
-- [ ] Corregir l'any d'inici a l'experiència laboral (`20015` → any correcte).
-- [ ] Substituir la fotografia de prova (`picsum.photos`) per una imatge real allotjada al repositori.
-- [ ] Redactar els apunts de Programació, Bases de dades, Sistemes informàtics i Entorns de desenvolupament.
-- [x] Ampliar Llenguatges de marques amb CSS bàsic i CSS avançat (temes 1–11, PDF Unitat4-5).
-- [x] Afegir els blocs CSS bàsic i CSS avançat a l'índex del mòdul (són els únics apartats de l'índex amb estils).
-- [ ] Enllaçar `HTML-AVANCAT/metadades.html` amb el primer apunt de CSS (botó "Següent").
-- [ ] Ampliar Llenguatges de marques amb XML (DTD, XML Schema), XPath/XSLT i sistemes de gestió d'informació.
-
 ## Autoria i contacte
 
 **Jaume Joan Pericàs Oliver** — CIFP Pau Casesnoves
