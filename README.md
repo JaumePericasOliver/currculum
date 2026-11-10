@@ -2,7 +2,10 @@
 
 Lloc web estàtic que reuneix el **currículum** de Jaume Joan Pericàs Oliver, professor de formació professional de la família d'Informàtica i Comunicacions al CIFP Pau Casesnoves, i un **índex d'apunts** dels mòduls que imparteix.
 
-Tot el lloc està escrit en **HTML5 semàntic pur**: sense CSS, sense JavaScript i sense cap dependència ni procés de compilació. Això és intencionat: els apunts formen part del mòdul de *Llenguatges de marques i sistemes de gestió d'informació* (LMSGI), i el mateix codi font serveix d'exemple d'estructura i bones pràctiques d'HTML.
+El lloc està escrit en **HTML5 semàntic**, sense JavaScript i sense cap dependència ni procés de compilació. Això és intencionat: els apunts formen part del mòdul de *Llenguatges de marques i sistemes de gestió d'informació* (LMSGI), i el mateix codi font serveix d'exemple d'estructura i bones pràctiques.
+
+- Les pàgines d'**HTML** no tenen CSS: el navegador aplica els estils per defecte.
+- Els apunts de **CSS** (blocs `CSS-BASIC` i `CSS-AVANCAT`) tenen la mateixa estructura HTML però enllacen un full d'estil comú ([moduls/llenguatge_marques/estils/apunts.css](moduls/llenguatge_marques/estils/apunts.css)) que **només fa servir propietats i selectors explicats als apunts**. Tots els valors de la guia són variables CSS definides a `:root`. L'aspecte segueix la guia d'estils de les diapositives de FP (paleta, IBM Plex Sans i Roboto Mono, blocs de codi blau nit, nota IMPORTANT), adaptada a web.
 
 ---
 
@@ -23,7 +26,7 @@ Tot el lloc està escrit en **HTML5 semàntic pur**: sense CSS, sense JavaScript
 
 ## Característiques
 
-- **Només HTML5**: cap full d'estil ni script; el navegador aplica els estils per defecte.
+- **HTML5 sense scripts**: els apunts d'HTML no tenen cap full d'estil; els de CSS fan servir un full d'estil extern comú i un bloc `<style>` per pàgina amb els exemples en viu.
 - **Marcat semàntic**: `header`, `nav`, `main`, `article`, `section`, `figure`, `figcaption`, `footer`, taules amb `caption`, `thead` i `scope`.
 - **Accessibilitat**: atribut `lang="ca"`, navegacions etiquetades amb `aria-label`, ruta de navegació (*breadcrumb*) amb `aria-current="page"` i textos alternatius a les imatges.
 - **Metadades completes** a cada pàgina: `description`, `keywords`, `author`, `robots` i etiquetes Open Graph (`og:title`, `og:description`, `og:type`, `og:locale`).
@@ -36,6 +39,8 @@ Tot el lloc està escrit en **HTML5 semàntic pur**: sense CSS, sense JavaScript
 ```
 currculum/
 ├── index.html                      # Currículum + índex de coneixements (pàgina d'inici)
+├── curriculum_css.html             # Segon currículum, maquetat amb CSS (estil editorial)
+├── estils/curriculum.css           # Full d'estil del segon currículum
 ├── favicon.svg                     # Icona del lloc
 ├── README.md
 └── moduls/
@@ -43,7 +48,10 @@ currculum/
     │   ├── index.html              # Índex del mòdul
     │   ├── ANALISI-CODI/           # Bloc 1: anàlisi i interpretació de codi (10 apunts)
     │   ├── HTML-BASIC/             # Bloc 2: HTML bàsic (12 apunts)
-    │   └── HTML-AVANCAT/           # Bloc 3: HTML avançat (10 apunts)
+    │   ├── HTML-AVANCAT/           # Bloc 3: HTML avançat (10 apunts)
+    │   ├── CSS-BASIC/              # Bloc 4: CSS bàsic (10 apunts)
+    │   ├── CSS-AVANCAT/            # Bloc 5: CSS avançat (11 apunts)
+    │   └── estils/apunts.css       # Full d'estil comú dels apunts de CSS
     ├── programacio/index.html              # En preparació
     ├── bases_dades/index.html              # En preparació
     ├── sistemes_informatics/index.html     # En preparació
@@ -106,6 +114,46 @@ Currículum amb les seccions: informació personal, resum professional, experiè
 | [template.html](moduls/llenguatge_marques/HTML-AVANCAT/template.html) | Plantilles: template |
 | [iframe.html](moduls/llenguatge_marques/HTML-AVANCAT/iframe.html) | Contingut incrustat: iframe |
 | [metadades.html](moduls/llenguatge_marques/HTML-AVANCAT/metadades.html) | Metadades |
+
+#### 4. CSS bàsic (`CSS-BASIC/`)
+
+| Fitxer | Tema |
+|---|---|
+| [introduccio.html](moduls/llenguatge_marques/CSS-BASIC/introduccio.html) | Introducció al CSS |
+| [aplicacio_estils.html](moduls/llenguatge_marques/CSS-BASIC/aplicacio_estils.html) | Aplicació d'estils: en línia, incrustats i externs |
+| [sintaxi.html](moduls/llenguatge_marques/CSS-BASIC/sintaxi.html) | Sintaxi, selectors bàsics, herència, especificitat i cascada |
+| [text_fonts.html](moduls/llenguatge_marques/CSS-BASIC/text_fonts.html) | Propietats de text i fonts |
+| [marges_farcits_vores.html](moduls/llenguatge_marques/CSS-BASIC/marges_farcits_vores.html) | Marges, farcits, vores i unitats |
+| [colors_fons.html](moduls/llenguatge_marques/CSS-BASIC/colors_fons.html) | Colors i fons |
+| [dimensions_caixes.html](moduls/llenguatge_marques/CSS-BASIC/dimensions_caixes.html) | Dimensions, box-sizing i overflow |
+| [posicionament.html](moduls/llenguatge_marques/CSS-BASIC/posicionament.html) | Posicionament bàsic i z-index |
+| [flexbox.html](moduls/llenguatge_marques/CSS-BASIC/flexbox.html) | Disseny bàsic amb Flexbox |
+| [media_queries.html](moduls/llenguatge_marques/CSS-BASIC/media_queries.html) | Media queries (introducció) |
+
+#### 5. CSS avançat (`CSS-AVANCAT/`)
+
+| Fitxer | Tema |
+|---|---|
+| [introduccio.html](moduls/llenguatge_marques/CSS-AVANCAT/introduccio.html) | CSS avançat: disseny adaptable i organització del CSS |
+| [selectors_avancats.html](moduls/llenguatge_marques/CSS-AVANCAT/selectors_avancats.html) | Selectors d'atribut, combinadors, pseudoclasses i pseudoelements |
+| [tipografia.html](moduls/llenguatge_marques/CSS-AVANCAT/tipografia.html) | Fonts i tipografia avançades (@font-face, WOFF) |
+| [flexbox_grid.html](moduls/llenguatge_marques/CSS-AVANCAT/flexbox_grid.html) | Layouts amb Flexbox i Grid |
+| [popover.html](moduls/llenguatge_marques/CSS-AVANCAT/popover.html) | Popover API |
+| [variables.html](moduls/llenguatge_marques/CSS-AVANCAT/variables.html) | Variables CSS (custom properties) |
+| [animacions.html](moduls/llenguatge_marques/CSS-AVANCAT/animacions.html) | Animacions i transicions |
+| [disseny.html](moduls/llenguatge_marques/CSS-AVANCAT/disseny.html) | Disseny atractiu i coherent |
+| [ui_ux.html](moduls/llenguatge_marques/CSS-AVANCAT/ui_ux.html) | UI/UX |
+| [optimitzacio.html](moduls/llenguatge_marques/CSS-AVANCAT/optimitzacio.html) | Optimització i rendiment |
+| [eines_modernes.html](moduls/llenguatge_marques/CSS-AVANCAT/eines_modernes.html) | Eines modernes: Sass, LESS, Bootstrap 5 i Tailwind CSS |
+
+Les pàgines de CSS segueixen la mateixa plantilla HTML que la resta d'apunts, amb dues diferències:
+
+- Al `<head>` enllacen el full d'estil comú: `<link rel="stylesheet" href="../estils/apunts.css">`, i tenen un bloc `<style>` amb els estils dels exemples d'aquella pàgina.
+- Les figures porten classe: `<figure class="codi">` per al codi d'exemple i `<figure class="resultat">` per al resultat, que es mostra aplicant el CSS de veritat.
+- Quan un codi va seguit del seu resultat, tots dos van dins d'un `<div class="parella">`: en pantalla gran es mostren un al costat de l'altre.
+- El disseny és una graella bento minimalista (4 columnes en pantalla gran): cada fill de l'`<article>` és un bloc blanc sobre fons blau clar. A dalt, la capçalera (`<p class="epigraf">CSS bàsic · 04</p>`, títol i entrada) i el bloc de progrés (`<div class="progres">`); al final, les bones pràctiques i l'índex de l'apunt (`<nav class="en-aquest-apunt">`, que enllaça amb els `id="apartat-N"` de cada `<section>`). La paginació del peu són dos blocs: anterior i següent.
+- La ruta de navegació inclou el bloc (`../index.html#css-basic` o `#css-avancat`).
+- A l'índex del mòdul, la part de CSS és un sol contenidor (`<section id="css" class="fulls-estil">`) amb la portada i els dos blocs en forma de llista de files; és l'única part de l'índex amb estils.
 
 ### Altres mòduls (en preparació)
 
@@ -238,8 +286,10 @@ Detalls a tenir en compte:
 - [ ] Corregir l'any d'inici a l'experiència laboral (`20015` → any correcte).
 - [ ] Substituir la fotografia de prova (`picsum.photos`) per una imatge real allotjada al repositori.
 - [ ] Redactar els apunts de Programació, Bases de dades, Sistemes informàtics i Entorns de desenvolupament.
-- [ ] Ampliar Llenguatges de marques amb CSS, XML (DTD, XML Schema), XPath/XSLT i sistemes de gestió d'informació.
-- [ ] Opcional: afegir un full d'estil comú quan el temari arribi a CSS.
+- [x] Ampliar Llenguatges de marques amb CSS bàsic i CSS avançat (temes 1–11, PDF Unitat4-5).
+- [x] Afegir els blocs CSS bàsic i CSS avançat a l'índex del mòdul (són els únics apartats de l'índex amb estils).
+- [ ] Enllaçar `HTML-AVANCAT/metadades.html` amb el primer apunt de CSS (botó "Següent").
+- [ ] Ampliar Llenguatges de marques amb XML (DTD, XML Schema), XPath/XSLT i sistemes de gestió d'informació.
 
 ## Autoria i contacte
 

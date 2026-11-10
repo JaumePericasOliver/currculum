@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimització i rendiment | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Optimització i rendiment en CSS: minificació, càrrega condicionada i asíncrona, compressió Gzip i Brotli, Autoprefixer, optimització de fonts i anàlisi amb DevTools.">
+  <meta name="keywords" content="CSS, optimització, rendiment, minificació, Gzip, Brotli, càrrega asíncrona, Autoprefixer, WOFF2, Lighthouse, DevTools, Coverage">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Optimització i rendiment">
+  <meta property="og:description" content="Optimització i rendiment en CSS: minificació, càrrega condicionada i asíncrona, compressió Gzip i Brotli, Autoprefixer, optimització de fonts i anàlisi amb DevTools.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="optimitzacio.html" aria-current="page">Optimització i rendiment</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 10</p>
+        <h1>Optimització i rendiment</h1>
+        <p>Minificació, càrrega condicionada i asíncrona, compressió Gzip i Brotli, Autoprefixer, optimització de fonts i anàlisi amb DevTools.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">10 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Per què optimitzar el CSS?</h2>
+        <p>Optimitzar el CSS garanteix que la pàgina es carregui <strong>ràpidament</strong> i funcioni bé en tots els
+          dispositius, també els que tenen connexions lentes o poca potència, com molts mòbils. A més de millorar l'experiència
+          de l'usuari, té un impacte positiu en el <strong>SEO</strong> i en la posició als cercadors.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Optimització dels fulls d'estil</h2>
+
+        <h3>a) Minificació del CSS</h3>
+        <p>Consisteix a eliminar espais en blanc, salts de línia, comentaris i altres caràcters innecessaris per reduir la mida
+          del fitxer i, per tant, el temps de càrrega. Es fa amb eines automàtiques com <strong>CSSNano</strong> o
+          <strong>UglifyCSS</strong>.</p>
+      <figure class="codi">
+        <figcaption>CSS original</figcaption>
+<pre><code>body {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>CSS minificat</figcaption>
+<pre><code>body{background-color:#fff;color:#333}h1{font-size:2rem;margin-bottom:20px}</code></pre>
+      </figure>
+        <p>Fixa't que el minificador també escurça els colors: <code>#ffffff</code> passa a <code>#fff</code> i
+          <code>#333333</code> a <code>#333</code>. El navegador entén exactament el mateix.</p>
+
+        <h3>b) Càrrega condicionada del CSS</h3>
+        <p>En un lloc web amb moltes pàgines, es pot carregar només el CSS que necessita cada pàgina o secció en lloc de tots els
+          fulls d'estil alhora. L'atribut <code>media</code> de <code>&lt;link&gt;</code> accepta una media query.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!-- Full d'estil per a la pàgina principal --&gt;
+&lt;link rel="stylesheet" href="main.css"&gt;
+
+&lt;!-- Full d'estil específic per a la pàgina de contacte --&gt;
+&lt;link rel="stylesheet" href="contact.css" media="screen and (min-width: 768px)"&gt;</code></pre>
+      </figure>
+        <p><code>contact.css</code> només s'enllaça a la pàgina de contacte, i només s'aplica a pantalles de 768 píxels o més.
+          El navegador el descarrega igualment, però amb prioritat baixa i sense aturar la visualització de la pàgina.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Compressió: Gzip i Brotli</h2>
+        <p>A més de minificar, el <strong>servidor</strong> pot comprimir els fitxers abans d'enviar-los al navegador, normalment
+          amb <strong>Gzip</strong> o <strong>Brotli</strong>. Es configura al servidor, no al CSS.</p>
+        <ul>
+          <li>Redueix la mida del fitxer enviat al navegador.</li>
+          <li>Millora els temps de càrrega, especialment amb connexions lentes.</li>
+        </ul>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Càrrega asíncrona del CSS</h2>
+        <p>Per defecte, el navegador no mostra la pàgina fins que ha carregat <strong>tots</strong> els fulls d'estil (el CSS
+          <strong>bloqueja</strong> el renderitzat). Si carreguem de manera asíncrona el CSS que no és imprescindible, la pàgina es
+          pot mostrar abans.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;link rel="stylesheet" href="estils.css" media="none" onload="this.media='all'"&gt;</code></pre>
+      </figure>
+        <p>Amb <code>media="none"</code> el full d'estil es descarrega sense bloquejar la pàgina; quan s'ha carregat del tot,
+          l'atribut <code>onload</code> canvia <code>media</code> a <code>all</code> i els estils s'apliquen. Fes-ho només amb el
+          CSS secundari: si ho fas amb el principal, la pàgina es veurà un moment sense estils.</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. Autoprefixer</h2>
+        <p>Els navegadors no sempre han admès les propietats noves de la mateixa manera. Durant anys, algunes només funcionaven
+          amb un <strong>prefix de fabricant</strong>: <code>-webkit-</code> (Chrome, Safari), <code>-moz-</code> (Firefox),
+          <code>-ms-</code> (Internet Explorer). <strong>Autoprefixer</strong> afegeix automàticament els prefixos necessaris
+          perquè el CSS funcioni també en versions antigues dels navegadors.</p>
+      <figure class="codi">
+        <figcaption>Abans d'Autoprefixer</figcaption>
+<pre><code>.flex-container {
+  display: flex;
+}</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>Després d'Autoprefixer</figcaption>
+<pre><code>.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}</code></pre>
+      </figure>
+        <p>El navegador es queda amb l'última declaració que entén. Pots provar-ho a <a href="https://autoprefixer.github.io/"
+          target="_blank">Autoprefixer CSS online</a>.</p>
+      </section>
+
+      <section id="apartat-6">
+        <h2>5. Optimització de fonts</h2>
+        <p>Les fonts web poden ser una part important del pes d'una pàgina.</p>
+        <ul>
+          <li><strong>Formats optimitzats</strong>: WOFF i WOFF2 estan dissenyats per comprimir-se i descarregar-se ràpidament. Ho
+            vam veure a l'apunt de <a href="tipografia.html">tipografia</a>.</li>
+          <li><strong>Subconjunt de fonts</strong> (<i lang="en">subsetting</i>): si només fas servir uns quants caràcters d'una
+            font, pots generar una versió reduïda que només els inclogui. Compte: en català necessites els accents, la ç i la
+            l·l.</li>
+          <li><strong>Només els gruixos necessaris</strong>: aquests apunts només carreguen IBM Plex Sans en 400 i 700.</li>
+        </ul>
+      </section>
+
+      <section id="apartat-7">
+        <h2>6. Anàlisi del rendiment</h2>
+        <p>Per optimitzar de debò, cal analitzar com es fa servir el CSS a la pàgina. Eines com <strong>Google
+          Lighthouse</strong>, <strong>Chrome DevTools</strong> i <strong>CSS Stats</strong> ajuden a:</p>
+        <ul>
+          <li><strong>Detectar CSS no utilitzat</strong> i eliminar-lo per reduir la mida del full d'estil.</li>
+          <li><strong>Identificar regles duplicades</strong>.</li>
+          <li><strong>Auditar el rendiment</strong>: quins fulls d'estil retarden la càrrega de la pàgina.</li>
+        </ul>
+
+        <h3>Trobar CSS no utilitzat amb Chrome DevTools</h3>
+        <ol>
+          <li>Obre Chrome DevTools (<kbd>F12</kbd>).</li>
+          <li>Ves a la pestanya <strong>Coverage</strong> (Cobertura). Si no hi és, obre el menú <kbd>⋮</kbd> › <i lang="en">More
+            tools</i> › <i lang="en">Coverage</i>.</li>
+          <li>Recarrega la pàgina i mira quina part de cada fitxer CSS no s'està utilitzant (en vermell).</li>
+        </ol>
+        <p>Prova-ho amb aquesta mateixa pàgina: veuràs que una part de <code>apunts.css</code> no s'utilitza aquí, perquè és per a
+          elements que surten en altres apunts.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Treballa amb el CSS llegible i comentat; minifica'l automàticament només per publicar.</li>
+          <li>Activa la compressió Gzip o Brotli al servidor.</li>
+          <li>Carrega de manera asíncrona només el CSS que no es veu en obrir la pàgina.</li>
+          <li>Revisa de tant en tant el CSS no utilitzat amb la pestanya Coverage.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Per què optimitzar el CSS?</a></li>
+          <li><a href="#apartat-2">1. Optimització dels fulls d'estil</a></li>
+          <li><a href="#apartat-3">2. Compressió: Gzip i Brotli</a></li>
+          <li><a href="#apartat-4">3. Càrrega asíncrona del CSS</a></li>
+          <li><a href="#apartat-5">4. Autoprefixer</a></li>
+          <li><a href="#apartat-6">5. Optimització de fonts</a></li>
+          <li><a href="#apartat-7">6. Anàlisi del rendiment</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="ui_ux.html" rel="prev">UI/UX</a></li>
+        <li><a href="eines_modernes.html" rel="next">Eines modernes de CSS</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

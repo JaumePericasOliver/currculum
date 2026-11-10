@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animacions i transicions | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Animacions i transicions en CSS: transition, transition-property, @keyframes, animation i les propietats animation-duration, animation-delay, animation-iteration-count i animation-direction.">
+  <meta name="keywords" content="CSS, transition, animation, @keyframes, transform, rotate, translateX, animation-duration, animation-delay, animation-direction">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Animacions i transicions">
+  <meta property="og:description" content="Animacions i transicions en CSS: transition, transition-property, @keyframes, animation i les propietats animation-duration, animation-delay, animation-iteration-count i animation-direction.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Peces comunes */
+    .ex-boto {
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius-code);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .ex-etiqueta {
+      margin: var(--space-4) 0 var(--space-1) 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal-deep);
+    }
+
+    .ex-quadre {
+      width: 100px;
+      height: 100px;
+      padding: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink);
+    }
+
+    /* Transició simple */
+    .ex-transicio {
+      background-color: lightblue;
+      transition: background-color 0.3s ease;
+    }
+
+    .ex-transicio:hover {
+      background-color: darkblue;
+      color: white;
+    }
+
+    .ex-sense-transicio {
+      background-color: lightblue;
+    }
+
+    .ex-sense-transicio:hover {
+      background-color: darkblue;
+      color: white;
+    }
+
+    .ex-botons {
+      display: flex;
+      gap: var(--space-3);
+      margin: 0;
+    }
+
+    /* Funcions de temporització */
+    .ex-pista {
+      padding: var(--space-1);
+      background-color: var(--panel);
+      border-radius: var(--radius-code);
+    }
+
+    .ex-bola {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-pill);
+      background-color: var(--teal);
+      transition: margin-left 1.5s;
+    }
+
+    .ex-pistes:hover .ex-bola {
+      margin-left: 75%;
+    }
+
+    .ex-linear {
+      transition-timing-function: linear;
+    }
+
+    .ex-ease {
+      transition-timing-function: ease;
+    }
+
+    .ex-ease-in-out {
+      transition-timing-function: ease-in-out;
+    }
+
+    /* Diverses propietats */
+    .ex-multiple {
+      width: 100px;
+      height: 100px;
+      background-color: lightgreen;
+      transition: width 1s ease, background-color 0.5s ease-in-out;
+    }
+
+    .ex-multiple:hover {
+      width: 200px;
+      background-color: darkgreen;
+      color: white;
+    }
+
+    /* @keyframes girar */
+    @keyframes girar {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .ex-girar {
+      background-color: coral;
+      animation: girar 2s linear infinite;
+    }
+
+    .ex-escenari-girar {
+      display: flex;
+      justify-content: center;
+      padding: var(--space-6);
+    }
+
+    /* Propietats d'animació: s'activa en passar el ratolí per l'escenari */
+    @keyframes moure {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: 200px;
+      }
+    }
+
+    .ex-escenari-moure {
+      padding: var(--space-3);
+      background-color: var(--panel);
+      border-radius: var(--radius-code);
+    }
+
+    .quadre {
+      position: relative;
+      background-color: #3498db;
+      color: white;
+    }
+
+    .ex-escenari-moure:hover .quadre {
+      animation-name: moure;
+      animation-duration: 2s;
+      animation-delay: 1s;
+      animation-iteration-count: 3;
+      animation-direction: alternate;
+    }
+
+    /* Exemple complet */
+    @keyframes anar-i-tornar {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(100px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .ex-anar-i-tornar {
+      margin-top: var(--space-4);
+      background-color: coral;
+      animation: anar-i-tornar 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="animacions.html" aria-current="page">Animacions i transicions</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 07</p>
+        <h1>Animacions i transicions</h1>
+        <p>transition, transition-property, @keyframes, animation i les propietats animation-duration, animation-delay, animation-iteration-count i animation-direction.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">7 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Moviment amb CSS</h2>
+        <p>Les <strong>transicions</strong> i les <strong>animacions</strong> afegeixen moviment i interacció visual a les
+          pàgines i milloren l'experiència de l'usuari. Permeten controlar com canvien les propietats d'un element (color,
+          posició, opacitat...) de manera suau i fluida.</p>
+        <table>
+          <caption>Transició o animació?</caption>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">Transició</th><th scope="col">Animació</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Quan s'executa</strong></td><td>Quan una propietat canvia (per exemple, amb <code>:hover</code>)</td><td>Tota sola, quan s'aplica la regla</td></tr>
+            <tr><td><strong>Passos</strong></td><td>Dos: l'estat inicial i el final</td><td>Tants com vulguis, amb <code>@keyframes</code></td></tr>
+            <tr><td><strong>Repetició</strong></td><td>No es repeteix</td><td>Es pot repetir (fins i tot sempre, amb <code>infinite</code>)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Transicions: <code>transition</code></h2>
+        <p>Les transicions fan que el canvi d'una propietat (color, opacitat, mida, posició) sigui <strong>suau</strong> en lloc
+          de brusc. Es declaren a l'estat inicial de l'element.</p>
+      <figure class="codi">
+        <figcaption>Sintaxi</figcaption>
+<pre><code>element {
+  transition: propietat durada funció-temporització retard;
+}</code></pre>
+      </figure>
+        <table>
+          <caption>Parts de transition</caption>
+          <thead>
+            <tr><th scope="col">Part</th><th scope="col">Què indica</th><th scope="col">Exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Propietat</td><td>La propietat CSS que es vol animar</td><td><code>background-color</code>, <code>transform</code>, <code>opacity</code></td></tr>
+            <tr><td>Durada</td><td>Quant de temps dura la transició</td><td><code>0.5s</code>, <code>2s</code></td></tr>
+            <tr><td>Funció de temporització</td><td>Com varia la velocitat durant la transició</td><td><code>ease</code>, <code>linear</code>, <code>ease-in-out</code></td></tr>
+            <tr><td>Retard (opcional)</td><td>Quant de temps tarda a començar</td><td><code>1s</code></td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>button {
+  background-color: lightblue;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: darkblue;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: passa el ratolí</figcaption>
+        <p class="ex-botons">
+          <button class="ex-boto ex-transicio">Amb transició</button>
+          <button class="ex-boto ex-sense-transicio">Sense transició</button>
+        </p>
+      </figure>
+      </div>
+
+        <h3>Funcions de temporització</h3>
+        <p>Les tres boles fan el mateix recorregut en el mateix temps (1,5 s); només canvia com reparteixen la velocitat:</p>
+      <figure class="resultat ex-pistes">
+        <figcaption>Prova-ho: passa el ratolí</figcaption>
+        <p class="ex-etiqueta">linear: velocitat constant</p>
+        <div class="ex-pista"><div class="ex-bola ex-linear"></div></div>
+        <p class="ex-etiqueta">ease: arrenca ràpid i frena al final</p>
+        <div class="ex-pista"><div class="ex-bola ex-ease"></div></div>
+        <p class="ex-etiqueta">ease-in-out: arrenca i acaba a poc a poc</p>
+        <div class="ex-pista"><div class="ex-bola ex-ease-in-out"></div></div>
+      </figure>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Diverses propietats: <code>transition-property</code></h2>
+        <p>Per animar diverses propietats alhora, es poden indicar una a una (amb <code>transition-property</code> o separant-les
+          per comes dins de <code>transition</code>) o fer servir <code>all</code> per aplicar la transició a totes les propietats
+          que canviïn.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+  transition: width 1s ease, background-color 0.5s ease-in-out;
+}
+
+div:hover {
+  width: 200px;
+  background-color: darkgreen;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: passa el ratolí</figcaption>
+        <div class="ex-quadre ex-multiple">width 1s, color 0.5s</div>
+      </figure>
+      </div>
+        <p>L'amplada s'anima durant 1 segon i el color de fons durant mig segon, cada un amb una funció de temporització
+          diferent.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Animacions amb <code>@keyframes</code></h2>
+        <p>Les animacions permeten moviments més complexos que les transicions. Tenen dues parts:</p>
+        <ol>
+          <li>La regla <code>@keyframes</code>, que posa un nom a l'animació i defineix els seus <strong>fotogrames clau</strong>:
+            com és l'element a cada moment (en percentatges, o amb <code>from</code> = <code>0%</code> i <code>to</code> =
+            <code>100%</code>).</li>
+          <li>La propietat <code>animation</code>, que aplica l'animació a un element.</li>
+        </ol>
+      <figure class="codi">
+        <figcaption>Sintaxi</figcaption>
+<pre><code>@keyframes nom-animacio {
+  0%   { propietat: valor-inicial; }
+  100% { propietat: valor-final; }
+}
+
+element {
+  animation: nom-animacio durada funció-temporització retard cicles direcció;
+}</code></pre>
+      </figure>
+        <table>
+          <caption>Parts de animation</caption>
+          <thead>
+            <tr><th scope="col">Part</th><th scope="col">Què indica</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nom</td><td>El nom de l'animació definida amb <code>@keyframes</code></td></tr>
+            <tr><td>Durada</td><td>El temps que dura un cicle de l'animació</td></tr>
+            <tr><td>Funció de temporització</td><td>Com varia la velocitat (<code>linear</code>, <code>ease</code>...)</td></tr>
+            <tr><td>Retard (opcional)</td><td>Quant de temps tarda a començar</td></tr>
+            <tr><td>Cicles</td><td>Quantes vegades es repeteix (<code>infinite</code> per repetir-la sempre)</td></tr>
+            <tr><td>Direcció (opcional)</td><td><code>normal</code>, <code>reverse</code> (al revés) o <code>alternate</code> (endavant i enrere)</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  animation: girar 2s linear infinite;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-escenari-girar">
+          <div class="ex-quadre ex-girar">girar</div>
+        </div>
+      </figure>
+      </div>
+        <p>La propietat <code>transform</code> transforma l'element sense moure els altres: <code>rotate(360deg)</code> el gira
+          una volta sencera i <code>translateX(100px)</code> el desplaça 100 píxels cap a la dreta.</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. Propietats d'animació</h2>
+        <p>En lloc de la propietat abreujada <code>animation</code>, cada part es pot escriure per separat:</p>
+        <table>
+          <caption>Propietats d'animació</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>animation-name</code></td><td>Nom de l'animació (<code>@keyframes</code>)</td></tr>
+            <tr><td><code>animation-duration</code></td><td>Quant dura l'animació</td></tr>
+            <tr><td><code>animation-delay</code></td><td>Retard abans que comenci</td></tr>
+            <tr><td><code>animation-iteration-count</code></td><td>Quantes vegades es repeteix (<code>1</code>, <code>3</code>, <code>infinite</code>)</td></tr>
+            <tr><td><code>animation-direction</code></td><td>Endavant (<code>normal</code>), enrere (<code>reverse</code>) o alternant (<code>alternate</code>)</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.quadre {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  position: relative;
+  animation-name: moure;
+  animation-duration: 2s;          /* Durada de l'animació */
+  animation-delay: 1s;             /* Retard abans de començar */
+  animation-iteration-count: 3;    /* Repetició de l'animació */
+  animation-direction: alternate;  /* Direcció alternada */
+}
+
+@keyframes moure {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 200px;
+  }
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: deixa el ratolí a sobre</figcaption>
+        <div class="ex-escenari-moure">
+          <div class="ex-quadre quadre">.quadre</div>
+        </div>
+      </figure>
+      </div>
+        <p>Perquè la puguis tornar a veure, aquí l'animació només s'aplica mentre el ratolí és damunt de l'escenari. Espera 1
+          segon (<code>animation-delay</code>): el quadre fa 3 cicles, anada, tornada i anada (<code>alternate</code>), i
+          després torna a la posició inicial.</p>
+      </section>
+
+      <section id="apartat-6">
+        <h2>Exemple complet</h2>
+        <ol>
+          <li>El botó canvia de color de manera suau en passar-hi el ratolí, gràcies a la transició.</li>
+          <li>El <code>div</code> es mou endavant i enrere de manera fluida gràcies a l'animació, que es repeteix sempre.</li>
+        </ol>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Animacions i Transicions en CSS&lt;/title&gt;
+  &lt;style&gt;
+    /* Transició simple */
+    button {
+      padding: 10px 20px;
+      background-color: lightblue;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: darkblue;
+    }
+
+    /* Animació clau */
+    @keyframes moure {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(100px); }
+      100% { transform: translateX(0); }
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: coral;
+      animation: moure 2s ease-in-out infinite;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Canvia color&lt;/button&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <button class="ex-boto ex-transicio">Canvia color</button>
+        <div class="ex-quadre ex-anar-i-tornar"></div>
+      </figure>
+      </div>
+        <p>Per inspirar-te, a <a href="https://thefwa.com/" target="_blank">The FWA</a> hi ha webs premiades pel seu disseny, moltes
+          amb animacions molt treballades.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Fes servir transicions curtes (entre 0.2 i 0.5 segons) per al <i lang="en">feedback</i> visual: més llargues fan la
+            pàgina lenta.</li>
+          <li>Anima preferentment <code>transform</code> i <code>opacity</code>: el navegador les mou amb més fluïdesa que
+            <code>left</code> o <code>width</code>.</li>
+          <li>Evita animacions infinites al costat del text: distreuen i poden marejar alguns usuaris.</li>
+          <li>El moviment ha d'ajudar a entendre què passa, no decorar.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Moviment amb CSS</a></li>
+          <li><a href="#apartat-2">1. Transicions: transition</a></li>
+          <li><a href="#apartat-3">2. Diverses propietats: transition-property</a></li>
+          <li><a href="#apartat-4">3. Animacions amb @keyframes</a></li>
+          <li><a href="#apartat-5">4. Propietats d'animació</a></li>
+          <li><a href="#apartat-6">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="variables.html" rel="prev">Variables CSS</a></li>
+        <li><a href="disseny.html" rel="next">Disseny atractiu i coherent</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posicionament bàsic | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="La propietat position (static, relative, absolute, fixed i sticky), les propietats top, right, bottom i left, i z-index.">
+  <meta name="keywords" content="CSS, position, static, relative, absolute, fixed, sticky, top, left, z-index">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Posicionament bàsic">
+  <meta property="og:description" content="La propietat position (static, relative, absolute, fixed i sticky), les propietats top, right, bottom i left, i z-index.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Escenari comú dels exemples */
+    .ex-escenari {
+      position: relative;
+      height: 200px;
+      background-color: var(--surface);
+      border: 1px solid var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    /* Marca on hi hauria l'element si no es mogués */
+    .ex-fantasma {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 180px;
+      padding: 10px;
+      border: 2px dashed var(--ink-muted);
+      color: var(--ink-muted);
+    }
+
+    /* relative */
+    .ex-relatiu {
+      position: relative;
+      top: 20px;
+      left: 30px;
+      border: 2px solid lightblue;
+      width: 180px;
+      padding: 10px;
+      background-color: lightblue;
+    }
+
+    /* absolute */
+    .ex-absolut {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+      padding: 10px;
+      background-color: lightgreen;
+    }
+
+    .ex-cantonada {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 10px;
+      background-color: var(--task-gold);
+    }
+
+    /* fixed: simulació d'una finestra del navegador */
+    .ex-finestra {
+      position: relative;
+      height: 200px;
+      border: 3px solid var(--ink-title);
+      border-top: 22px solid var(--ink-title);
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    .ex-finestra p {
+      margin: 0;
+      padding: 8px 12px;
+      color: var(--slate-muted);
+    }
+
+    .ex-fix-simulat {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      background-color: coral;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    /* sticky: dins d'una caixa amb desplaçament */
+    .ex-scroll {
+      height: 200px;
+      overflow: auto;
+      border: 1px solid var(--ink-muted);
+      background-color: var(--surface);
+    }
+
+    .ex-scroll h4 {
+      position: sticky;
+      top: 0;
+      margin: 0;
+      padding: 8px 12px;
+      background-color: yellow;
+      font-family: var(--font-mono);
+    }
+
+    .ex-scroll p {
+      margin: 0;
+      padding: 8px 12px;
+    }
+
+    /* z-index */
+    .ex-capa {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      padding: 8px;
+      color: var(--surface);
+    }
+
+    .ex-capa-1 {
+      top: 20px;
+      left: 20px;
+      z-index: 1;
+      background-color: var(--ink-title);
+    }
+
+    .ex-capa-2 {
+      top: 50px;
+      left: 80px;
+      z-index: 10;
+      background-color: var(--teal);
+    }
+
+    .ex-capa-3 {
+      top: 80px;
+      left: 140px;
+      z-index: 5;
+      background-color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="posicionament.html" aria-current="page">Posicionament bàsic</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 08</p>
+        <h1>Posicionament bàsic</h1>
+        <p>La propietat position (static, relative, absolute, fixed i sticky), les propietats top, right, bottom i left, i z-index.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">8 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>1. La propietat <code>position</code></h2>
+        <p>Per defecte, els elements es col·loquen un darrere l'altre seguint el <strong>flux del document</strong>. La propietat
+          <code>position</code> permet canviar aquest comportament i decidir com es posiciona un element respecte al seu
+          contenidor o al document.</p>
+        <table>
+          <caption>Valors de position</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Surt del flux?</th><th scope="col">Es posiciona respecte a...</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>static</code> (per defecte)</td><td>No</td><td>Flux normal; no accepta coordenades</td></tr>
+            <tr><td><code>relative</code></td><td>No</td><td>La seva posició original</td></tr>
+            <tr><td><code>absolute</code></td><td>Sí</td><td>El contenidor més proper que tingui una posició definida (si no n'hi ha, la pàgina)</td></tr>
+            <tr><td><code>fixed</code></td><td>Sí</td><td>La finestra del navegador; no es mou en fer desplaçament</td></tr>
+            <tr><td><code>sticky</code></td><td>No</td><td>Es comporta com <code>relative</code> fins a un punt del desplaçament i després com <code>fixed</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>2. Coordenades: <code>top</code>, <code>right</code>, <code>bottom</code> i <code>left</code></h2>
+        <p>Quan <code>position</code> és <code>relative</code>, <code>absolute</code>, <code>fixed</code> o <code>sticky</code>,
+          aquestes quatre propietats indiquen la distància de l'element respecte a cada límit:</p>
+        <ul>
+          <li><code>top: 10px;</code> separa l'element 10 píxels del límit superior, és a dir, el <strong>baixa</strong>.</li>
+          <li><code>right: 20px;</code> el separa 20 píxels del límit dret, és a dir, el mou <strong>cap a l'esquerra</strong>.</li>
+          <li><code>bottom</code> i <code>left</code> funcionen igual des del límit inferior i l'esquerre.</li>
+        </ul>
+
+        <h3><code>position: relative</code></h3>
+        <p>L'element es desplaça respecte a la seva posició original, però l'espai que ocupava <strong>es manté
+          reservat</strong>: la resta d'elements no se n'adonen.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  position: relative;
+  top: 20px;    /* Mou l'element 20 píxels cap avall */
+  left: 30px;   /* Mou l'element 30 píxels cap a la dreta */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-escenari">
+          <div class="ex-fantasma">posició original</div>
+          <div class="ex-relatiu">top: 20px; left: 30px;</div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-3">
+        <h2>3. Posicionament absolut (<code>position: absolute</code>)</h2>
+        <p>L'element surt completament del flux del document (els altres elements ocupen el seu lloc) i es posiciona respecte al
+          contenidor més proper amb <code>position: relative</code>, <code>absolute</code> o <code>fixed</code>. Per això és
+          habitual posar <code>position: relative</code> al contenidor.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.escenari {
+  position: relative;  /* Punt de referència */
+}
+
+div {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+}
+
+.cantonada {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-escenari">
+          .escenari (position: relative)
+          <div class="ex-absolut">top: 50px; left: 100px;</div>
+          <div class="ex-cantonada">bottom: 0; right: 0;</div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>4. Posicionament fix (<code>position: fixed</code>)</h2>
+        <p>L'element es posiciona respecte a la <strong>finestra del navegador</strong> i es queda al mateix lloc encara que
+          l'usuari faci desplaçament. S'utilitza, per exemple, per a barres de navegació o botons que sempre han d'estar
+          visibles.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Simulació d'una finestra</figcaption>
+        <div class="ex-finestra">
+          <p>Contingut de la pàgina...</p>
+          <p>Contingut de la pàgina...</p>
+          <p>Contingut de la pàgina...</p>
+          <p>Contingut de la pàgina...</p>
+          <p>Contingut de la pàgina...</p>
+          <div class="ex-fix-simulat">position: fixed; top: 0; right: 0;</div>
+        </div>
+      </figure>
+      </div>
+        <p>No el posem en viu perquè taparia aquesta pàgina: en un document real l'element de color coral es quedaria a la
+          cantonada de la finestra mentre el contingut es desplaça per sota.</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>5. Posicionament enganxós (<code>position: sticky</code>)</h2>
+        <p>L'element es comporta com <code>relative</code> fins que, en fer desplaçament, arriba a la posició indicada (per
+          exemple, <code>top: 10px</code>); a partir d'aquí es queda <strong>enganxat</strong> com si fos <code>fixed</code>,
+          però només mentre el seu contenidor sigui visible.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  position: sticky;
+  top: 10px;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: desplaça la caixa</figcaption>
+        <div class="ex-scroll">
+          <p>Paràgraf abans del títol.</p>
+          <h4>Títol enganxós (top: 0)</h4>
+          <p>Primer paràgraf.</p>
+          <p>Segon paràgraf.</p>
+          <p>Tercer paràgraf.</p>
+          <p>Quart paràgraf.</p>
+          <p>Cinquè paràgraf.</p>
+          <p>Sisè paràgraf.</p>
+          <p>Setè paràgraf.</p>
+          <p>Vuitè paràgraf.</p>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-6">
+        <h2>6. Ordre de superposició: <code>z-index</code></h2>
+        <p>Quan dos elements posicionats (<code>relative</code>, <code>absolute</code>, <code>fixed</code> o
+          <code>sticky</code>) es tapen, <code>z-index</code> decideix quin queda al davant: <strong>el valor més alt es mostra
+          davant</strong> dels que tenen valors més baixos.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  position: absolute;
+  z-index: 10;  /* Es mostra davant dels elements amb z-index inferior */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-escenari">
+          <div class="ex-capa ex-capa-1">z-index: 1</div>
+          <div class="ex-capa ex-capa-2">z-index: 10</div>
+          <div class="ex-capa ex-capa-3">z-index: 5</div>
+        </div>
+      </figure>
+      </div>
+        <p>La capa vermella (<code>10</code>) queda davant de totes, encara que al codi HTML estigui al mig.</p>
+      </section>
+
+      <section id="apartat-7">
+        <h2>Exemple complet</h2>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Posicionament en CSS&lt;/title&gt;
+  &lt;style&gt;
+    .relatiu {
+      position: relative;
+      top: 20px;
+      left: 30px;
+      background-color: lightblue;
+      padding: 10px;
+    }
+
+    .absolut {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: lightgreen;
+      padding: 10px;
+    }
+
+    .fix {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: coral;
+      padding: 10px;
+    }
+
+    .enganxos {
+      position: sticky;
+      top: 10px;
+      background-color: yellow;
+      padding: 10px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class="enganxos"&gt;Títol enganxós&lt;/h1&gt;
+  &lt;div class="relatiu"&gt;Aquest element té position: relative.&lt;/div&gt;
+  &lt;div class="absolut"&gt;Aquest element té position: absolute.&lt;/div&gt;
+  &lt;div class="fix"&gt;Aquest element té position: fixed.&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+        <p>Copia aquest codi en un fitxer, afegeix-hi molt de text perquè la pàgina tingui desplaçament i observa com es comporta
+          cada element.</p>
+        <table>
+          <caption>Resum de les propietats vistes</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>position: static</code></td><td>Posicionament per defecte</td></tr>
+            <tr><td><code>position: relative</code></td><td>Es mou respecte a la seva posició original</td></tr>
+            <tr><td><code>position: absolute</code></td><td>Es posiciona respecte al contenidor posicionat més proper</td></tr>
+            <tr><td><code>position: fixed</code></td><td>Es fixa respecte a la finestra del navegador</td></tr>
+            <tr><td><code>position: sticky</code></td><td>Relative fins a un punt; després es queda enganxat</td></tr>
+            <tr><td><code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code></td><td>Distància respecte a cada límit</td></tr>
+            <tr><td><code>z-index</code></td><td>Ordre de superposició dels elements</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Abans de posicionar, prova si n'hi ha prou amb el flux normal, els marges o Flexbox: el posicionament és per a casos
+            concrets.</li>
+          <li>Quan facis servir <code>absolute</code>, posa <code>position: relative</code> al contenidor que ha de fer de
+            referència.</li>
+          <li>Recorda que <code>fixed</code> i <code>absolute</code> treuen l'element del flux: pot tapar altres continguts.</li>
+          <li>Fes servir valors de <code>z-index</code> petits i ordenats (1, 10, 100) per no perdre el control de les capes.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">1. La propietat position</a></li>
+          <li><a href="#apartat-2">2. Coordenades: top, right, bottom i left</a></li>
+          <li><a href="#apartat-3">3. Posicionament absolut (position: absolute)</a></li>
+          <li><a href="#apartat-4">4. Posicionament fix (position: fixed)</a></li>
+          <li><a href="#apartat-5">5. Posicionament enganxós (position: sticky)</a></li>
+          <li><a href="#apartat-6">6. Ordre de superposició: z-index</a></li>
+          <li><a href="#apartat-7">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="dimensions_caixes.html" rel="prev">Dimensions i caixes</a></li>
+        <li><a href="flexbox.html" rel="next">Disseny bàsic amb Flexbox</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

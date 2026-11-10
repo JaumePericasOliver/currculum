@@ -5,15 +5,244 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Llenguatges de marques | Apunts de Jaume Joan Pericàs Oliver</title>
-  <meta name="description" content="Índex dels apunts de Llenguatges de marques: anàlisi de codi, HTML bàsic i HTML avançat.">
-  <meta name="keywords" content="llenguatges de marques, dades, XML, JSON, CSV, HTML, HTML5, apunts, índex">
+  <meta name="description" content="Índex dels apunts de Llenguatges de marques: anàlisi de codi, HTML bàsic, HTML avançat, CSS bàsic i CSS avançat.">
+  <meta name="keywords" content="llenguatges de marques, dades, XML, JSON, CSV, HTML, HTML5, CSS, apunts, índex">
   <meta name="author" content="Jaume Joan Pericàs Oliver">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Llenguatges de marques">
-  <meta property="og:description" content="Índex dels apunts de Llenguatges de marques: anàlisi de codi, HTML bàsic i HTML avançat.">
+  <meta property="og:description" content="Índex dels apunts de Llenguatges de marques: anàlisi de codi, HTML bàsic, HTML avançat, CSS bàsic i CSS avançat.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ca_ES">
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+  <style>
+    /* Estils NOMÉS per a la part de CSS de l'índex (#css, que conté la
+       portada i els apartats CSS bàsic i CSS avançat). La resta de la
+       pàgina es manté sense CSS. Disseny minimalista basat en la guia
+       d'estils de les diapositives de FP. Les variables es defineixen
+       dins del mateix apartat perquè no afectin res més.
+       Només fa servir CSS explicat als apunts. */
+    .fulls-estil {
+      /* Variables (tokens de la guia d'estils) */
+      --surface: #ffffff;
+      --surface-mist: #ebf6fa;
+      --ink-title: #050038;
+      --ink: #1a1a1a;
+      --ink-muted: #696969;
+      --teal-deep: #0f766e;
+      --linia: #c6dde4;
+      --font-sans: "IBM Plex Sans", system-ui, Arial, sans-serif;
+      --font-mono: "Roboto Mono", Consolas, monospace;
+      --transicio: 0.2s ease;
+
+      margin-top: 32px;
+      margin-bottom: 32px;
+      padding: 32px 16px;
+      background-color: var(--surface-mist);
+      border-radius: 24px;
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    /* ---------- Portada ---------- */
+    .portada {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--ink-title);
+    }
+
+    .portada .epigraf {
+      margin: 0 0 16px 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+    }
+
+    .portada h2 {
+      margin: 0 0 16px 0;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: -1.5px;
+      color: var(--ink-title);
+    }
+
+    .portada .entrada {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .portada dl {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .portada dl > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .portada dt {
+      color: var(--ink-muted);
+    }
+
+    .portada dd {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink-title);
+    }
+
+    /* ---------- Blocs: capçalera + llista de files ---------- */
+    .bloc {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .bloc:last-child {
+      margin-bottom: 0;
+    }
+
+    .bloc-cap p {
+      margin: 0;
+    }
+
+    .bloc-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal-deep);
+    }
+
+    .bloc-cap h3 {
+      margin: 8px 0;
+      font-size: 32px;
+      letter-spacing: -0.5px;
+      color: var(--ink-title);
+    }
+
+    .bloc-total {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .bloc ol {
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--linia);
+    }
+
+    /* Els li passen a ser contenidors flex: desapareix el número de la llista */
+    .bloc li {
+      display: flex;
+    }
+
+    /* Cada fila és un enllaç: en mòbil, número, títol i descripció apilats */
+    .fila {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 18px 12px;
+      border-bottom: 1px solid var(--linia);
+      color: var(--ink);
+      text-decoration: none;
+      transition: background-color var(--transicio);
+    }
+
+    .fila:hover {
+      background-color: var(--surface);
+    }
+
+    .fila .num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal-deep);
+    }
+
+    .fila .titol {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink-title);
+    }
+
+    .fila .desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    .fila .desc code {
+      font-family: var(--font-mono);
+      color: var(--ink-title);
+    }
+
+    /* La fletxa de cada fila: buida en mòbil */
+    .fila::after {
+      content: "";
+      color: var(--teal-deep);
+      font-weight: 700;
+      transition: transform var(--transicio);
+    }
+
+    .fila:hover::after {
+      transform: translateX(3px);
+    }
+
+    @media (min-width: 560px) {
+      .fulls-estil {
+        padding: 40px 32px;
+      }
+
+      /* Número | títol | descripció | fletxa */
+      .fila {
+        display: grid;
+        grid-template-columns: 48px 1fr 1.25fr 20px;
+        gap: 20px;
+        align-items: baseline;
+      }
+
+      .fila::after {
+        content: "→";
+      }
+    }
+
+    @media (min-width: 860px) {
+      .portada {
+        grid-template-columns: 1fr 300px;
+        gap: 48px;
+      }
+
+      .portada h2 {
+        font-size: 64px;
+      }
+
+      /* Capçalera del bloc a l'esquerra (enganxosa) i files a la dreta */
+      .bloc {
+        grid-template-columns: 260px 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      .bloc-cap {
+        position: sticky;
+        top: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -41,7 +270,7 @@
     <article>
       <header>
         <h1>Llenguatges de marques</h1>
-        <p>Apunts organitzats en tres blocs: anàlisi i interpretació de fragments de codi, HTML bàsic i HTML avançat.</p>
+        <p>Apunts organitzats en cinc blocs: anàlisi i interpretació de fragments de codi, HTML bàsic, HTML avançat, CSS bàsic i CSS avançat.</p>
       </header>
 
       <section>
@@ -59,7 +288,8 @@
           <li>Sistemes de gestió empresarial i d'emmagatzematge d'informació.</li>
         </ul>
         <p>Aquests apunts comencen amb l'anàlisi i la interpretació de fragments de codi i continuen amb el llenguatge HTML,
-          organitzat en dos blocs: HTML bàsic i HTML avançat.</p>
+          organitzat en dos blocs: HTML bàsic i HTML avançat. Després arriben els fulls d'estil amb CSS bàsic i CSS avançat:
+          aquests dos blocs ja tenen estils i en aquest índex els veuràs destacats.</p>
       </section>
 
       <section>
@@ -142,6 +372,64 @@
           <li><a href="HTML-AVANCAT/metadades.html">Metadades</a>: Metadades en HTML: charset, viewport, description, keywords,
             author, robots, Open Graph, favicon i atribut lang.</li>
         </ol>
+      </section>
+
+      <section id="css" class="fulls-estil" aria-labelledby="t-css">
+        <header class="portada">
+          <div>
+            <p class="epigraf">Llenguatges de marques · Blocs 4 i 5</p>
+            <h2 id="t-css">Fulls d'estil CSS</h2>
+            <p class="entrada">De la primera regla fins a Grid, variables i animacions. Cada apunt explica una idea i la mostra
+              funcionant.</p>
+          </div>
+          <dl>
+            <div>
+              <dt>Apunts</dt>
+              <dd>21 · 10 bàsic, 11 avançat</dd>
+            </div>
+          </dl>
+        </header>
+
+        <section id="css-basic" class="bloc" aria-labelledby="t-basic">
+          <div class="bloc-cap">
+            <p class="bloc-num">Bloc 4</p>
+            <h3 id="t-basic">CSS bàsic</h3>
+            <p class="bloc-total">10 apunts</p>
+          </div>
+          <ol>
+            <li><a class="fila" href="CSS-BASIC/introduccio.html"><span class="num">01</span><span class="titol">Introducció al CSS</span><span class="desc">Què és i per què separa el contingut de la presentació.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/aplicacio_estils.html"><span class="num">02</span><span class="titol">Aplicació d'estils</span><span class="desc">En línia, incrustats i externs.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/sintaxi.html"><span class="num">03</span><span class="titol">Sintaxi bàsica</span><span class="desc">Selectors, herència, especificitat i cascada.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/text_fonts.html"><span class="num">04</span><span class="titol">Text i fonts</span><span class="desc">font-family, font-size, color i text-align.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/marges_farcits_vores.html"><span class="num">05</span><span class="titol">Marges, farcits i vores</span><span class="desc">El model de caixa i les unitats.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/colors_fons.html"><span class="num">06</span><span class="titol">Colors i fons</span><span class="desc">Hexadecimal, RGB, RGBA i imatges de fons.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/dimensions_caixes.html"><span class="num">07</span><span class="titol">Dimensions i caixes</span><span class="desc">width, height, box-sizing i overflow.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/posicionament.html"><span class="num">08</span><span class="titol">Posicionament</span><span class="desc">relative, absolute, fixed, sticky i z-index.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/flexbox.html"><span class="num">09</span><span class="titol">Flexbox</span><span class="desc">Distribuir i alinear elements en una dimensió.</span></a></li>
+            <li><a class="fila" href="CSS-BASIC/media_queries.html"><span class="num">10</span><span class="titol">Media queries</span><span class="desc">Dissenys que s'adapten a cada pantalla.</span></a></li>
+          </ol>
+        </section>
+
+        <section id="css-avancat" class="bloc" aria-labelledby="t-avancat">
+          <div class="bloc-cap">
+            <p class="bloc-num">Bloc 5</p>
+            <h3 id="t-avancat">CSS avançat</h3>
+            <p class="bloc-total">11 apunts</p>
+          </div>
+          <ol>
+            <li><a class="fila" href="CSS-AVANCAT/introduccio.html"><span class="num">01</span><span class="titol">Introducció al CSS avançat</span><span class="desc">Disseny adaptable i com organitzar el CSS en projectes grans.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/selectors_avancats.html"><span class="num">02</span><span class="titol">Selectors avançats</span><span class="desc">Atributs, combinadors i pseudoclasses.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/tipografia.html"><span class="num">03</span><span class="titol">Tipografia avançada</span><span class="desc">@font-face, WOFF2 i control fi del text.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/flexbox_grid.html"><span class="num">04</span><span class="titol">Flexbox i Grid</span><span class="desc">Layouts en una i dues dimensions.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/popover.html"><span class="num">05</span><span class="titol">Popover API</span><span class="desc">Contingut emergent sense JavaScript.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/variables.html"><span class="num">06</span><span class="titol">Variables CSS</span><span class="desc">Defineix un valor una vegada amb <code>--nom</code> i reutilitza'l amb <code>var()</code>.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/animacions.html"><span class="num">07</span><span class="titol">Animacions i transicions</span><span class="desc">transition, @keyframes i animation.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/disseny.html"><span class="num">08</span><span class="titol">Disseny coherent</span><span class="desc">Consistència, navegació i llegibilitat.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/ui_ux.html"><span class="num">09</span><span class="titol">UI/UX</span><span class="desc">Jerarquia, feedback i flux d'usuari.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/optimitzacio.html"><span class="num">10</span><span class="titol">Optimització</span><span class="desc">Minificació, càrrega i Autoprefixer.</span></a></li>
+            <li><a class="fila" href="CSS-AVANCAT/eines_modernes.html"><span class="num">11</span><span class="titol">Eines modernes</span><span class="desc">Sass, LESS, Bootstrap 5 i Tailwind CSS.</span></a></li>
+          </ol>
+        </section>
       </section>
 
     </article>

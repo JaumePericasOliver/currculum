@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducció al CSS | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Què és el CSS, per a què serveix i per què és una peça fonamental del desenvolupament web.">
+  <meta name="keywords" content="CSS, fulls d'estil, Cascading Style Sheets, presentació, disseny web, responsive">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Introducció al CSS">
+  <meta property="og:description" content="Què és el CSS, per a què serveix i per què és una peça fonamental del desenvolupament web.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Estils dels exemples d'aquesta pàgina */
+    #ex-amb-css h1 {
+      color: darkblue;
+      text-align: center;
+    }
+
+    #ex-amb-css p {
+      color: var(--ink-muted);
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="introduccio.html" aria-current="page">Introducció al CSS</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 01</p>
+        <h1>Introducció al CSS</h1>
+        <p>Què és el CSS, per a què serveix i per què és una peça fonamental del desenvolupament web.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">1 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Què és el CSS?</h2>
+        <p><strong>CSS</strong> (<i lang="en">Cascading Style Sheets</i>, fulls d'estil en cascada) és un llenguatge de fulls
+          d'estil que s'utilitza per controlar la <strong>presentació</strong> i el <strong>disseny</strong> dels documents web
+          escrits en HTML.</p>
+        <p>Mentre que HTML proporciona l'<strong>estructura</strong> del contingut, CSS defineix com s'ha de
+          <strong>visualitzar</strong> aquest contingut: disseny, colors, tipografia, espaiat i posicionament dels elements en
+          una pàgina.</p>
+        <table>
+          <caption>Repartiment de feina entre HTML i CSS</caption>
+          <thead>
+            <tr><th scope="col">Llenguatge</th><th scope="col">Respon a la pregunta</th><th scope="col">Exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>HTML</td><td>Què és cada cosa?</td><td>Això és un títol: <code>&lt;h1&gt;</code></td></tr>
+            <tr><td>CSS</td><td>Com s'ha de veure?</td><td>Els títols són blau fosc i centrats</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!-- HTML: l'estructura --&gt;
+&lt;h1&gt;Benvinguts&lt;/h1&gt;
+&lt;p&gt;Aquest és el meu primer lloc web.&lt;/p&gt;
+
+/* CSS: la presentació */
+h1 {
+  color: darkblue;
+  text-align: center;
+}
+
+p {
+  color: #696969;
+  font-size: 14px;
+  text-align: center;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-amb-css">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Benvinguts</h1>
+        <p>Aquest és el meu primer lloc web.</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-2">
+        <h2>Importància del CSS en el desenvolupament web</h2>
+        <p>El CSS és una peça fonamental del desenvolupament web, ja que permet <strong>separar la presentació visual del
+          contingut estructural</strong> d'una pàgina. Això ofereix una sèrie d'avantatges:</p>
+        <ol>
+          <li><strong>Disseny i estètica millorats</strong>: es poden aplicar estils atractius i professionals a les pàgines web,
+            fent-les visualment atractives i més fàcils de llegir i navegar.</li>
+          <li><strong>Separació de contingut i estil</strong>: els estils de presentació (colors, mides de text, marges) queden
+            fora del codi HTML, cosa que facilita el manteniment i l'actualització del disseny sense afectar l'estructura del
+            contingut.</li>
+          <li><strong>Facilitat de manteniment</strong>: amb un sol fitxer CSS es poden aplicar estils a múltiples pàgines web,
+            i així s'estalvia temps i esforç quan es fan canvis de disseny.</li>
+          <li><strong>Millor experiència d'usuari</strong>: amb CSS es poden crear dissenys adaptables (<i lang="en">responsive</i>)
+            que funcionen bé en mòbils, tauletes i ordinadors de sobretaula.</li>
+          <li><strong>Rendiment i velocitat</strong>: els navegadors poden emmagatzemar en memòria cau els fitxers CSS externs i
+            reutilitzar-los en diverses pàgines, estalviant ample de banda i temps de càrrega.</li>
+        </ol>
+        <p>Aquesta mateixa pàgina n'és un exemple: l'HTML és idèntic al dels apunts d'HTML, però enllaça un full d'estil comú
+          que li dona l'aspecte que veus.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Escriu primer un HTML ben estructurat i semàntic; després hi afegeixes el CSS.</li>
+          <li>No utilitzis etiquetes HTML per aconseguir un efecte visual (per exemple, <code>&lt;h1&gt;</code> només per fer el
+            text gros): l'aspecte és feina del CSS.</li>
+          <li>Pensa des del principi que la pàgina s'ha de veure bé en pantalles de mides diferents.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Què és el CSS?</a></li>
+          <li><a href="#apartat-2">Importància del CSS en el desenvolupament web</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="../HTML-AVANCAT/metadades.html" rel="prev">Metadades</a></li>
+        <li><a href="aplicacio_estils.html" rel="next">Aplicació d'estils</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

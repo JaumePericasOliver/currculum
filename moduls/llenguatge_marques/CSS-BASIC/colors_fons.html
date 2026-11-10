@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors i fons | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Com definir colors en CSS (noms, hexadecimal, RGB i RGBA) i les propietats de fons: background-color, background-image i background.">
+  <meta name="keywords" content="CSS, color, background-color, background-image, background-repeat, background-position, background-size, rgb, rgba, hexadecimal">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Colors i fons">
+  <meta property="og:description" content="Com definir colors en CSS (noms, hexadecimal, RGB i RGBA) i les propietats de fons: background-color, background-image i background.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Mostres de color */
+    #ex-colors p {
+      margin: 4px 0;
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .ex-blue {
+      color: blue;
+    }
+
+    .ex-hex {
+      color: #FF5733;
+    }
+
+    .ex-rgb {
+      color: rgb(0, 255, 0);
+    }
+
+    .ex-rgba {
+      color: rgba(0, 0, 255, 0.5);
+    }
+
+    /* Opacitat sobre un fons negre */
+    .ex-opacitat {
+      display: flex;
+      background-color: var(--ink-title);
+      padding: 10px;
+    }
+
+    .ex-opacitat div {
+      flex-grow: 1;
+      padding: 14px 0;
+      color: var(--surface);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .ex-a10 {
+      background-color: rgba(0, 151, 136, 1.0);
+    }
+
+    .ex-a07 {
+      background-color: rgba(0, 151, 136, 0.7);
+    }
+
+    .ex-a04 {
+      background-color: rgba(0, 151, 136, 0.4);
+    }
+
+    .ex-a01 {
+      background-color: rgba(0, 151, 136, 0.1);
+    }
+
+    /* background-color */
+    .ex-fons-gris {
+      background-color: lightgray;
+      padding: 16px;
+    }
+
+    .ex-fons-verd {
+      background-color: #00FF00;
+      padding: 16px;
+    }
+
+    /* Imatges de fons */
+    .ex-fons {
+      height: 140px;
+      margin-bottom: 12px;
+      padding: 8px;
+      border: 1px solid var(--ink-muted);
+      background-image: url("../../../favicon.svg");
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .ex-repeat {
+      background-repeat: repeat;
+    }
+
+    .ex-repeat-x {
+      background-repeat: repeat-x;
+    }
+
+    .ex-repeat-y {
+      background-repeat: repeat-y;
+    }
+
+    .ex-no-repeat {
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .ex-cover {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .ex-contain {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .ex-abreujat {
+      height: 140px;
+      padding: 8px;
+      background: lightblue url("../../../favicon.svg") no-repeat right / contain;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    /* Exemple complet */
+    #ex-complet {
+      background-color: lightgray;
+    }
+
+    #ex-complet h1 {
+      color: darkblue;
+    }
+
+    #ex-complet p {
+      color: #333;
+      background-color: #FFD700;
+    }
+
+    .fons-imatge {
+      background-image: url("../../../favicon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="colors_fons.html" aria-current="page">Colors i fons</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 06</p>
+        <h1>Colors i fons</h1>
+        <p>Com definir colors en CSS (noms, hexadecimal, RGB i RGBA) i les propietats de fons: background-color, background-image i background.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">6 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>1. La propietat <code>color</code></h2>
+        <p>La propietat <code>color</code> canvia el color del <strong>text</strong> d'un element. Hi ha quatre maneres
+          d'escriure un color:</p>
+        <table>
+          <caption>Formes d'escriure un color</caption>
+          <thead>
+            <tr><th scope="col">Forma</th><th scope="col">Com funciona</th><th scope="col">Exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nom de color</td><td>Noms predefinits en anglès</td><td><code>red</code>, <code>blue</code>, <code>green</code></td></tr>
+            <tr><td>Hexadecimal</td><td><code>#</code> seguit de sis caràcters: dos per al vermell, dos per al verd i dos per al blau</td><td><code>#FF0000</code> (vermell)</td></tr>
+            <tr><td>RGB</td><td><code>rgb()</code> amb tres components (vermell, verd, blau) entre 0 i 255</td><td><code>rgb(0, 255, 0)</code></td></tr>
+            <tr><td>RGBA</td><td>Com <code>rgb()</code> però amb un quart valor per a l'opacitat, entre 0.0 i 1.0</td><td><code>rgba(0, 0, 255, 0.5)</code></td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  color: blue;                   /* Nom de color */
+}
+
+h1 {
+  color: #FF5733;                /* Codi hexadecimal */
+}
+
+span {
+  color: rgb(0, 255, 0);         /* Sistema RGB */
+}
+
+div {
+  color: rgba(0, 0, 255, 0.5);   /* Sistema RGBA amb opacitat */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-colors">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-blue">color: blue</p>
+        <p class="ex-hex">color: #FF5733</p>
+        <p class="ex-rgb">color: rgb(0, 255, 0)</p>
+        <p class="ex-rgba">color: rgba(0, 0, 255, 0.5)</p>
+      </figure>
+      </div>
+
+        <h3>L'opacitat de <code>rgba()</code></h3>
+        <p>El quart valor indica quant es veu el color: <code>1.0</code> és opac del tot i <code>0.0</code> és transparent del
+          tot. Aquí tenim el mateix vermell amb opacitats diferents sobre un fons negre:</p>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-opacitat">
+          <div class="ex-a10">1.0</div>
+          <div class="ex-a07">0.7</div>
+          <div class="ex-a04">0.4</div>
+          <div class="ex-a01">0.1</div>
+        </div>
+      </figure>
+      </section>
+
+      <section id="apartat-2">
+        <h2>2. La propietat <code>background-color</code></h2>
+        <p>Estableix el <strong>color de fons</strong> d'un element. Accepta les mateixes formes que <code>color</code>: noms,
+          hexadecimal, RGB o RGBA.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>body {
+  background-color: lightgray;  /* Color de fons gris clar */
+}
+
+div {
+  background-color: #00FF00;    /* Color de fons verd */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-fons-gris">Fons lightgray
+          <div class="ex-fons-verd">Fons #00FF00</div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-3">
+        <h2>3. La propietat <code>background-image</code></h2>
+        <p>Afegeix una <strong>imatge com a fons</strong> d'un element. La ubicació de la imatge s'indica amb
+          <code>url()</code>.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  background-image: url("imatge-de-fons.jpg");
+}</code></pre>
+      </figure>
+        <p>Per controlar com es mostra la imatge hi ha tres propietats complementàries:</p>
+        <table>
+          <caption>Propietats complementàries de la imatge de fons</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Què controla</th><th scope="col">Valors habituals</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>background-repeat</code></td><td>Si la imatge es repeteix</td><td><code>repeat</code>, <code>no-repeat</code>, <code>repeat-x</code> (horitzontal), <code>repeat-y</code> (vertical)</td></tr>
+            <tr><td><code>background-position</code></td><td>On es col·loca la imatge</td><td><code>center</code>, <code>top</code>, <code>left</code>...</td></tr>
+            <tr><td><code>background-size</code></td><td>La mida de la imatge</td><td><code>cover</code> (cobreix tot l'element), <code>contain</code> (cap sencera)</td></tr>
+          </tbody>
+        </table>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  background-image: url("fons.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}</code></pre>
+      </figure>
+        <p>A l'exemple següent fem servir com a imatge de fons la icona d'aquest lloc web (<code>favicon.svg</code>) perquè es
+          vegi bé l'efecte de cada valor:</p>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-fons ex-repeat">background-repeat: repeat</div>
+        <div class="ex-fons ex-repeat-x">background-repeat: repeat-x</div>
+        <div class="ex-fons ex-repeat-y">background-repeat: repeat-y</div>
+        <div class="ex-fons ex-no-repeat">no-repeat + position: center</div>
+        <div class="ex-fons ex-cover">background-size: cover</div>
+        <div class="ex-fons ex-contain">background-size: contain</div>
+      </figure>
+      </section>
+
+      <section id="apartat-4">
+        <h2>4. La propietat abreujada <code>background</code></h2>
+        <p><code>background</code> permet escriure diverses propietats de fons en una sola declaració: color, imatge,
+          repetició, posició i mida. Quan s'hi inclou la mida, s'ha d'escriure <strong>després de la posició i separada amb una
+          barra</strong> (<code>/</code>); si no, el navegador ignora tota la declaració.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  background: lightblue url("fons.jpg") no-repeat center / cover;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-abreujat">background: lightblue url("favicon.svg") no-repeat right / contain;</div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Colors i fons en CSS&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      background-color: lightgray;  /* Color de fons del cos de la pàgina */
+    }
+
+    h1 {
+      color: darkblue;              /* Color del text del títol */
+    }
+
+    p {
+      color: #333;                  /* Color de text amb codi hexadecimal */
+      background-color: #FFD700;    /* Fons groc daurat */
+    }
+
+    .fons-imatge {
+      height: 200px;
+      background-image: url("fons.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Colors i fons en CSS&lt;/h1&gt;
+  &lt;p&gt;Aquest és un paràgraf amb text de color gris fosc i fons groc daurat.&lt;/p&gt;
+  &lt;div class="fons-imatge"&gt;Aquest div té una imatge de fons.&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-complet">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Colors i fons en CSS</h1>
+        <p>Aquest és un paràgraf amb text de color gris fosc i fons groc daurat.</p>
+        <div class="fons-imatge" style="height: 200px;">Aquest div té una imatge de fons.</div>
+      </figure>
+      </div>
+        <table>
+          <caption>Resum de les propietats vistes</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>color</code></td><td>Color del text</td></tr>
+            <tr><td><code>background-color</code></td><td>Color de fons d'un element</td></tr>
+            <tr><td><code>background-image</code></td><td>Imatge de fons d'un element</td></tr>
+            <tr><td><code>background-repeat</code></td><td>Repetició de la imatge de fons</td></tr>
+            <tr><td><code>background-position</code></td><td>Posició de la imatge de fons</td></tr>
+            <tr><td><code>background-size</code></td><td>Mida de la imatge de fons</td></tr>
+            <tr><td><code>background</code></td><td>Propietat abreujada que combina les anteriors</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Comprova que hi ha prou <strong>contrast</strong> entre el color del text i el del fons: text fosc sobre fons clar o
+            a l'inrevés.</li>
+          <li>Quan posis una imatge de fons, defineix també un <code>background-color</code> semblant: es veurà mentre la imatge
+            es carrega o si no es pot carregar.</li>
+          <li>No posis text important damunt d'imatges de fons molt carregades: costa de llegir.</li>
+          <li>Tria una paleta curta (tres o quatre colors) i fes-la servir a tot el lloc.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">1. La propietat color</a></li>
+          <li><a href="#apartat-2">2. La propietat background-color</a></li>
+          <li><a href="#apartat-3">3. La propietat background-image</a></li>
+          <li><a href="#apartat-4">4. La propietat abreujada background</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="marges_farcits_vores.html" rel="prev">Marges, farcits i vores</a></li>
+        <li><a href="dimensions_caixes.html" rel="next">Dimensions i caixes</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

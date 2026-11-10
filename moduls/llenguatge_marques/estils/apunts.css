@@ -1,0 +1,787 @@
+/* =====================================================================
+   Full d'estil dels apunts de CSS
+   Llenguatges de marques · Jaume Joan Pericàs Oliver
+
+   Disseny bento minimalista basat en la guia d'estils de les
+   diapositives de FP:
+   - Fons blau molt clar (surface-mist) i blocs blancs amb cantons
+     arrodonits, sense vores ni ombres. La jerarquia la donen la mida
+     dels blocs i el color.
+   - Títols en blau nit, marca en verd blavós, codi sobre blau nit.
+   - IBM Plex Sans per al text i Roboto Mono per al codi.
+
+   Regla d'or: només fa servir propietats, valors i selectors que
+   s'expliquen als apunts de CSS (bàsic i avançat). text-decoration
+   surt als exemples de Sass i LESS de les eines modernes.
+
+   Tots els valors són VARIABLES CSS definides a :root.
+   ===================================================================== */
+
+
+/* ---------- 0. Variables (tokens de la guia d'estils) ---------- */
+
+:root {
+  /* Colors de fons */
+  --surface: #ffffff;
+  --surface-mint: #cceae7;
+  --surface-mist: #ebf6fa;
+  --panel: #ececec;
+  --task-gold: #f6d782;
+
+  /* Colors de text */
+  --ink-title: #050038;
+  --ink: #1a1a1a;
+  --ink-muted: #696969;
+  --ink-on-dark: #cfd2e6;
+  --slate-muted: #64748b;
+
+  /* Marca */
+  --teal: #009788;
+  --teal-deep: #0f766e;
+  --mint-bright: #0dc1a0;
+
+  /* Codi */
+  --code-bg: #050038;
+  --code-ink: #f8f8f2;
+  --code-keyword: #66d9ef;
+
+  /* Avisos */
+  --note: #fff6b6;
+  --danger-text: #c21f00;
+
+  /* Tipografia */
+  --font-sans: "IBM Plex Sans", system-ui, Arial, sans-serif;
+  --font-mono: "Roboto Mono", Consolas, monospace;
+  --mida-text: 17px;
+  --mida-petita: 12px;
+
+  /* Espais */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Bento: separació entre blocs i farcit de cada bloc */
+  --gap-bento: 16px;
+  --farcit-bloc: 20px;
+
+  /* Radis */
+  --radius-sm: 4px;
+  --radius-code: 14px;
+  --radius-card: 12px;
+  --radius-bloc: 20px;
+  --radius-pill: 999px;
+
+  /* Vores */
+  --stroke-card: 1.5px;
+  --stroke-accent: 6px;
+
+  /* Moviment: transicions curtes per al feedback visual */
+  --transicio: 0.2s ease;
+
+  /* Marge lateral de la pàgina (canvia amb les media queries) */
+  --gutter: 16px;
+}
+
+
+/* ---------- 1. Selector universal ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* ---------- 2. Base ---------- */
+
+body {
+  margin: 0;
+  background-color: var(--surface-mist);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--mida-text);
+  line-height: 1.6;
+}
+
+/* Marges laterals de les tres franges (capçalera, contingut i peu) */
+body > * {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+a {
+  color: var(--teal-deep);
+  transition: color var(--transicio), background-color var(--transicio);
+}
+
+a:hover {
+  color: var(--ink-title);
+  background-color: var(--note);
+}
+
+strong {
+  color: var(--ink-title);
+}
+
+/* Termes en anglès: selector d'atribut */
+i[lang="en"] {
+  color: var(--ink-muted);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+/* Codi dins del text (però no dins dels blocs pre) */
+:not(pre) > code {
+  padding: 1px 6px;
+  background-color: var(--surface-mist);
+  color: var(--ink-title);
+  border-radius: var(--radius-sm);
+}
+
+
+/* ---------- 3. Capçalera del lloc: marca + menú en píndoles ---------- */
+
+body > header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding-top: 20px;
+  padding-bottom: var(--space-2);
+}
+
+body > header > p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+body > header > p > a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-title);
+}
+
+/* Insígnia </> davant del nom del lloc */
+body > header > p > a::before {
+  content: "</>";
+  padding: 6px 7px;
+  border-radius: 8px;
+  background-color: var(--ink-title);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+}
+
+body > header > p > a:hover {
+  background-color: var(--surface-mist);
+}
+
+/* Menú principal: píndoles. Quadrícula en mòbil, fila flex en pantalla gran */
+nav[aria-label="Navegació principal"] > ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* Els li passen a ser contenidors flex: així desapareixen les vinyetes */
+nav[aria-label="Navegació principal"] li {
+  display: flex;
+}
+
+nav[aria-label="Navegació principal"] a {
+  text-decoration: none;
+  flex-grow: 1;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+}
+
+nav[aria-label="Navegació principal"] a:hover {
+  background-color: var(--surface);
+  color: var(--ink-title);
+}
+
+/* El mòdul actual (Llenguatges de marques) en blau nit */
+nav[aria-label="Navegació principal"] a[href="../index.html"] {
+  background-color: var(--ink-title);
+  color: var(--surface);
+  font-weight: 500;
+}
+
+/* Ruta de navegació (breadcrumb) */
+nav[aria-label="Ruta de navegació"] > ol {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+nav[aria-label="Ruta de navegació"] li {
+  display: flex;
+}
+
+nav[aria-label="Ruta de navegació"] a {
+  color: var(--teal-deep);
+}
+
+nav[aria-label="Ruta de navegació"] li + li::before {
+  content: "/";
+  margin-left: var(--space-2);
+  margin-right: var(--space-2);
+  color: var(--ink-muted);
+}
+
+nav[aria-label="Ruta de navegació"] a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+
+/* ---------- 4. L'apunt: una graella bento de blocs ---------- */
+
+main {
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+/* Cada fill de l'article (capçalera, apartats, bones pràctiques) és un bloc,
+   separat del següent per l'espai del bento */
+article > * {
+  margin: 0 0 var(--gap-bento) 0;
+  padding: var(--farcit-bloc);
+  border-radius: var(--radius-bloc);
+  background-color: var(--surface);
+}
+
+/* Capçalera de l'apunt: epígraf, títol gran i entrada */
+article > header {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+/* Epígraf: bloc i número de l'apunt */
+article > header > .epigraf {
+  margin: 0;
+  font-size: var(--mida-petita);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+
+/* Bloc de progrés: en quin apunt del bloc som */
+.progres {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+article > .progres {
+  background-color: var(--surface-mint);
+}
+
+.progres p {
+  margin: 0;
+}
+
+.progres-text {
+  font-size: 13px;
+  color: var(--ink-title);
+}
+
+.progres-num {
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: var(--ink-title);
+}
+
+.progres-num span {
+  font-size: 24px;
+  letter-spacing: 0;
+  color: var(--teal-deep);
+}
+
+/* La barra: un segment per apunt */
+.progres-barra {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.progres-barra span {
+  flex-grow: 1;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--surface);
+}
+
+.progres-barra .fet {
+  background-color: var(--ink-title);
+}
+
+.progres-barra .actual {
+  background-color: var(--teal);
+}
+
+/* Índex de l'apunt */
+.en-aquest-apunt {
+  font-size: 15px;
+}
+
+.en-aquest-apunt p {
+  margin: 0 0 var(--space-3) 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.en-aquest-apunt ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Els li passen a ser contenidors flex: desapareix la vinyeta */
+.en-aquest-apunt li {
+  display: flex;
+  margin: 0;
+}
+
+article > header > h1 {
+  margin-top: 10px;
+  margin-bottom: var(--space-3);
+  font-size: 38px;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--ink-title);
+}
+
+article > header > p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+/* Apartats */
+article > section > h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--ink-title);
+}
+
+article > section > h3 {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-2);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink-title);
+}
+
+article > section > h3 > code {
+  font-size: 0.9em;
+}
+
+article > section > :last-child {
+  margin-bottom: 0;
+}
+
+article ul {
+  padding-left: var(--space-6);
+}
+
+article ol {
+  padding-left: var(--space-6);
+}
+
+article li {
+  margin-bottom: var(--space-1);
+}
+
+
+/* ---------- 5. Figures: codi d'exemple i resultat al navegador ---------- */
+
+figure {
+  position: relative;
+  margin: var(--space-6) 0;
+}
+
+/* Parella codi + resultat: una al costat de l'altra en pantalla gran */
+.parella {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-bento);
+  margin: var(--space-6) 0;
+}
+
+/* overflow: auto evita que un codi llarg eixampli la columna */
+.parella > figure {
+  margin: 0;
+  overflow: auto;
+}
+
+/* Bloc de codi: blau nit, sense vora ni ombra */
+.codi {
+  padding: var(--space-4) 0 0 0;
+  background-color: var(--code-bg);
+  color: var(--code-ink);
+  border-radius: var(--radius-code);
+}
+
+.codi > figcaption {
+  padding: 0 20px var(--space-1) 20px;
+  font-size: var(--mida-petita);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--code-keyword);
+}
+
+.codi pre {
+  margin: 0;
+  padding: var(--space-1) 20px 20px 20px;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Resultat: bloc blanc amb una vora menta i l'etiqueta en píndola */
+.resultat {
+  margin-top: var(--space-8);
+  padding: 30px 20px 20px 20px;
+  background-color: var(--surface);
+  border: 2px solid var(--surface-mint);
+  border-radius: var(--radius-code);
+}
+
+.parella > .resultat {
+  margin-top: 0;
+}
+
+.resultat > figcaption {
+  position: absolute;
+  top: -12px;
+  left: var(--space-4);
+  padding: 2px 12px;
+  background-color: var(--mint-bright);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.parella > .resultat > figcaption {
+  top: var(--space-3);
+}
+
+.parella > .resultat {
+  padding-top: 46px;
+}
+
+
+/* ---------- 6. Taules ---------- */
+
+article table {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+  font-size: 15px;
+}
+
+article caption {
+  padding-bottom: var(--space-2);
+  text-align: left;
+  font-size: var(--mida-petita);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+
+article th {
+  padding: 10px var(--space-3);
+  background-color: var(--ink-title);
+  color: var(--surface);
+  text-align: left;
+  font-weight: 500;
+}
+
+article td {
+  padding: 10px var(--space-3);
+}
+
+article tbody tr {
+  transition: background-color var(--transicio);
+}
+
+article tbody tr:nth-child(odd) {
+  background-color: var(--surface-mist);
+}
+
+article tbody tr:hover {
+  background-color: var(--note);
+}
+
+
+/* ---------- 7. Bones pràctiques: bloc IMPORTANT en groc suau ---------- */
+
+article > aside {
+  background-color: var(--note);
+}
+
+article > aside::before {
+  content: "Important";
+  font-size: var(--mida-petita);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--danger-text);
+}
+
+article > aside > h2 {
+  margin: 2px 0 var(--space-3) 0;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink-title);
+}
+
+/* La llista en dues columnes a partir de pantalles mitjanes */
+article > aside > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding-left: 26px;
+}
+
+article > aside li {
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* La marca ✓ es posa damunt de la vinyeta i la tapa (mateix fons que la nota) */
+article > aside li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: -26px;
+  width: 26px;
+  background-color: var(--note);
+  font-weight: 700;
+  color: var(--teal-deep);
+}
+
+article > aside :not(pre) > code {
+  background-color: var(--surface);
+}
+
+
+/* ---------- 8. Peu: paginació en blocs ---------- */
+
+body > footer {
+  padding-top: 0;
+  padding-bottom: var(--space-8);
+  font-size: 15px;
+}
+
+footer nav > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-bento);
+  margin: 0;
+  padding: 0;
+}
+
+footer nav li {
+  display: flex;
+}
+
+/* Cada enllaç és un bloc que omple el seu li */
+footer nav a {
+  text-decoration: none;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-6);
+  border-radius: var(--radius-bloc);
+  background-color: var(--surface);
+  color: var(--ink-title);
+  font-weight: 700;
+}
+
+footer nav a:hover {
+  background-color: var(--surface-mint);
+}
+
+footer a[rel="prev"]::before {
+  content: "← Anterior";
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+/* El següent apunt destaca en blau nit: és l'acció principal */
+footer a[rel="next"] {
+  background-color: var(--ink-title);
+  color: var(--surface);
+  text-align: right;
+}
+
+footer a[rel="next"]::before {
+  content: "Següent →";
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--code-keyword);
+}
+
+footer a.index-modul::before {
+  content: "Has acabat el bloc";
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+footer a[rel="next"]:hover {
+  background-color: var(--teal-deep);
+  color: var(--surface);
+}
+
+body > footer > p {
+  margin-top: var(--space-6);
+  margin-bottom: 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+
+/* ---------- 9. Media queries: de mòbil a pantalla gran ---------- */
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 6vw;
+    --farcit-bloc: 32px;
+  }
+
+  article > header {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  article > header > h1 {
+    font-size: 56px;
+    letter-spacing: -1.5px;
+  }
+
+  nav[aria-label="Navegació principal"] > ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  article > aside > ul {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Paginació: anterior | següent */
+  footer nav > ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Bento: 4 columnes. Capçalera (3) + progrés (1), apartats a tota
+   l'amplada i, al final, bones pràctiques (3) + índex de l'apunt (1) */
+@media (min-width: 1000px) {
+  article {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: var(--gap-bento);
+  }
+
+  /* overflow: auto evita que un codi o una taula llarga eixamplin la graella */
+  article > * {
+    margin: 0;
+    overflow: auto;
+  }
+
+  article > header {
+    grid-column: span 3;
+  }
+
+  article > section {
+    grid-column: span 4;
+  }
+
+  article > aside {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 10vw;
+  }
+
+  /* El codi i el resultat, un al costat de l'altre */
+  .parella {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  /* El menú passa a ser una fila de píndoles que no s'encongeixen */
+  nav[aria-label="Navegació principal"] > ul {
+    display: flex;
+  }
+
+  nav[aria-label="Navegació principal"] li {
+    flex-shrink: 0;
+  }
+
+  nav[aria-label="Navegació principal"] a {
+    flex-grow: 0;
+  }
+}
+
+@media (min-width: 1500px) {
+  /* Marca a l'esquerra, menú a la dreta i ruta a sota */
+  body > header {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  nav[aria-label="Navegació principal"] > ul {
+    justify-content: flex-end;
+  }
+
+  nav[aria-label="Ruta de navegació"] {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1700px) {
+  :root {
+    --gutter: 18vw;
+  }
+}

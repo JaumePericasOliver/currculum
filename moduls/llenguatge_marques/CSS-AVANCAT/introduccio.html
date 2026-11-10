@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS avançat: introducció | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Per què cal un CSS avançat: disseny adaptable i optimitzat, i bones pràctiques d'organització del CSS en projectes grans.">
+  <meta name="keywords" content="CSS avançat, responsive, modularització, BEM, SMACSS, Sass, LESS, minificació, Bootstrap, Tailwind CSS">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="CSS avançat: introducció">
+  <meta property="og:description" content="Per què cal un CSS avançat: disseny adaptable i optimitzat, i bones pràctiques d'organització del CSS en projectes grans.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="introduccio.html" aria-current="page">CSS avançat: introducció</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 01</p>
+        <h1>CSS avançat: introducció</h1>
+        <p>Per què cal un CSS avançat: disseny adaptable i optimitzat, i bones pràctiques d'organització del CSS en projectes grans.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">1 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Del CSS bàsic al CSS avançat</h2>
+        <p>A mesura que els projectes web es tornen més complexos, el CSS també ha d'evolucionar. El CSS avançat no només busca
+          una pàgina atractiva: també vol que la pàgina <strong>funcioni bé en tots els dispositius</strong>, que sigui
+          <strong>fàcil de mantenir</strong> i que estigui <strong>optimitzada</strong> per carregar ràpid.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>Disseny adaptable i optimitzat</h2>
+        <p>Un dels pilars del CSS avançat és el <strong>disseny responsiu</strong>, que permet que les pàgines s'adaptin a
+          diferents mides de pantalla. És cada vegada més important a causa de l'augment de l'ús de dispositius mòbils.
+          Per aconseguir-ho, el CSS avançat combina tres tècniques:</p>
+        <ol>
+          <li><strong>Media queries avançades</strong>: diverses condicions i punts de tall per adaptar el disseny.</li>
+          <li><strong>Unitats relatives i flexibles</strong>: <code>%</code>, <code>em</code>, <code>rem</code>, <code>vw</code>,
+            <code>vh</code> i <code>fr</code> en lloc de mides fixes en píxels.</li>
+          <li><strong>Layouts responsius amb Flexbox i Grid</strong>: sistemes de disseny que reparteixen l'espai
+            automàticament.</li>
+        </ol>
+      </section>
+
+      <section id="apartat-3">
+        <h2>Organització del CSS en projectes grans</h2>
+        <p>Quan el projecte creix, cal mantenir el codi CSS ordenat perquè no es torni impossible de gestionar.</p>
+
+        <h3>1. Modularització</h3>
+        <ul>
+          <li>Dividir el CSS en <strong>fitxers petits i temàtics</strong> (tipografia, capçalera, formularis...).</li>
+          <li>Seguir una <strong>arquitectura CSS escalable</strong>, com <strong>SMACSS</strong> o <strong>BEM</strong>, que
+            estableixen normes per organitzar i anomenar les classes.</li>
+        </ul>
+      <figure class="codi">
+        <figcaption>Exemple de noms de classe amb BEM</figcaption>
+<pre><code>/* Bloc__element--modificador */
+.targeta { }
+.targeta__titol { }
+.targeta__boto { }
+.targeta__boto--destacat { }</code></pre>
+      </figure>
+
+        <h3>2. Preprocessadors CSS</h3>
+        <p>Eines com <strong>Sass</strong> o <strong>LESS</strong> amplien el llenguatge (variables, anidament, funcions...) i
+          després generen un fitxer CSS normal que entén el navegador.</p>
+
+        <h3>3. Optimització</h3>
+        <ul>
+          <li><strong>Minificació</strong>: eliminar espais, salts de línia i comentaris per reduir la mida del fitxer.</li>
+          <li><strong>Càrrega asíncrona</strong>: carregar el CSS no imprescindible sense bloquejar la visualització de la
+            pàgina.</li>
+        </ul>
+      <figure class="codi">
+        <figcaption>CSS original</figcaption>
+<pre><code>/* Títol principal */
+h1 {
+  color: darkblue;
+  text-align: center;
+}</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>CSS minificat</figcaption>
+<pre><code>h1{color:darkblue;text-align:center}</code></pre>
+      </figure>
+
+        <h3>4. Frameworks CSS</h3>
+        <p>Els frameworks ofereixen estils i components ja fets per accelerar el desenvolupament. Els més coneguts són
+          <strong>Bootstrap</strong> i <strong>Tailwind CSS</strong>.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>Continguts d'aquest bloc</h2>
+        <ol>
+          <li><a href="selectors_avancats.html">Selectors avançats</a>: d'atribut, combinadors, pseudoclasses i pseudoelements.</li>
+          <li><a href="tipografia.html">Fonts i tipografia avançades</a>: <code>@font-face</code>, WOFF i control fi del text.</li>
+          <li><a href="flexbox_grid.html">Layouts amb Flexbox i Grid</a>: Flexbox avançat, CSS Grid i com combinar-los.</li>
+          <li><a href="popover.html">Popover API</a>: contingut emergent natiu amb HTML i CSS, sense JavaScript.</li>
+          <li><a href="variables.html">Variables CSS</a>: valors reutilitzables amb <code>--nom</code> i <code>var()</code>.</li>
+          <li><a href="animacions.html">Animacions i transicions</a>: <code>transition</code>, <code>@keyframes</code> i <code>animation</code>.</li>
+          <li><a href="disseny.html">Disseny atractiu i coherent</a>: consistència, navegació, llegibilitat i càrrega.</li>
+          <li><a href="ui_ux.html">UI/UX</a>: interfície d'usuari, experiència d'usuari i proves d'usabilitat.</li>
+          <li><a href="optimitzacio.html">Optimització i rendiment</a>: minificació, compressió, càrrega asíncrona, Autoprefixer i fonts.</li>
+          <li><a href="eines_modernes.html">Eines modernes de CSS</a>: Sass, LESS, Bootstrap 5 i Tailwind CSS.</li>
+        </ol>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Abans de començar un projecte, decideix com organitzaràs els fitxers i com anomenaràs les classes.</li>
+          <li>Treballa amb el CSS llegible i comentat; minifica'l només per publicar-lo.</li>
+          <li>Aprèn bé el CSS abans d'utilitzar un framework: així entendràs què fa i el podràs adaptar.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Del CSS bàsic al CSS avançat</a></li>
+          <li><a href="#apartat-2">Disseny adaptable i optimitzat</a></li>
+          <li><a href="#apartat-3">Organització del CSS en projectes grans</a></li>
+          <li><a href="#apartat-4">Continguts d'aquest bloc</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="../CSS-BASIC/media_queries.html" rel="prev">Media queries</a></li>
+        <li><a href="selectors_avancats.html" rel="next">Selectors avançats</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

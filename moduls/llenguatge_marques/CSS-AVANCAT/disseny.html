@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disseny atractiu i coherent | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Pràctiques per a un disseny web atractiu i coherent: consistència, navegació clara, llegibilitat i optimització de la càrrega.">
+  <meta name="keywords" content="CSS, disseny web, consistència, paleta de colors, tipografia, navegació, contrast, llegibilitat, line-height, rem">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Disseny atractiu i coherent">
+  <meta property="og:description" content="Pràctiques per a un disseny web atractiu i coherent: consistència, navegació clara, llegibilitat i optimització de la càrrega.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Paleta: mostres de color fetes amb les variables dels apunts */
+    .ex-paleta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+
+    .mostra {
+      padding: var(--space-6) var(--space-3) var(--space-3) var(--space-3);
+      border: var(--stroke-card) solid var(--ink);
+      border-radius: var(--radius-code);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .mostra-1 {
+      background-color: var(--ink-title);
+      color: var(--surface);
+    }
+
+    .mostra-2 {
+      background-color: var(--teal-deep);
+      color: var(--surface);
+    }
+
+    .mostra-3 {
+      background-color: var(--surface-mint);
+      color: var(--ink-title);
+    }
+
+    .mostra-4 {
+      background-color: var(--note);
+      color: var(--ink);
+    }
+
+    /* Jerarquia tipogràfica */
+    .ex-jerarquia h4 {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--ink-title);
+    }
+
+    .ex-jerarquia h5 {
+      margin: var(--space-2) 0 var(--space-1) 0;
+      font-size: 1.25rem;
+      color: var(--ink-title);
+    }
+
+    .ex-jerarquia p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .ex-jerarquia .ex-botons {
+      margin-top: var(--space-4);
+    }
+
+    /* Botons unificats */
+    .boto {
+      padding: 10px 20px;
+      border: var(--stroke-card) solid var(--ink-title);
+      border-radius: var(--radius-code);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color var(--transicio), color var(--transicio);
+    }
+
+    .boto-destacat {
+      background-color: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: var(--surface);
+    }
+
+    .boto-destacat:hover {
+      background-color: var(--ink-title);
+      border-color: var(--ink-title);
+    }
+
+    .boto-secundari {
+      background-color: var(--surface);
+      color: var(--ink-title);
+    }
+
+    .boto-secundari:hover {
+      background-color: var(--surface-mint);
+    }
+
+    .ex-botons {
+      display: flex;
+      gap: var(--space-3);
+      margin: 0;
+    }
+
+    /* Navegació amb la secció activa marcada */
+    .ex-nav {
+      display: flex;
+      gap: var(--space-1);
+      margin: 0;
+      padding: var(--space-1);
+      background-color: var(--panel);
+      border-radius: var(--radius-code);
+    }
+
+    .ex-nav a {
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      color: var(--ink-title);
+    }
+
+    .ex-nav a[aria-current="page"] {
+      background-color: var(--ink-title);
+      color: var(--surface);
+      font-weight: 700;
+    }
+
+    /* Contrast i llegibilitat */
+    .ex-comparacio {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .ex-comparacio p {
+      margin: 0;
+      padding: var(--space-4);
+      border-radius: var(--radius-code);
+    }
+
+    .ex-malament {
+      background-color: #ffff00;
+      color: #b0b0b0;
+      line-height: 1;
+      font-size: 12px;
+    }
+
+    .ex-be {
+      background-color: var(--surface);
+      color: var(--ink);
+      border: var(--stroke-card) solid var(--panel);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .ex-titol-comparacio {
+      margin: 0 0 var(--space-1) 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal-deep);
+    }
+
+    @media (min-width: 768px) {
+      .ex-paleta {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      .ex-comparacio {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="disseny.html" aria-current="page">Disseny atractiu i coherent</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 08</p>
+        <h1>Disseny atractiu i coherent</h1>
+        <p>Pràctiques per a un disseny web atractiu i coherent: consistència, navegació clara, llegibilitat i optimització de la càrrega.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">8 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Per què importa el disseny?</h2>
+        <p>Un disseny atractiu i <strong>coherent</strong> fa que el contingut sigui més fàcil de llegir i que l'usuari s'orienti
+          sense esforç. No es tracta de decorar, sinó de prendre decisions i aplicar-les sempre igual.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Consistència en el disseny</h2>
+        <ol>
+          <li><strong>Tipografia</strong>: limita't a una o dues famílies de fonts i crea una jerarquia clara amb mides
+            diferents per a títols, subtítols i paràgrafs.</li>
+          <li><strong>Paleta de colors</strong>: fes servir una paleta definida i evita els colors massa vius, que cansen la
+            vista.</li>
+          <li><strong>Espais</strong>: mantén els mateixos espais entre seccions i elements per crear una estructura visual
+            equilibrada.</li>
+          <li><strong>Botons i enllaços</strong>: han de tenir estils unificats. Els botons destacats fan servir un color de la
+            paleta per cridar l'atenció.</li>
+        </ol>
+        <p>Les <a href="variables.html">variables CSS</a> són la millor eina per aconseguir-ho: defineixes la paleta, les fonts i
+          els espais una sola vegada.</p>
+
+        <h3>Una paleta curta</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>:root {
+  --ink-title: #050038;     /* títols i botons */
+  --teal-deep: #0f766e;     /* marca i enllaços */
+  --surface-mint: #cceae7;  /* capçalera i peu */
+  --note: #fff6b6;          /* avisos */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>La paleta d'aquests apunts</figcaption>
+        <div class="ex-paleta">
+          <div class="mostra mostra-1">--ink-title</div>
+          <div class="mostra mostra-2">--teal-deep</div>
+          <div class="mostra mostra-3">--surface-mint</div>
+          <div class="mostra mostra-4">--note</div>
+        </div>
+      </figure>
+      </div>
+
+        <h3>Jerarquia tipogràfica i botons unificats</h3>
+      <figure class="resultat ex-jerarquia">
+        <figcaption>Resultat al navegador</figcaption>
+        <h4>Títol principal (2rem)</h4>
+        <h5>Subtítol (1.25rem)</h5>
+        <p>Paràgraf de text normal (1rem). Una sola família de fonts i tres mides ben diferenciades.</p>
+        <p class="ex-botons">
+          <button class="boto boto-destacat">Inscriu-te</button>
+          <button class="boto boto-secundari">Més informació</button>
+        </p>
+      </figure>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Navegació clara i intuïtiva</h2>
+        <ol>
+          <li><strong>Barra de navegació fixa o visible</strong>: ha d'estar accessible en tot moment. En pantalles petites, fes
+            servir menús desplegables (com el menú "hamburguesa").</li>
+          <li><strong>Pistes visuals</strong>: fes servir icones o colors per indicar la secció activa o l'element
+            seleccionat.</li>
+          <li><strong>Enllaços</strong>: han de tenir noms descriptius i un estil que els distingeixi clarament del text
+            normal.</li>
+        </ol>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>/* La secció activa es marca amb l'atribut aria-current */
+nav a[aria-current="page"] {
+  background-color: var(--ink-title);
+  color: white;
+  font-weight: 700;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-nav">
+          <a href="#">Inici</a>
+          <a href="#" aria-current="page">Cursos</a>
+          <a href="#">Contacte</a>
+        </p>
+      </figure>
+      </div>
+        <p>Aquests apunts fan el mateix a la ruta de navegació de dalt: l'apunt actual surt en negreta.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Llegibilitat</h2>
+        <ul>
+          <li><strong>Contrast de colors</strong>: hi ha d'haver un bon contrast entre el text i el fons.</li>
+          <li><strong>Mides de text</strong>: fes servir unitats relatives (<code>rem</code> o <code>em</code>) perquè el text
+            s'adapti a les preferències d'accessibilitat de l'usuari.</li>
+          <li><strong>Alçada de línia</strong>: ajusta <code>line-height</code> perquè els paràgrafs siguin fàcils de llegir. Es
+            recomana un valor entre <code>1.5</code> i <code>1.8</code>.</li>
+        </ul>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-comparacio">
+          <div>
+            <p class="ex-titol-comparacio">✕ Poc contrast, 12px, line-height: 1</p>
+            <p class="ex-malament">Llegir aquest paràgraf costa molt: el gris clar damunt del groc no té contrast, la lletra és petita
+              i les línies estan massa juntes.</p>
+          </div>
+          <div>
+            <p class="ex-titol-comparacio">✓ Bon contrast, 1rem, line-height: 1.6</p>
+            <p class="ex-be">Aquest paràgraf es llegeix sense esforç: text fosc sobre fons clar, mida relativa i prou espai entre
+              línies.</p>
+          </div>
+        </div>
+      </figure>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. Optimització de la càrrega</h2>
+        <ul>
+          <li><strong>Compressió d'imatges</strong>: fes servir formats optimitzats com WebP per reduir-ne la mida.</li>
+          <li><strong>Fonts optimitzades</strong>: carrega només els gruixos de font necessaris i fes servir formats com WOFF2.</li>
+          <li><strong>Minificació i càrrega condicional del CSS</strong>: redueix la mida dels fitxers CSS i carrega només el CSS
+            necessari per a cada pàgina.</li>
+        </ul>
+        <p>Ho veurem amb detall a l'apunt d'<a href="optimitzacio.html">optimització i rendiment</a>.</p>
+      </section>
+
+      <section id="apartat-6">
+        <h2>Exemples per analitzar</h2>
+        <p>Una bona manera d'aprendre és analitzar què falla en webs mal dissenyades i què funciona en les ben dissenyades:</p>
+        <ul>
+          <li><a href="https://www.mejorconweb.com/" target="_blank">Las peores webs del mundo</a>
+            (mejorconweb.com): webs antigues plenes de bàners animats i colors que fan mal a la vista.</li>
+          <li><a href="https://www.cantinachichilo.com.ar/" target="_blank">Cantina Chichilo</a>: exemple real per analitzar
+            colors, tipografia i navegació.</li>
+          <li><a href="https://thefwa.com/" target="_blank">The FWA</a>: webs premiades pel seu disseny.</li>
+        </ul>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Defineix la paleta, les fonts i els espais amb variables abans de començar a maquetar.</li>
+          <li>Com a molt, dues famílies de fonts i tres o quatre colors principals.</li>
+          <li>Comprova el contrast del text amb les eines de desenvolupador del navegador.</li>
+          <li>Si un element és diferent, ha de ser per una raó: la incoherència confon l'usuari.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Per què importa el disseny?</a></li>
+          <li><a href="#apartat-2">1. Consistència en el disseny</a></li>
+          <li><a href="#apartat-3">2. Navegació clara i intuïtiva</a></li>
+          <li><a href="#apartat-4">3. Llegibilitat</a></li>
+          <li><a href="#apartat-5">4. Optimització de la càrrega</a></li>
+          <li><a href="#apartat-6">Exemples per analitzar</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="animacions.html" rel="prev">Animacions i transicions</a></li>
+        <li><a href="ui_ux.html" rel="next">UI/UX</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

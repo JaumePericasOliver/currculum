@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media queries | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Introducció a les media queries per fer dissenys responsius: @media, min-width, max-width, min-height, orientation i and.">
+  <meta name="keywords" content="CSS, media queries, @media, responsive, min-width, max-width, orientation, disseny adaptable">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Media queries">
+  <meta property="og:description" content="Introducció a les media queries per fer dissenys responsius: @media, min-width, max-width, min-height, orientation i and.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Indicador d'amplada: canvia segons la finestra */
+    .ex-indicador {
+      padding: 24px 16px;
+      background-color: lightgreen;
+      color: var(--ink-title);
+      font-family: var(--font-mono);
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .ex-indicador::after {
+      content: "max-width: 767px → pantalla petita";
+    }
+
+    @media (min-width: 768px) {
+      .ex-indicador {
+        background-color: lightblue;
+      }
+
+      .ex-indicador::after {
+        content: "min-width: 768px → pantalla gran";
+      }
+    }
+
+    /* Combinació de condicions amb and */
+    .ex-rang {
+      margin-top: 10px;
+      padding: 16px;
+      border: 2px dashed var(--ink-muted);
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      text-align: center;
+    }
+
+    .ex-rang::after {
+      content: "Fora del rang 600px - 1200px";
+    }
+
+    @media (min-width: 600px) and (max-width: 1200px) {
+      .ex-rang {
+        border-style: solid;
+        border-color: var(--teal);
+        background-color: var(--teal);
+        color: var(--surface);
+      }
+
+      .ex-rang::after {
+        content: "Dins del rang 600px - 1200px";
+      }
+    }
+
+    /* Orientació */
+    .ex-orientacio {
+      margin-top: 10px;
+      padding: 16px;
+      background-color: var(--ink-title);
+      color: var(--task-gold);
+      font-family: var(--font-mono);
+      text-align: center;
+    }
+
+    @media (orientation: landscape) {
+      .ex-orientacio::after {
+        content: "orientation: landscape (horitzontal)";
+      }
+    }
+
+    @media (orientation: portrait) {
+      .ex-orientacio::after {
+        content: "orientation: portrait (vertical)";
+      }
+    }
+
+    /* Exemple complet */
+    .contenidor {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 10px;
+      margin: 5px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .contenidor {
+        flex-direction: row;
+      }
+
+      .element {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .element {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="media_queries.html" aria-current="page">Media queries</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 10</p>
+        <h1>Media queries</h1>
+        <p>Introducció a les media queries per fer dissenys responsius: @media, min-width, max-width, min-height, orientation i and.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">10 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>1. Què són les media queries?</h2>
+        <p>Les <strong>media queries</strong> permeten adaptar el disseny d'una pàgina a les característiques del dispositiu que
+          la mostra: la mida de la pantalla, la resolució o l'orientació. Són la base del <strong>disseny responsiu</strong>
+          (<i lang="en">responsive</i>), que ofereix una bona experiència tant en mòbils com en tauletes i ordinadors.</p>
+        <p>Una media query és una <strong>condició</strong>: les regles que hi ha a dins només s'apliquen si la condició es
+          compleix. L'ús més comú és aplicar estils diferents segons l'amplada de la pantalla.</p>
+      <figure class="codi">
+        <figcaption>Sintaxi</figcaption>
+<pre><code>@media (condició) {
+  /* Estils que només s'aplicaran si es compleix la condició */
+}</code></pre>
+      </figure>
+      </section>
+
+      <section id="apartat-2">
+        <h2>2. Pantalles grans i petites</h2>
+        <p>Un ús típic és tenir un estil per a pantalles grans i un altre per a pantalles petites, amb un punt de tall
+          (<i lang="en">breakpoint</i>) a una amplada concreta, per exemple 768 píxels:</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>/* Pantalles grans (768px d'amplada o més) */
+@media (min-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+/* Pantalles petites (fins a 767px d'amplada) */
+@media (max-width: 767px) {
+  body {
+    background-color: lightgreen;
+  }
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: canvia l'amplada</figcaption>
+        <div class="ex-indicador"></div>
+      </figure>
+      </div>
+        <p>Fes la finestra més estreta o més ampla (o obre aquesta pàgina des del mòbil) i observa com canvia la caixa. Aquests
+          apunts també fan servir media queries: si redueixes la finestra, el menú i els marges laterals s'adapten.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>3. Condicions més comunes</h2>
+
+        <h3>a) Amplada: <code>min-width</code> i <code>max-width</code></h3>
+        <p><code>min-width</code> s'aplica quan la finestra té <strong>com a mínim</strong> aquesta amplada;
+          <code>max-width</code>, quan en té <strong>com a màxim</strong> aquesta.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@media (min-width: 600px) {
+  /* Pantalles de 600 píxels d'amplada o més */
+}
+
+@media (max-width: 600px) {
+  /* Pantalles de fins a 600 píxels d'amplada */
+}</code></pre>
+      </figure>
+
+        <h3>b) Alçada: <code>min-height</code> i <code>max-height</code></h3>
+        <p>Funcionen igual que les d'amplada, però amb l'alçada de la finestra.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@media (min-height: 500px) {
+  /* Pantalles de 500 píxels d'alçada o més */
+}</code></pre>
+      </figure>
+
+        <h3>c) Orientació: <code>orientation</code></h3>
+        <p>Permet aplicar estils diferents si la pantalla està en horitzontal (<code>landscape</code>) o en vertical
+          (<code>portrait</code>).</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@media (orientation: landscape) {
+  /* Dispositius en orientació horitzontal */
+}
+
+@media (orientation: portrait) {
+  /* Dispositius en orientació vertical */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: gira el mòbil</figcaption>
+        <div class="ex-orientacio"></div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>4. Diverses condicions en una media query</h2>
+        <p>Les condicions es poden combinar amb la paraula clau <code>and</code>: els estils només s'apliquen si es compleixen
+          <strong>totes</strong>. (També existeix <code>only</code>, que s'escriu davant del tipus de mitjà, com en
+          <code>@media only screen and (min-width: 600px)</code>, per evitar que navegadors molt antics apliquin la regla.)</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@media (min-width: 600px) and (max-width: 1200px) {
+  /* Només si la pantalla té entre 600 i 1200 píxels d'amplada */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: canvia l'amplada</figcaption>
+        <div class="ex-rang"></div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+        <p>Una fila de tres elements que en pantalles petites es converteix en una columna.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Disseny responsiu&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .contenidor {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 10px;
+      margin: 5px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .contenidor {
+        flex-direction: row;
+      }
+
+      .element {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .element {
+        font-size: 18px;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="contenidor"&gt;
+    &lt;div class="element"&gt;Element 1&lt;/div&gt;
+    &lt;div class="element"&gt;Element 2&lt;/div&gt;
+    &lt;div class="element"&gt;Element 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: canvia l'amplada</figcaption>
+        <div class="contenidor">
+          <div class="element">Element 1</div>
+          <div class="element">Element 2</div>
+          <div class="element">Element 3</div>
+        </div>
+      </figure>
+      </div>
+        <p>La metaetiqueta <code>viewport</code> del <code>&lt;head&gt;</code> és imprescindible: sense ella, els mòbils simulen una
+          pantalla d'ordinador i les media queries no funcionen com esperem.</p>
+        <table>
+          <caption>Resum de les propietats vistes</caption>
+          <thead>
+            <tr><th scope="col">Element</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>@media</code></td><td>Defineix una media query</td></tr>
+            <tr><td><code>min-width</code> i <code>max-width</code></td><td>Amplada mínima o màxima de la pantalla</td></tr>
+            <tr><td><code>min-height</code> i <code>max-height</code></td><td>Alçada mínima o màxima de la pantalla</td></tr>
+            <tr><td><code>orientation</code></td><td>Orientació del dispositiu (vertical o horitzontal)</td></tr>
+            <tr><td><code>and</code></td><td>Combina diverses condicions en una media query</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Inclou sempre <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>.</li>
+          <li>Escriu primer els estils per a mòbil i afegeix media queries amb <code>min-width</code> per a pantalles més grans
+            (<i lang="en">mobile first</i>).</li>
+          <li>Tria els punts de tall segons el teu contingut (quan el disseny es trenca), no segons un model de mòbil concret.</li>
+          <li>Prova la pàgina amb les eines de desenvolupador del navegador, en mode dispositiu.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">1. Què són les media queries?</a></li>
+          <li><a href="#apartat-2">2. Pantalles grans i petites</a></li>
+          <li><a href="#apartat-3">3. Condicions més comunes</a></li>
+          <li><a href="#apartat-4">4. Diverses condicions en una media query</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="flexbox.html" rel="prev">Disseny bàsic amb Flexbox</a></li>
+        <li><a href="../CSS-AVANCAT/introduccio.html" rel="next">CSS avançat: introducció</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

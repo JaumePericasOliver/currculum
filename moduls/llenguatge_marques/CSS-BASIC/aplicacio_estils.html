@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicació d'estils | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Les tres maneres d'aplicar CSS a un document HTML: estils en línia, estils incrustats i fulls d'estil externs.">
+  <meta name="keywords" content="CSS, estils en línia, atribut style, etiqueta style, estils incrustats, full d'estil extern, link">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Aplicació d'estils">
+  <meta property="og:description" content="Les tres maneres d'aplicar CSS a un document HTML: estils en línia, estils incrustats i fulls d'estil externs.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Estils dels exemples d'aquesta pàgina */
+    #ex-incrustat p {
+      color: blue;
+      font-size: 18px;
+    }
+
+    #ex-incrustat h1 {
+      text-align: center;
+    }
+
+    #ex-extern p {
+      color: green;
+      font-size: 16px;
+    }
+
+    #ex-extern h1 {
+      text-align: center;
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="aplicacio_estils.html" aria-current="page">Aplicació d'estils</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 02</p>
+        <h1>Aplicació d'estils</h1>
+        <p>Les tres maneres d'aplicar CSS a un document HTML: estils en línia, estils incrustats i fulls d'estil externs.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">2 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Tres maneres d'aplicar CSS</h2>
+        <p>El CSS es pot aplicar a un document HTML de tres maneres principals. Cadascuna té els seus propòsits i usos:</p>
+        <table>
+          <caption>Formes d'aplicar estils</caption>
+          <thead>
+            <tr><th scope="col">Forma</th><th scope="col">On s'escriu</th><th scope="col">Abast</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>En línia</td><td>Atribut <code>style</code> de l'etiqueta</td><td>Un sol element</td></tr>
+            <tr><td>Incrustat</td><td>Etiqueta <code>&lt;style&gt;</code> dins del <code>&lt;head&gt;</code></td><td>Una sola pàgina</td></tr>
+            <tr><td>Extern</td><td>Fitxer <code>.css</code> enllaçat amb <code>&lt;link&gt;</code></td><td>Totes les pàgines que l'enllacin</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Estils en línia (<i lang="en">inline styles</i>)</h2>
+        <p>Els estils en línia s'apliquen directament a un element HTML, amb l'atribut <code>style</code> dins de la mateixa
+          etiqueta. És adequat per aplicar estils a un sol element de manera ràpida, però no és recomanable per a pàgines grans,
+          ja que dificulta el manteniment.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;p style="color: red; font-size: 20px;"&gt;Aquest és un paràgraf amb estils en línia.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p style="color: red; font-size: 20px;">Aquest és un paràgraf amb estils en línia.</p>
+      </figure>
+      </div>
+        <table>
+          <caption>Estils en línia</caption>
+          <thead>
+            <tr><th scope="col">Avantatges</th><th scope="col">Inconvenients</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aplicació ràpida i directa a l'element.</td>
+              <td>Dificulta el manteniment en llocs webs grans, perquè caldria aplicar l'estil a cada element manualment.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>No aprofita la capacitat de reutilitzar els estils.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Estils incrustats (<i lang="en">embedded styles</i>)</h2>
+        <p>Els estils incrustats es col·loquen dins de la secció <code>&lt;head&gt;</code> d'un document HTML, dins d'una
+          etiqueta <code>&lt;style&gt;</code>. S'apliquen a tots els elements de la pàgina actual.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Estils incrustats&lt;/title&gt;
+  &lt;style&gt;
+    p {
+      color: blue;
+      font-size: 18px;
+    }
+    h1 {
+      text-align: center;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Aquest és un títol centrat&lt;/h1&gt;
+  &lt;p&gt;Aquest paràgraf tindrà text de color blau i mida 18 píxels.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-incrustat">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Aquest és un títol centrat</h1>
+        <p>Aquest paràgraf tindrà text de color blau i mida 18 píxels.</p>
+      </figure>
+      </div>
+        <table>
+          <caption>Estils incrustats</caption>
+          <thead>
+            <tr><th scope="col">Avantatges</th><th scope="col">Inconvenients</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Més eficient que els estils en línia: es poden aplicar estils a diversos elements d'una mateixa pàgina des d'un
+                sol lloc.</td>
+              <td>Només afecta la pàgina on s'aplica; no es reutilitza entre diverses pàgines.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Si la pàgina creix massa, la lectura i el manteniment es tornen més difícils.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Estils externs (<i lang="en">external stylesheets</i>)</h2>
+        <p>Els estils externs s'emmagatzemen en un fitxer CSS separat i s'enllacen al document HTML amb l'etiqueta
+          <code>&lt;link&gt;</code> dins de la secció <code>&lt;head&gt;</code>. És el <strong>mètode més recomanat</strong> per a
+          la majoria de llocs webs, especialment si tenen moltes pàgines.</p>
+      <figure class="codi">
+        <figcaption>index.html</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Estils externs&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Benvinguts al meu lloc web&lt;/h1&gt;
+  &lt;p&gt;Aquest paràgraf tindrà text verd i mida 16 píxels.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>style.css</figcaption>
+<pre><code>p {
+  color: green;
+  font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+  color: darkblue;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-extern">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Benvinguts al meu lloc web</h1>
+        <p>Aquest paràgraf tindrà text verd i mida 16 píxels.</p>
+      </figure>
+      </div>
+        <table>
+          <caption>Estils externs</caption>
+          <thead>
+            <tr><th scope="col">Avantatges</th><th scope="col">Inconvenients</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Permet reutilitzar els estils en diverses pàgines web, facilitant la coherència i el manteniment.</td>
+              <td>Si el fitxer CSS no es carrega correctament (problemes de connexió o d'enllaç), la pàgina es mostrarà sense
+                estils.</td>
+            </tr>
+            <tr>
+              <td>Facilita la separació entre el contingut (HTML) i l'estil (CSS).</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Optimitza el temps de càrrega: els navegadors poden emmagatzemar el fitxer CSS en memòria cau.</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Aquests apunts combinen dues formes: un full d'estil <strong>extern</strong> comú per a l'aspecte de totes les pàgines
+          i un bloc <code>&lt;style&gt;</code> <strong>incrustat</strong> a cada pàgina amb els estils dels exemples que només
+          s'utilitzen allà.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Fes servir fulls d'estil externs per a tot el lloc web.</li>
+          <li>Reserva els estils incrustats per a regles que només tenen sentit en una pàgina concreta.</li>
+          <li>Evita els estils en línia: barregen contingut i presentació i no es poden reutilitzar.</li>
+          <li>Comprova que la ruta de l'atribut <code>href</code> de <code>&lt;link&gt;</code> és correcta; si no ho és, la pàgina
+            es mostrarà sense estils.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Tres maneres d'aplicar CSS</a></li>
+          <li><a href="#apartat-2">1. Estils en línia (inline styles)</a></li>
+          <li><a href="#apartat-3">2. Estils incrustats (embedded styles)</a></li>
+          <li><a href="#apartat-4">3. Estils externs (external stylesheets)</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="introduccio.html" rel="prev">Introducció al CSS</a></li>
+        <li><a href="sintaxi.html" rel="next">Sintaxi bàsica del CSS</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

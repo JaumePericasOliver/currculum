@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables CSS | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Variables CSS (custom properties): com definir-les amb --nom, utilitzar-les amb var(), valors per defecte i avantatges en projectes grans.">
+  <meta name="keywords" content="CSS, variables CSS, custom properties, var(), :root, valors per defecte, mantenibilitat">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Variables CSS">
+  <meta property="og:description" content="Variables CSS (custom properties): com definir-les amb --nom, utilitzar-les amb var(), valors per defecte i avantatges en projectes grans.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Exemple 1: les variables es defineixen al contenidor de l'exemple
+       (no a :root) perquè no afectin la resta d'aquesta pàgina */
+    #ex-basic {
+      --color-primari: #3498db;
+      --marge-petit: 10px;
+    }
+
+    #ex-basic .ex-body {
+      background-color: var(--color-primari);
+      margin: var(--marge-petit);
+      padding: var(--marge-petit);
+      color: white;
+    }
+
+    /* Exemple 2: valor per defecte */
+    .ex-defecte-1 {
+      color: var(--color-que-no-existeix, black);
+    }
+
+    .ex-defecte-2 {
+      color: var(--teal-deep, black);
+    }
+
+    /* Exemple 3: exemple complet */
+    #ex-complet {
+      --color-primari: #3498db;
+      --color-secundari: #2ecc71;
+      --marge-general: 20px;
+      --mida-text: 16px;
+
+      background-color: var(--color-primari);
+      color: white;
+      padding: var(--marge-general);
+      font-size: var(--mida-text);
+    }
+
+    #ex-complet h1 {
+      margin-top: var(--space-4);
+      color: var(--color-secundari);
+    }
+
+    #ex-complet button {
+      padding: 10px 20px;
+      background-color: white;
+      color: var(--color-primari);
+      border: none;
+      font-family: var(--font-sans);
+      font-size: var(--mida-text);
+      cursor: pointer;
+    }
+
+    #ex-complet button:hover {
+      background-color: var(--color-secundari);
+      color: white;
+    }
+
+    /* Exemple 4: les mateixes regles amb variables diferents */
+    .ex-temes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .targeta {
+      --fons: var(--surface-mint);
+      --text: var(--ink-title);
+      --accent: var(--teal-deep);
+
+      padding: var(--space-4) var(--space-6);
+      background-color: var(--fons);
+      color: var(--text);
+      border-top: var(--stroke-accent) solid var(--accent);
+      border-radius: var(--radius-card);
+    }
+
+    .targeta h4 {
+      margin: 0 0 var(--space-2) 0;
+      font-size: 20px;
+    }
+
+    .targeta p {
+      margin: 0;
+    }
+
+    .targeta-fosca {
+      --fons: var(--ink-title);
+      --text: var(--surface);
+      --accent: var(--mint-bright);
+    }
+
+    .targeta-avis {
+      --fons: var(--note);
+      --text: var(--ink);
+      --accent: var(--danger-text);
+    }
+
+    @media (min-width: 768px) {
+      .ex-temes {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="variables.html" aria-current="page">Variables CSS</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 06</p>
+        <h1>Variables CSS</h1>
+        <p>Variables CSS (custom properties): com definir-les amb --nom, utilitzar-les amb var(), valors per defecte i avantatges en projectes grans.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">6 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Què són les variables CSS?</h2>
+        <p>Les <strong>variables CSS</strong>, també anomenades <i lang="en">custom properties</i> (propietats personalitzades),
+          permeten definir <strong>valors reutilitzables</strong> dins d'un full d'estil: colors, mides, espais, fonts...</p>
+        <p>Si has de canviar un d'aquests valors, només l'has de modificar <strong>en un lloc</strong> i el canvi es propaga a
+          totes les regles que fan servir la variable.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Definir i utilitzar variables</h2>
+        <ul>
+          <li>Una variable es <strong>defineix</strong> dins de qualsevol selector amb un nom que comença per dos guions:
+            <code>--nom: valor;</code></li>
+          <li>Es <strong>fa servir</strong> amb la funció <code>var()</code>: <code>propietat: var(--nom);</code></li>
+          <li>És habitual definir-les al selector <code>:root</code> (l'element arrel, <code>&lt;html&gt;</code>) perquè estiguin
+            disponibles a tot el document.</li>
+        </ul>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>:root {
+  --color-primari: #3498db;
+  --marge-petit: 10px;
+}
+
+body {
+  background-color: var(--color-primari);
+  margin: var(--marge-petit);
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-basic">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-body">Aquest bloc fa de body: fons --color-primari i marge --marge-petit.</div>
+      </figure>
+      </div>
+        <p>Les variables <strong>s'hereten</strong>: una variable definida en un element està disponible per a tots els seus
+          descendents. Per això, si la defineixes a <code>:root</code>, la pots fer servir a tota la pàgina. En els exemples d'aquest
+          apunt les definim al contenidor de cada exemple perquè no afectin la resta de la pàgina.</p>
+        <p>Els noms distingeixen majúscules i minúscules: <code>--Color</code> i <code>--color</code> són dues variables
+          diferents.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Avantatges en projectes grans</h2>
+        <p>En projectes grans cal garantir que colors, mides i fonts siguin coherents. Canviar aquests valors a mà en molts llocs és
+          lent i provoca errors; les variables els centralitzen.</p>
+        <table>
+          <caption>Avantatges de les variables</caption>
+          <thead>
+            <tr><th scope="col">Avantatge</th><th scope="col">Què vol dir</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Mantenibilitat</strong></td><td>Canviant una sola variable es modifiquen valors globals com els colors o les mides.</td></tr>
+            <tr><td><strong>Reutilització</strong></td><td>La mateixa variable es pot fer servir a qualsevol lloc del full d'estil.</td></tr>
+            <tr><td><strong>Consistència</strong></td><td>Tots els elements que depenen d'una variable tenen exactament el mateix estil.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Les mateixes regles, variables diferents</h3>
+        <p>Com que les variables s'hereten i es poden redefinir, una classe pot canviar l'aspecte d'un component només canviant-ne
+          les variables. Les tres targetes següents fan servir <strong>exactament les mateixes regles</strong>:</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.targeta {
+  --fons: #cceae7;
+  --text: #050038;
+  --accent: #0f766e;
+
+  background-color: var(--fons);
+  color: var(--text);
+  border-top: 6px solid var(--accent);
+}
+
+/* Les variants només redefineixen variables */
+.targeta-fosca {
+  --fons: #050038;
+  --text: #ffffff;
+  --accent: #0dc1a0;
+}
+
+.targeta-avis {
+  --fons: #fff6b6;
+  --text: #1a1a1a;
+  --accent: #c21f00;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-temes">
+          <div class="targeta">
+            <h4>.targeta</h4>
+            <p>Els valors per defecte.</p>
+          </div>
+          <div class="targeta targeta-fosca">
+            <h4>.targeta-fosca</h4>
+            <p>Només canvien tres variables.</p>
+          </div>
+          <div class="targeta targeta-avis">
+            <h4>.targeta-avis</h4>
+            <p>Les regles són les mateixes.</p>
+          </div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Valors per defecte</h2>
+        <p>La funció <code>var()</code> accepta un segon valor, separat per una coma, que s'utilitza si la variable
+          <strong>no està definida</strong>. Així el disseny funciona encara que la variable falti.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h2 {
+  color: var(--color-primari, black); /* Negre si --color-primari no està definit */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-defecte-1">var(--color-que-no-existeix, black): la variable no existeix i s'aplica el negre.</p>
+        <p class="ex-defecte-2">var(--teal-deep, black): la variable existeix (és del full d'estil dels apunts) i s'aplica el verd blavós.</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+        <ol>
+          <li>Les variables gestionen els colors, la mida del text i els marges.</li>
+          <li>El botó canvia de color quan hi passes el ratolí per sobre, fent servir les mateixes variables.</li>
+        </ol>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Variables CSS&lt;/title&gt;
+  &lt;style&gt;
+    :root {
+      --color-primari: #3498db;
+      --color-secundari: #2ecc71;
+      --marge-general: 20px;
+      --mida-text: 16px;
+    }
+
+    body {
+      background-color: var(--color-primari);
+      color: white;
+      margin: var(--marge-general);
+      font-size: var(--mida-text);
+    }
+
+    h1 {
+      color: var(--color-secundari);
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: white;
+      color: var(--color-primari);
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: var(--color-secundari);
+      color: white;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Ús de Variables CSS&lt;/h1&gt;
+  &lt;p&gt;Aquest paràgraf utilitza variables per definir la mida del text, els colors i els marges.&lt;/p&gt;
+  &lt;button&gt;Botó interactiu&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-complet">
+        <figcaption>Prova-ho: passa el ratolí pel botó</figcaption>
+        <h1>Ús de Variables CSS</h1>
+        <p>Aquest paràgraf utilitza variables per definir la mida del text, els colors i els marges.</p>
+        <button>Botó interactiu</button>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-6">
+        <h2>Les variables d'aquests apunts</h2>
+        <p>El full d'estil comú d'aquests apunts (<code>estils/apunts.css</code>) defineix a <code>:root</code> tots els valors de
+          la guia d'estils i després només fa servir <code>var()</code>. Aquest és un fragment:</p>
+      <figure class="codi">
+        <figcaption>estils/apunts.css</figcaption>
+<pre><code>:root {
+  --surface: #ffffff;
+  --surface-mint: #cceae7;
+  --ink-title: #050038;
+  --teal-deep: #0f766e;
+  --font-sans: "IBM Plex Sans", system-ui, Arial, sans-serif;
+  --radius-card: 12px;
+  --gutter: 16px;
+}
+
+body > header {
+  background-color: var(--surface-mint);
+  color: var(--ink-title);
+}
+
+/* En pantalles grans només canvia la variable */
+@media (min-width: 768px) {
+  :root {
+    --gutter: 8vw;
+  }
+}</code></pre>
+      </figure>
+        <p>Fixa't en l'últim bloc: per canviar el marge lateral de tota la pàgina en pantalles grans, n'hi ha prou amb redefinir
+          <code>--gutter</code> dins de la media query.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Defineix les variables globals a <code>:root</code>, al principi del full d'estil.</li>
+          <li>Posa noms que expliquin la funció (<code>--color-primari</code>, <code>--marge-general</code>), no el valor
+            (<code>--blau</code>, <code>--deu-pixels</code>).</li>
+          <li>Afegeix un valor per defecte a <code>var()</code> quan la variable pugui faltar.</li>
+          <li>No posis tots els valors en variables: només els que es repeteixen o que voldràs canviar.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Què són les variables CSS?</a></li>
+          <li><a href="#apartat-2">1. Definir i utilitzar variables</a></li>
+          <li><a href="#apartat-3">2. Avantatges en projectes grans</a></li>
+          <li><a href="#apartat-4">3. Valors per defecte</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+          <li><a href="#apartat-6">Les variables d'aquests apunts</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="popover.html" rel="prev">Popover API</a></li>
+        <li><a href="animacions.html" rel="next">Animacions i transicions</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

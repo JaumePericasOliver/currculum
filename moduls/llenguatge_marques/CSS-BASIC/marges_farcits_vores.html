@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marges, farcits i vores | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Les propietats margin, padding i border del model de caixa i les unitats de mesura més comunes en CSS.">
+  <meta name="keywords" content="CSS, margin, padding, border, model de caixa, px, em, rem, %, vw, vh">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Marges, farcits i vores">
+  <meta property="og:description" content="Les propietats margin, padding i border del model de caixa i les unitats de mesura més comunes en CSS.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Esquema: marge, vora, farcit i contingut */
+    .esquema-marge {
+      padding: 18px;
+      background-color: var(--surface-mint);
+      border: 1px dashed var(--teal);
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .esquema-vora {
+      border: 14px solid var(--ink-title);
+    }
+
+    .esquema-farcit {
+      padding: 18px;
+      background-color: var(--task-gold);
+    }
+
+    .esquema-contingut {
+      padding: 16px;
+      background-color: var(--surface);
+      border: 1px solid var(--ink-muted);
+      text-align: center;
+    }
+
+    .esquema-etiqueta {
+      margin: 0 0 6px 0;
+    }
+
+    .esquema-vora > .esquema-etiqueta {
+      margin: 0;
+      padding: 2px 6px;
+      background-color: var(--ink-title);
+      color: var(--surface);
+    }
+
+    /* Marges */
+    #ex-marges p {
+      margin: 10px;
+      background-color: var(--task-gold);
+    }
+
+    #ex-marges h1 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      background-color: var(--surface-mint);
+    }
+
+    /* Farcits */
+    #ex-farcits div {
+      padding: 20px;
+      background-color: var(--task-gold);
+    }
+
+    #ex-farcits h2 {
+      padding-left: 15px;
+      background-color: var(--surface-mint);
+    }
+
+    /* Vores */
+    #ex-vores div {
+      border: 2px solid black;
+      padding: 8px;
+    }
+
+    #ex-vores p {
+      border: 1px dashed blue;
+      padding: 8px;
+    }
+
+    .ex-solid {
+      border: 4px solid var(--ink-title);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .ex-dashed {
+      border: 4px dashed var(--ink-title);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .ex-dotted {
+      border: 4px dotted var(--ink-title);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .ex-thin {
+      border-width: thin;
+      border-style: solid;
+      border-color: var(--teal);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .ex-medium {
+      border-width: medium;
+      border-style: solid;
+      border-color: var(--teal);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    .ex-thick {
+      border-width: thick;
+      border-style: solid;
+      border-color: var(--teal);
+      padding: 8px;
+      margin: 8px 0;
+    }
+
+    /* Exemple complet */
+    .caixa {
+      margin: 20px;
+      padding: 15px;
+      border: 3px solid red;
+    }
+
+    .titol {
+      margin-top: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="marges_farcits_vores.html" aria-current="page">Marges, farcits i vores</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 05</p>
+        <h1>Marges, farcits i vores</h1>
+        <p>Les propietats margin, padding i border del model de caixa i les unitats de mesura més comunes en CSS.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">5 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>El model de caixa</h2>
+        <p>Els marges (<code>margin</code>), els farcits (<code>padding</code>) i les vores (<code>border</code>) formen part del
+          <strong>model de caixa</strong> de CSS, que descriu com es disposen els elements a la pàgina. Permeten ajustar l'espai
+          exterior i interior d'un element i definir-ne els límits visuals.</p>
+      <figure class="resultat">
+        <figcaption>Esquema del model de caixa</figcaption>
+        <div class="esquema-marge">
+          <p class="esquema-etiqueta">margin (espai exterior, transparent)</p>
+          <div class="esquema-vora">
+            <p class="esquema-etiqueta">border</p>
+            <div class="esquema-farcit">
+              <p class="esquema-etiqueta">padding (espai interior)</p>
+              <div class="esquema-contingut">contingut</div>
+            </div>
+          </div>
+        </div>
+      </figure>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Marges (<code>margin</code>)</h2>
+        <p>La propietat <code>margin</code> controla l'<strong>espai exterior</strong> d'un element: l'espai entre l'element i
+          els que l'envolten. Es pot definir per als quatre costats alhora o per a cada costat:</p>
+        <table>
+          <caption>Propietats de marge</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Costat</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>margin</code></td><td>Tots els costats alhora</td></tr>
+            <tr><td><code>margin-top</code></td><td>Superior</td></tr>
+            <tr><td><code>margin-right</code></td><td>Dret</td></tr>
+            <tr><td><code>margin-bottom</code></td><td>Inferior</td></tr>
+            <tr><td><code>margin-left</code></td><td>Esquerre</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  margin: 10px;         /* Marge de 10 píxels a tots els costats */
+}
+
+h1 {
+  margin-top: 20px;     /* Marge superior de 20 píxels */
+  margin-bottom: 10px;  /* Marge inferior de 10 píxels */
+  margin-left: 10px;    /* Marge esquerre de 10 píxels */
+  margin-right: 10px;   /* Marge dret de 10 píxels */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-marges">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Títol amb marges</h1>
+        <p>Paràgraf amb 10 píxels de marge a cada costat.</p>
+        <p>Un altre paràgraf: l'espai que el separa de l'anterior és el marge.</p>
+      </figure>
+      </div>
+        <p>Amb la propietat abreujada es poden donar diversos valors, que es llegeixen en el sentit de les agulles del rellotge
+          començant per dalt: <code>margin: 20px 10px 10px 10px;</code> equival a l'exemple del <code>h1</code>.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Farcits (<code>padding</code>)</h2>
+        <p>La propietat <code>padding</code> controla l'<strong>espai interior</strong> d'un element: l'espai entre el contingut
+          (text, imatges...) i la vora. Igual que amb els marges, es pot definir per a tots els costats o per a cada un
+          (<code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code> i <code>padding-left</code>).</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  padding: 20px;       /* Farcit de 20 píxels a tots els costats */
+}
+
+h2 {
+  padding-left: 15px;  /* Farcit de 15 píxels al costat esquerre */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-farcits">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>Div amb 20 píxels de farcit: el fons ocupa també el farcit.</div>
+        <h2>Títol amb farcit a l'esquerra</h2>
+      </figure>
+      </div>
+        <p>Observa la diferència: el <strong>farcit</strong> queda dins de l'element i agafa el seu color de fons; el
+          <strong>marge</strong> queda fora i sempre és transparent.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Vores (<code>border</code>)</h2>
+        <p>La propietat <code>border</code> afegeix una vora al voltant d'un element. És una propietat abreujada que combina
+          tres subpropietats:</p>
+        <ol>
+          <li><code>border-width</code>: el gruix de la vora.</li>
+          <li><code>border-style</code>: l'estil de la línia: <code>solid</code> (sòlida), <code>dashed</code> (ratllada),
+            <code>dotted</code> (puntets), etc.</li>
+          <li><code>border-color</code>: el color de la vora.</li>
+        </ol>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  border: 2px solid black;  /* Vora de 2 píxels, sòlida i negra */
+}
+
+p {
+  border: 1px dashed blue;  /* Vora d'1 píxel, ratllada i blava */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-vores">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>Div amb vora sòlida negra.
+          <p>Paràgraf amb vora ratllada blava.</p>
+        </div>
+      </figure>
+      </div>
+
+        <h3>Estils i gruixos de vora</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.solida  { border: 4px solid #050038; }
+.ratllada { border: 4px dashed #050038; }
+.puntets { border: 4px dotted #050038; }
+
+.prima {
+  border-width: thin;   /* també medium o thick */
+  border-style: solid;
+  border-color: #009788;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-solid">solid</div>
+        <div class="ex-dashed">dashed</div>
+        <div class="ex-dotted">dotted</div>
+        <div class="ex-thin">border-width: thin</div>
+        <div class="ex-medium">border-width: medium</div>
+        <div class="ex-thick">border-width: thick</div>
+      </figure>
+      </div>
+        <p>També es pot posar vora a un sol costat: <code>border-top</code>, <code>border-right</code>,
+          <code>border-bottom</code> i <code>border-left</code>.</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Marges, farcits i vores&lt;/title&gt;
+  &lt;style&gt;
+    .caixa {
+      margin: 20px;                      /* Marge de 20 píxels a tots els costats */
+      padding: 15px;                     /* Farcit de 15 píxels a tots els costats */
+      border: 3px solid red;             /* Vora de 3 píxels, sòlida i vermella */
+    }
+
+    .titol {
+      margin-top: 30px;                  /* Marge superior de 30 píxels */
+      padding-bottom: 10px;              /* Farcit inferior de 10 píxels */
+      border-bottom: 2px dashed green;   /* Vora inferior ratllada i verda */
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="caixa"&gt;
+    &lt;h2 class="titol"&gt;Títol amb marges i vores&lt;/h2&gt;
+    &lt;p&gt;Aquest és un paràgraf dins d'una caixa amb marges, farcits i una vora sòlida.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="caixa">
+          <h2 class="titol">Títol amb marges i vores</h2>
+          <p>Aquest és un paràgraf dins d'una caixa amb marges, farcits i una vora sòlida.</p>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-6">
+        <h2>Unitats de mesura</h2>
+        <p>Els marges, els farcits i les vores (i moltes altres propietats) necessiten una mida. Aquestes són les unitats més
+          comunes:</p>
+        <table>
+          <caption>Unitats comunes en CSS</caption>
+          <thead>
+            <tr><th scope="col">Unitat</th><th scope="col">Tipus</th><th scope="col">Relativa a...</th><th scope="col">Exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>px</code></td><td>Fixa</td><td>Un punt de la pantalla</td><td><code>margin: 20px;</code></td></tr>
+            <tr><td><code>em</code></td><td>Relativa</td><td>La mida de la font de l'element pare</td><td><code>padding: 2em;</code></td></tr>
+            <tr><td><code>rem</code></td><td>Relativa</td><td>La mida de la font de l'element arrel (<code>html</code>)</td><td><code>margin: 1.5rem;</code></td></tr>
+            <tr><td><code>%</code></td><td>Relativa</td><td>L'amplada o l'alçada del contenidor pare</td><td><code>padding: 5%;</code></td></tr>
+            <tr><td><code>vw</code>, <code>vh</code></td><td>Relativa</td><td>L'amplada o l'alçada de la finestra visible (<i lang="en">viewport</i>)</td><td><code>margin: 5vw;</code></td></tr>
+          </tbody>
+        </table>
+        <p>Les vores també accepten els gruixos predefinits <code>thin</code>, <code>medium</code> i <code>thick</code>, per
+          exemple: <code>border: thick solid black;</code>.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Fes servir el <strong>farcit</strong> per separar el contingut de la seva vora i el <strong>marge</strong> per separar
+            un element dels altres.</li>
+          <li>Prefereix unitats relatives (<code>rem</code>, <code>em</code>, <code>%</code>) perquè el disseny s'adapti a
+            diferents pantalles i mides de lletra.</li>
+          <li>Recorda que els marges verticals de dos blocs seguits no se sumen: es queda el més gran.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">El model de caixa</a></li>
+          <li><a href="#apartat-2">1. Marges (margin)</a></li>
+          <li><a href="#apartat-3">2. Farcits (padding)</a></li>
+          <li><a href="#apartat-4">3. Vores (border)</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+          <li><a href="#apartat-6">Unitats de mesura</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="text_fonts.html" rel="prev">Propietats de text i fonts</a></li>
+        <li><a href="colors_fons.html" rel="next">Colors i fons</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

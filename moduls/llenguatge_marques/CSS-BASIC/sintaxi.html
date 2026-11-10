@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sintaxi bàsica del CSS | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Parts d'una regla CSS, selectors bàsics (tipus, classe, id i universal) i els conceptes d'herència, especificitat i cascada.">
+  <meta name="keywords" content="CSS, regla, selector, propietat, valor, declaració, classe, id, universal, herència, especificitat, cascada">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sintaxi bàsica del CSS">
+  <meta property="og:description" content="Parts d'una regla CSS, selectors bàsics (tipus, classe, id i universal) i els conceptes d'herència, especificitat i cascada.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Anatomia d'una regla: cada part té el seu color */
+    #ex-anatomia pre {
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 1.7;
+    }
+
+    .part-selector {
+      background-color: var(--task-gold);
+    }
+
+    .part-propietat {
+      color: var(--teal-deep);
+      font-weight: bold;
+    }
+
+    .part-valor {
+      color: darkblue;
+      border-bottom: 2px solid darkblue;
+    }
+
+    .part-declaracio {
+      border: 1px dashed var(--ink-muted);
+    }
+
+    /* Selectors */
+    #ex-tipus h1 {
+      color: green;
+    }
+
+    .la-meva-classe {
+      background-color: yellow;
+    }
+
+    #el-meu-id {
+      text-align: center;
+    }
+
+    #ex-universal * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Herència */
+    #ex-herencia {
+      color: blue;
+    }
+
+    /* Especificitat */
+    .paragraf {
+      color: blue;
+    }
+
+    .article .paragraf {
+      color: red;
+    }
+
+    /* Cascada */
+    .nota {
+      color: blue;
+    }
+
+    .nota {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="sintaxi.html" aria-current="page">Sintaxi bàsica del CSS</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 03</p>
+        <h1>Sintaxi bàsica del CSS</h1>
+        <p>Parts d'una regla CSS, selectors bàsics (tipus, classe, id i universal) i els conceptes d'herència, especificitat i cascada.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">3 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Anatomia d'una regla CSS</h2>
+        <p>Un full d'estil és una llista de <strong>regles</strong>. Cada regla diu a quins elements s'aplica i quins estils
+          reben.</p>
+      <figure class="resultat" id="ex-anatomia">
+        <figcaption>Parts d'una regla</figcaption>
+<pre><code><span class="part-selector">.element</span> {
+  <span class="part-declaracio"><span class="part-propietat">color</span>: <span class="part-valor">#FFF</span>;</span>
+  <span class="part-declaracio"><span class="part-propietat">background</span>: <span class="part-valor">darkblue</span>;</span>
+  <span class="part-declaracio"><span class="part-propietat">width</span>: <span class="part-valor">100%</span>;</span>
+}</code></pre>
+      </figure>
+        <table>
+          <caption>Vocabulari d'una regla</caption>
+          <thead>
+            <tr><th scope="col">Terme</th><th scope="col">Què és</th><th scope="col">A l'exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Regla CSS</strong></td><td>Instrucció que defineix com s'ha d'aplicar un estil a un o més elements HTML.</td><td>Tot el bloc</td></tr>
+            <tr><td><strong>Selector</strong></td><td>Indica l'element o elements HTML als quals s'aplicaran els estils.</td><td><code>.element</code></td></tr>
+            <tr><td><strong>Propietat</strong></td><td>La característica que es vol modificar (color, mida del text, marge...).</td><td><code>color</code></td></tr>
+            <tr><td><strong>Valor</strong></td><td>El valor concret que s'assigna a la propietat.</td><td><code>#FFF</code></td></tr>
+            <tr><td><strong>Declaració</strong></td><td>Parella <code>propietat: valor;</code> dins de la regla.</td><td><code>width: 100%;</code></td></tr>
+          </tbody>
+        </table>
+        <p>Les declaracions van entre claus <code>{ }</code>, la propietat i el valor se separen amb dos punts <code>:</code> i
+          cada declaració acaba amb punt i coma <code>;</code>.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>Selectors en CSS</h2>
+        <p>Els selectors defineixen <strong>quins elements HTML</strong> seran afectats per les regles d'estil. Els més comuns en
+          l'aprenentatge bàsic són aquests quatre:</p>
+
+        <h3>1. Selector de tipus (<i lang="en">type selector</i>)</h3>
+        <p>Aplica estils a tots els elements HTML del mateix tipus. Aquest codi posa de color verd tots els títols
+          <code>&lt;h1&gt;</code> de la pàgina.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  color: green;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-tipus">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Primer títol</h1>
+        <h1>Segon títol</h1>
+      </figure>
+      </div>
+
+        <h3>2. Selector de classe (<i lang="en">class selector</i>)</h3>
+        <p>Aplica estils als elements que tenen una classe concreta. S'escriu amb un <strong>punt</strong> (<code>.</code>)
+          davant del nom. Qualsevol element amb <code>class="la-meva-classe"</code> tindrà fons groc. Una mateixa classe es pot
+          posar a tants elements com calgui.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.la-meva-classe {
+  background-color: yellow;
+}
+
+&lt;p class="la-meva-classe"&gt;Aquest paràgraf tindrà un fons groc.&lt;/p&gt;
+&lt;p&gt;Aquest no té la classe i no canvia.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="la-meva-classe">Aquest paràgraf tindrà un fons groc.</p>
+        <p>Aquest no té la classe i no canvia.</p>
+      </figure>
+      </div>
+
+        <h3>3. Selector d'id (<i lang="en">ID selector</i>)</h3>
+        <p>Aplica estils a un <strong>únic</strong> element que té un identificador concret. S'escriu amb el símbol de la
+          coixinera (<code>#</code>). Recorda que un id ha de ser únic a la pàgina.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>#el-meu-id {
+  text-align: center;
+}
+
+&lt;p id="el-meu-id"&gt;Aquest paràgraf està centrat.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p id="el-meu-id">Aquest paràgraf està centrat.</p>
+      </figure>
+      </div>
+
+        <h3>4. Selector universal</h3>
+        <p>El selector universal (<code>*</code>) aplica estils a <strong>tots</strong> els elements de la pàgina. L'exemple
+          elimina els marges i els farcits de tots els elements, cosa útil per partir d'un estil uniforme. Fixa't que el títol i
+          el paràgraf queden enganxats.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>* {
+  margin: 0;
+  padding: 0;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-universal">
+        <figcaption>Resultat al navegador</figcaption>
+        <h3>Títol sense marges</h3>
+        <p>Paràgraf sense marges.</p>
+        <ul>
+          <li>Llista sense farcit: les vinyetes queden fora.</li>
+        </ul>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-3">
+        <h2>Conceptes importants</h2>
+
+        <h3>Herència</h3>
+        <p>Els elements fills <strong>hereten</strong> molts estils dels seus pares (per exemple, el color i la font del text).
+          Per això no cal escriure estils per a cada element: si poses el color a <code>body</code>, el <code>h1</code> ja
+          l'hereta i la segona regla sobra.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>body {
+  color: blue;
+}
+
+h1 {
+  color: blue; /* No cal: ja l'hereta de body */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-herencia">
+        <figcaption>Resultat al navegador</figcaption>
+        <h4>Títol que hereta el color</h4>
+        <p>Paràgraf que també l'hereta, i un <strong>text en negreta</strong> dins del paràgraf.</p>
+      </figure>
+      </div>
+
+        <h3>Especificitat</h3>
+        <p>Quan dues regles es contradiuen, el navegador aplica la que té <strong>més especificitat</strong>, és a dir, la que
+          selecciona l'element de manera més precisa. <code>.article .paragraf</code> és més específic que
+          <code>.paragraf</code>, per tant guanya el vermell encara que estigui escrit abans o després.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.article .paragraf {
+  color: red;
+}
+
+.paragraf {
+  color: blue;
+}
+
+&lt;div class="article"&gt;
+  &lt;p class="paragraf"&gt;Dins de .article: vermell.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class="paragraf"&gt;Fora de .article: blau.&lt;/p&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="article">
+          <p class="paragraf">Dins de .article: vermell.</p>
+        </div>
+        <p class="paragraf">Fora de .article: blau.</p>
+      </figure>
+      </div>
+        <p>Com a regla general, de menys a més específic: selector de tipus, selector de classe, selector d'id, estil en línia.</p>
+
+        <h3>Cascada</h3>
+        <p>Si dues regles tenen la <strong>mateixa especificitat</strong>, guanya la que s'ha escrit <strong>després</strong>:
+          tot estil sobreescriu l'anterior. Aquesta és la <strong>C</strong> de CSS: <i lang="en">Cascading</i>, en cascada.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.nota {
+  color: blue;
+}
+
+.nota {
+  color: red; /* Guanya: és l'última */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="nota">Aquesta nota es veu de color vermell.</p>
+      </figure>
+      </div>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Posa noms de classe que expliquin la funció de l'element (<code>.avis</code>, <code>.menu</code>), no el seu
+            aspecte (<code>.vermell</code>, <code>.gros</code>).</li>
+          <li>Prefereix les classes als id per donar estil: es poden reutilitzar i tenen una especificitat més fàcil de
+            controlar.</li>
+          <li>Aprofita l'herència: defineix la font i el color del text a <code>body</code> una sola vegada.</li>
+          <li>Si una regla no s'aplica, comprova l'especificitat i l'ordre de les regles abans de tocar res més.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Anatomia d'una regla CSS</a></li>
+          <li><a href="#apartat-2">Selectors en CSS</a></li>
+          <li><a href="#apartat-3">Conceptes importants</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="aplicacio_estils.html" rel="prev">Aplicació d'estils</a></li>
+        <li><a href="text_fonts.html" rel="next">Propietats de text i fonts</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

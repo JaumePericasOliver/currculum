@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eines modernes de CSS | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Eines modernes de CSS: els preprocessadors Sass i LESS (variables, nesting, mixins, herència, control i operacions) i els frameworks Bootstrap 5 i Tailwind CSS.">
+  <meta name="keywords" content="CSS, Sass, SCSS, LESS, preprocessadors, mixins, nesting, Bootstrap 5, Tailwind CSS, frameworks, Node.js, npm">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Eines modernes de CSS">
+  <meta property="og:description" content="Eines modernes de CSS: els preprocessadors Sass i LESS (variables, nesting, mixins, herència, control i operacions) i els frameworks Bootstrap 5 i Tailwind CSS.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Simulació de la graella de Bootstrap (.row amb tres .col) */
+    .ex-row {
+      display: flex;
+      gap: var(--space-2);
+      text-align: center;
+    }
+
+    .ex-col {
+      flex-grow: 1;
+      padding: var(--space-3);
+      background-color: var(--surface-mint);
+      border: var(--stroke-card) solid var(--ink-title);
+      border-radius: var(--radius-code);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    /* Parèntesi: Node.js i npm */
+    .ex-parentesi {
+      padding: var(--space-4) var(--space-6);
+      background-color: var(--surface-mist);
+      border-radius: var(--radius-card);
+    }
+
+    .ex-parentesi p {
+      margin: 0 0 var(--space-2) 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="eines_modernes.html" aria-current="page">Eines modernes de CSS</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 11</p>
+        <h1>Eines modernes de CSS</h1>
+        <p>Els preprocessadors Sass i LESS (variables, nesting, mixins, herència, control i operacions) i els frameworks Bootstrap 5 i Tailwind CSS.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">11 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Què són les eines modernes de CSS?</h2>
+        <p>Són eines que faciliten i milloren la manera de treballar amb CSS: permeten escriure'l de manera més
+          <strong>eficient</strong>, <strong>modular</strong> i <strong>escalable</strong>. En veurem de dos tipus:</p>
+        <table>
+          <caption>Tipus d'eines</caption>
+          <thead>
+            <tr><th scope="col">Tipus</th><th scope="col">Què fa</th><th scope="col">Exemples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Preprocessador</strong></td><td>Amplia el llenguatge (variables, anidament, funcions...) i <strong>compila</strong> el resultat a CSS normal.</td><td>Sass, LESS</td></tr>
+            <tr><td><strong>Framework</strong></td><td>Ofereix estils i classes ja fets per construir pàgines ràpidament.</td><td>Bootstrap, Tailwind CSS</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>Sass (<i lang="en">Syntactically Awesome Style Sheets</i>)</h2>
+        <p><strong>Sass</strong> és un preprocessador CSS que hi afegeix variables, anidament (<i lang="en">nesting</i>),
+          mixins, funcions i herència. El navegador no entén Sass: cal <strong>compilar-lo</strong> a un fitxer CSS normal.</p>
+
+      <figure class="resultat ex-parentesi">
+        <figcaption>Parèntesi: Node.js i npm</figcaption>
+        <p><strong>Node.js</strong> és un entorn que permet executar JavaScript fora del navegador, amb el motor V8 de Google
+          Chrome. S'utilitza per a aplicacions de servidor, eines de desenvolupament i aplicacions en temps real.</p>
+        <p><strong>npm</strong> és l'eina que ve amb Node.js per instal·lar, gestionar i compartir llibreries i eines de
+          JavaScript. Descarrega-ho de <a href="https://nodejs.org/" target="_blank">nodejs.org</a>.</p>
+      </figure>
+
+        <h3>Instal·lar i compilar Sass</h3>
+      <figure class="codi">
+        <figcaption>Terminal</figcaption>
+<pre><code># Instal·lar Sass a tot el sistema
+npm install -g sass
+
+# Compilar estils.scss i generar estils.css
+sass estils.scss estils.css</code></pre>
+      </figure>
+        <p>Més informació a <a href="https://sass-lang.com/install/" target="_blank">sass-lang.com</a>.</p>
+
+        <h3>Dues sintaxis: <code>.sass</code> i <code>.scss</code></h3>
+        <p>Sass té dues sintaxis que compilen exactament al mateix CSS:</p>
+      <figure class="codi">
+        <figcaption>style.sass: sense claus ni punt i coma, amb sagnat</figcaption>
+<pre><code>$color-primari: #3498db
+
+body
+  background-color: $color-primari
+  font-family: Arial, sans-serif
+
+  h1
+    color: white
+    font-size: 2rem</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>style.scss: com el CSS de sempre</figcaption>
+<pre><code>$color-primari: #3498db;
+
+body {
+  background-color: $color-primari;
+  font-family: Arial, sans-serif;
+
+  h1 {
+    color: white;
+    font-size: 2rem;
+  }
+}</code></pre>
+      </figure>
+        <table>
+          <caption>Quina sintaxi triar?</caption>
+          <thead>
+            <tr><th scope="col">Tria SCSS si...</th><th scope="col">Tria Sass si...</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Prefereixes una sintaxi semblant al CSS tradicional.</td><td>Prefereixes una sintaxi més neta i minimalista.</td></tr>
+            <tr><td>Treballes amb un equip que fa servir CSS estàndard.</td><td>Vols escriure menys caràcters.</td></tr>
+            <tr><td>Vols que qualsevol fitxer CSS sigui també SCSS vàlid.</td><td></td></tr>
+          </tbody>
+        </table>
+        <p>Avui dia <strong>SCSS</strong> és la sintaxi predeterminada i la més utilitzada. Els exemples següents la fan servir.</p>
+
+        <h3>Variables</h3>
+        <p>Es defineixen amb <code>$</code>. A diferència de les <a href="variables.html">variables CSS</a>, només existeixen
+          mentre es compila: al CSS final se substitueixen pel seu valor.</p>
+      <figure class="codi">
+        <figcaption>SCSS</figcaption>
+<pre><code>$color-primari: #3498db;
+$color-secundari: #2ecc71;
+
+body {
+  background-color: $color-primari;
+  color: $color-secundari;
+}</code></pre>
+      </figure>
+
+        <h3><i lang="en">Nesting</i> (anidament)</h3>
+        <p>Permet escriure el CSS en una estructura jeràrquica que reflecteix l'HTML.</p>
+      <figure class="codi">
+        <figcaption>SCSS</figcaption>
+<pre><code>nav {
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      a {
+        text-decoration: none;
+        color: $color-primari;
+      }
+    }
+  }
+}</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>CSS generat</figcaption>
+<pre><code>nav ul {
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #3498db;
+}</code></pre>
+      </figure>
+        <p><code>list-style: none</code> treu les vinyetes d'una llista i <code>text-decoration: none</code> treu el subratllat dels
+          enllaços.</p>
+
+        <h3>Mixins</h3>
+        <p>Blocs de codi reutilitzables que poden rebre paràmetres. Es defineixen amb <code>@mixin</code> i s'utilitzen amb
+          <code>@include</code>.</p>
+      <figure class="codi">
+        <figcaption>SCSS</figcaption>
+<pre><code>@mixin boto($color-fons, $color-text) {
+  background-color: $color-fons;
+  color: $color-text;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.btn-primari {
+  @include boto(#3498db, white);
+}
+
+.btn-secundari {
+  @include boto(#2ecc71, black);
+}</code></pre>
+      </figure>
+
+        <h3>Herència (<code>@extend</code>)</h3>
+        <p>Permet reutilitzar els estils d'un selector en altres. Un selector que comença per <code>%</code> és un
+          <strong>placeholder</strong>: no apareix al CSS final si no s'estén.</p>
+      <figure class="codi">
+        <figcaption>SCSS</figcaption>
+<pre><code>%boto-base {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-primari {
+  @extend %boto-base;
+  background-color: $color-primari;
+  color: white;
+}
+
+.btn-secundari {
+  @extend %boto-base;
+  background-color: $color-secundari;
+  color: black;
+}</code></pre>
+      </figure>
+
+        <h3>Control: condicions i bucles</h3>
+        <p>Sass permet afegir lògica: <code>@if</code> / <code>@else</code> i bucles com <code>@for</code>. Aquest exemple genera
+          quatre classes, <code>.column-1</code> a <code>.column-4</code>.</p>
+      <figure class="codi">
+        <figcaption>SCSS</figcaption>
+<pre><code>@use "sass:math";
+
+$max-columns: 4;
+
+@for $i from 1 through $max-columns {
+  .column-#{$i} {
+    width: math.div(100%, $i);
+
+    @if $i == 1 {
+      background-color: lightblue;
+    } @else if $i == 2 {
+      background-color: lightgreen;
+    } @else {
+      background-color: lightgray;
+    }
+  }
+}</code></pre>
+      </figure>
+        <p>A les versions actuals de Sass, la divisió amb <code>/</code> (<code>100% / $i</code>) està en desús: s'ha d'escriure
+          <code>math.div(100%, $i)</code> després d'importar el mòdul amb <code>@use "sass:math";</code>.</p>
+
+        <h3>Avantatges de Sass</h3>
+        <ul>
+          <li><strong>Organització</strong>: variables i anidament mantenen el codi ordenat.</li>
+          <li><strong>Reutilització</strong>: mixins i herència eviten repeticions.</li>
+          <li><strong>Escalabilitat</strong>: ideal per a projectes grans, perquè permet dividir el CSS en molts fitxers.</li>
+          <li><strong>Compatibilitat</strong>: compila a CSS estàndard, que funciona a tots els navegadors.</li>
+        </ul>
+      </section>
+
+      <section id="apartat-3">
+        <h2>LESS (<i lang="en">Leaner Style Sheets</i>)</h2>
+        <p><strong>LESS</strong> és un altre preprocessador amb variables, mixins, funcions i anidament. Va ser un dels primers a
+          fer-se popular.</p>
+      <figure class="codi">
+        <figcaption>Terminal</figcaption>
+<pre><code># Instal·lar LESS
+npm install -g less
+
+# Compilar estils.less i generar estils.css
+lessc estils.less estils.css</code></pre>
+      </figure>
+
+        <h3>Variables</h3>
+        <p>Es defineixen amb el símbol <code>@</code>.</p>
+      <figure class="codi">
+        <figcaption>LESS</figcaption>
+<pre><code>@color-primari: #3498db;
+
+body {
+  background-color: @color-primari;
+  color: white;
+}</code></pre>
+      </figure>
+
+        <h3>Mixins</h3>
+        <p>Un mixin es defineix com si fos una classe i es "crida" com una funció.</p>
+      <figure class="codi">
+        <figcaption>LESS</figcaption>
+<pre><code>.boto-estil {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.boto-primari {
+  .boto-estil();
+  background-color: #3498db;
+  color: white;
+}</code></pre>
+      </figure>
+
+        <h3>Anidament i operacions</h3>
+        <p>Com Sass, permet escriure estils dins d'altres estils. A més, permet fer <strong>operacions matemàtiques</strong>.</p>
+      <figure class="codi">
+        <figcaption>LESS</figcaption>
+<pre><code>nav {
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      a {
+        text-decoration: none;
+        color: @color-primari;
+      }
+    }
+  }
+}
+
+@base-marge: 10px;
+
+.contenidor {
+  margin: @base-marge * 2;   // Resultat: 20px
+  padding: @base-marge + 5px; // Resultat: 15px
+}</code></pre>
+      </figure>
+      </section>
+
+      <section id="apartat-4">
+        <h2>Bootstrap 5</h2>
+        <p><strong>Bootstrap 5</strong> és un framework de <i lang="en">front-end</i> per crear llocs web responsius i atractius
+          sense escriure gaire CSS ni JavaScript, gràcies a les seves classes i components predefinits.</p>
+
+        <h3>1. Sistema de graella (<i lang="en">grid system</i>)</h3>
+        <ul>
+          <li><strong>Estructura responsiva</strong>: dissenys que s'adapten a mòbils, tauletes i ordinadors.</li>
+          <li><strong>Basat en Flexbox</strong> (des de Bootstrap 4).</li>
+          <li><strong>Punts de ruptura</strong> (<i lang="en">breakpoints</i>): classes per a cada mida de dispositiu:
+            <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code> i <code>xxl</code>.</li>
+        </ul>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>HTML amb Bootstrap</figcaption>
+<pre><code>&lt;div class="container text-center"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;Column&lt;/div&gt;
+    &lt;div class="col"&gt;Column&lt;/div&gt;
+    &lt;div class="col"&gt;Column&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat (simulat)</figcaption>
+        <div class="ex-row">
+          <div class="ex-col">Column</div>
+          <div class="ex-col">Column</div>
+          <div class="ex-col">Column</div>
+        </div>
+      </figure>
+      </div>
+        <p>Aquest resultat està fet amb Flexbox per no carregar Bootstrap en aquests apunts: <code>.row</code> és un contenidor flex
+          i cada <code>.col</code> té <code>flex-grow</code> per repartir-se l'espai, que és com funciona Bootstrap per dins.</p>
+
+        <h3>2. Responsivitat integrada</h3>
+        <p>Tots els components i utilitats estan pensats per ser responsius i fan servir media queries per adaptar-se a cada mida
+          de pantalla.</p>
+
+        <h3>3. Components predefinits</h3>
+        <table>
+          <caption>Alguns components de Bootstrap</caption>
+          <thead>
+            <tr><th scope="col">Component</th><th scope="col">Per a què serveix</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>navbar</code></td><td>Barres de navegació personalitzables i adaptables</td></tr>
+            <tr><td><code>btn</code></td><td>Botons amb estils i estats (actiu, desactivat...)</td></tr>
+            <tr><td><code>card</code></td><td>Targetes amb títol, text, imatges i botons</td></tr>
+            <tr><td><code>modal</code></td><td>Finestres emergents</td></tr>
+            <tr><td><code>dropdown</code></td><td>Menús desplegables</td></tr>
+            <tr><td>Formularis</td><td>Controls amb estils predeterminats</td></tr>
+          </tbody>
+        </table>
+
+        <h3>4. Utilitats CSS</h3>
+        <ul>
+          <li><strong>Text</strong>: classes per a la mida, l'alineació i el color del text.</li>
+          <li><strong>Espais</strong>: <code>m-3</code> (marge), <code>p-2</code> (farcit)...</li>
+          <li><strong>Colors</strong>: <code>text-primary</code>, <code>bg-secondary</code>...</li>
+        </ul>
+
+        <h3>5. Personalització i documentació</h3>
+        <p>Bootstrap es pot personalitzar amb <strong>Sass</strong> i amb <strong>variables CSS</strong> (colors, fonts, mides) i
+          té temes predefinits. La seva <a href="https://getbootstrap.com/" target="_blank">documentació</a> és molt completa, amb
+          exemples per començar fàcilment.</p>
+
+        <h3>Instal·lació</h3>
+        <ol>
+          <li><strong>CDN</strong> (<i lang="en">Content Delivery Network</i>): el mètode més ràpid. No cal descarregar res, només
+            afegir un enllaç a l'HTML.</li>
+          <li><strong>Descàrrega local</strong>: descarregues els fitxers CSS i JS i els afegeixes al projecte.</li>
+          <li><strong>npm</strong>: recomanat per a projectes grans o amb frameworks com React, Angular o Vue.</li>
+        </ol>
+      <figure class="codi">
+        <figcaption>Bootstrap des d'un CDN</figcaption>
+<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;</code></pre>
+      </figure>
+      <figure class="codi">
+        <figcaption>Bootstrap amb npm</figcaption>
+<pre><code>npm install bootstrap</code></pre>
+      </figure>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Tailwind CSS</h2>
+        <p><strong>Tailwind CSS</strong> és un framework <strong>utilitari</strong> (<i lang="en">utility-first</i>): en lloc de
+          components ja fets (com Bootstrap), ofereix moltes classes petites, cada una amb <strong>una sola funció</strong> (un
+          color, un marge, una mida de lletra...), que es combinen directament a l'HTML per construir dissenys únics.</p>
+      <figure class="codi">
+        <figcaption>HTML amb Tailwind</figcaption>
+<pre><code>&lt;button class="bg-blue-500 text-white px-4 py-2 rounded md:text-lg"&gt;
+  Envia
+&lt;/button&gt;</code></pre>
+      </figure>
+        <p>Cada classe fa una cosa: <code>bg-blue-500</code> (color de fons), <code>text-white</code> (color del text),
+          <code>px-4</code> i <code>py-2</code> (farcit horitzontal i vertical), <code>rounded</code> (cantons arrodonits) i
+          <code>md:text-lg</code> (text més gran a partir de pantalles mitjanes).</p>
+
+        <h3>Característiques</h3>
+        <ol>
+          <li><strong>Classes basades en utilitats</strong>: cada classe fa una única funció.</li>
+          <li><strong>Altament personalitzable</strong>: el fitxer de configuració <code>tailwind.config.js</code> permet ajustar
+            paletes de colors, tipografies, punts de ruptura i espais.</li>
+          <li><strong>Disseny responsiu senzill</strong>: classes amb el prefix del punt de ruptura (<code>sm:</code>,
+            <code>md:</code>, <code>lg:</code>...).</li>
+          <li><strong>Escales predefinides</strong> per a l'uniformitat del disseny: espais (<code>p-0</code> a <code>p-12</code>;
+            <code>p-4</code> = 1rem, <code>m-2</code> = 0.5rem), text (<code>text-xs</code>, <code>text-sm</code>,
+            <code>text-lg</code>, <code>text-xl</code>...).</li>
+          <li><strong>Paleta de colors extensa</strong>, amb nivells d'intensitat del 50 al 900: <code>bg-red-500</code>,
+            <code>text-blue-400</code>.</li>
+          <li><strong>Control complet</strong>: no hi ha botons ni targetes predefinits; tu els construeixes.</li>
+          <li><strong>CSS mínim</strong>: en producció elimina automàticament les classes que no fas servir, i el fitxer final és
+            molt petit.</li>
+          <li><strong>Flexbox i Grid integrats</strong>: classes com <code>flex</code>, <code>grid</code> o
+            <code>justify-center</code>.</li>
+          <li><strong>Components reutilitzables</strong> amb la directiva <code>@apply</code>, que agrupa diverses utilitats en
+            una classe teva.</li>
+          <li><strong>Documentació i comunitat</strong>: documentació clara a <a href="https://tailwindcss.com/"
+            target="_blank">tailwindcss.com</a> i moltes plantilles de la comunitat.</li>
+        </ol>
+      <figure class="codi">
+        <figcaption>Component propi amb @apply</figcaption>
+<pre><code>.boto-primari {
+  @apply bg-blue-500 text-white px-4 py-2 rounded;
+}</code></pre>
+      </figure>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Aprèn bé el CSS abans de fer servir un preprocessador o un framework: tot acaba sent CSS.</li>
+          <li>No aniuis més de tres nivells amb Sass o LESS: el CSS generat té selectors massa llargs.</li>
+          <li>Per a projectes nous, les <a href="variables.html">variables CSS</a> natives ja cobreixen molts casos que abans
+            requerien un preprocessador.</li>
+          <li>Tria un sol framework per projecte i no barregis Bootstrap i Tailwind.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Què són les eines modernes de CSS?</a></li>
+          <li><a href="#apartat-2">Sass (Syntactically Awesome Style Sheets)</a></li>
+          <li><a href="#apartat-3">LESS (Leaner Style Sheets)</a></li>
+          <li><a href="#apartat-4">Bootstrap 5</a></li>
+          <li><a href="#apartat-5">Tailwind CSS</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="optimitzacio.html" rel="prev">Optimització i rendiment</a></li>
+        <li><a href="../index.html" class="index-modul">Índex del mòdul</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

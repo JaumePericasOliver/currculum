@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimensions i caixes | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="El model de caixa de CSS, les propietats width i height, box-sizing i el control del desbordament amb overflow.">
+  <meta name="keywords" content="CSS, model de caixa, width, height, box-sizing, content-box, border-box, overflow">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Dimensions i caixes">
+  <meta property="og:description" content="El model de caixa de CSS, les propietats width i height, box-sizing i el control del desbordament amb overflow.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* width i height */
+    .ex-fixa {
+      width: 300px;
+      height: 150px;
+      background-color: var(--task-gold);
+      padding: 8px;
+      box-sizing: content-box;
+    }
+
+    .container {
+      width: 50%;
+      height: auto;
+      margin-top: 12px;
+      background-color: var(--surface-mint);
+      padding: 8px;
+    }
+
+    /* box-sizing: dues caixes amb les mateixes declaracions */
+    .ex-content-box {
+      width: 200px;
+      padding: 20px;
+      border: 5px solid black;
+      box-sizing: content-box;
+      background-color: var(--surface-mint);
+      margin-bottom: 12px;
+    }
+
+    .ex-border-box {
+      width: 200px;
+      padding: 20px;
+      border: 5px solid black;
+      box-sizing: border-box;
+      background-color: var(--task-gold);
+      margin-bottom: 12px;
+    }
+
+    .ex-regle {
+      width: 200px;
+      border-top: 2px solid var(--teal);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--teal);
+    }
+
+    /* overflow */
+    .ex-overflow-graella {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 20px;
+      padding-bottom: 40px;
+    }
+
+    .ex-overflow {
+      width: 150px;
+      height: 100px;
+      border: 2px solid var(--ink-title);
+      background-color: var(--surface);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .ex-visible {
+      overflow: visible;
+    }
+
+    .ex-hidden {
+      overflow: hidden;
+    }
+
+    .ex-scroll {
+      overflow: scroll;
+    }
+
+    .ex-auto {
+      overflow: auto;
+    }
+
+    .ex-overflow-nom {
+      margin: 0 0 4px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal);
+    }
+
+    /* Exemple complet */
+    .caixa {
+      width: 300px;
+      height: 200px;
+      padding: 20px;
+      border: 5px solid darkblue;
+      margin: 20px;
+      box-sizing: border-box;
+    }
+
+    .desbordament {
+      width: 150px;
+      height: 100px;
+      border: 2px solid red;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="dimensions_caixes.html" aria-current="page">Dimensions i caixes</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 07</p>
+        <h1>Dimensions i caixes</h1>
+        <p>El model de caixa de CSS, les propietats width i height, box-sizing i el control del desbordament amb overflow.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">7 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>El model de caixa</h2>
+        <p>CSS considera cada element de la pàgina com una <strong>caixa rectangular</strong>. Entendre aquest model és important
+          perquè controla com es distribueixen i s'ajusten els elements. La caixa té quatre parts, de dins cap a fora:</p>
+        <ol>
+          <li><strong>Contingut</strong>: el contingut real de l'element (text, imatges o altres elements).</li>
+          <li><strong>Farcit</strong> (<code>padding</code>): l'espai entre el contingut i la vora.</li>
+          <li><strong>Vora</strong> (<code>border</code>): el límit al voltant del farcit.</li>
+          <li><strong>Marge</strong> (<code>margin</code>): l'espai exterior entre la vora i els altres elements.</li>
+        </ol>
+        <p>Pots veure un esquema de les quatre parts a l'apunt de <a href="marges_farcits_vores.html">marges, farcits i
+          vores</a>.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Dimensions: <code>width</code> i <code>height</code></h2>
+        <p><code>width</code> (amplada) i <code>height</code> (alçada) defineixen la mida d'un element. Es poden donar en unitats
+          fixes, com píxels (<code>px</code>), o relatives, com percentatges (<code>%</code>), que depenen de la mida del
+          contenidor. El valor <code>auto</code> deixa que el navegador calculi la mida segons el contingut.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  width: 300px;    /* Amplada fixa de 300 píxels */
+  height: 150px;   /* Alçada fixa de 150 píxels */
+}
+
+.container {
+  width: 50%;      /* Amplada del 50% de l'element contenidor */
+  height: auto;    /* L'alçada s'ajusta automàticament */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-fixa">width: 300px; height: 150px;</div>
+        <div class="container">width: 50%; height: auto; Redimensiona la finestra i veuràs que aquesta caixa sempre ocupa la
+          meitat de l'amplada disponible.</div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. La propietat <code>box-sizing</code></h2>
+        <p>Per defecte, <code>width</code> i <code>height</code> només mesuren el <strong>contingut</strong>: el farcit i la vora
+          s'hi sumen a part. La propietat <code>box-sizing</code> canvia aquest càlcul:</p>
+        <table>
+          <caption>Valors de box-sizing</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Què inclou la mida</th><th scope="col">Amplada real amb l'exemple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>content-box</code> (per defecte)</td><td>Només el contingut; farcit i vora s'afegeixen a part</td><td>200 + 2·20 + 2·5 = 250 px</td></tr>
+            <tr><td><code>border-box</code></td><td>Contingut, farcit i vora dins de la mida indicada</td><td>200 px</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+  box-sizing: border-box;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-regle">200px</div>
+        <div class="ex-content-box">content-box: 250 px en total</div>
+        <div class="ex-border-box">border-box: 200 px en total</div>
+      </figure>
+      </div>
+        <p>Per això molts fulls d'estil (també el d'aquests apunts) comencen amb <code>* { box-sizing: border-box; }</code>: així
+          la mida que escrius és la mida que veus.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Desbordament: <code>overflow</code></h2>
+        <p>Quan el contingut és més gran que les dimensions de l'element, la propietat <code>overflow</code> decideix què passa
+          amb el contingut que sobra:</p>
+        <table>
+          <caption>Valors d'overflow</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Comportament</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>visible</code> (per defecte)</td><td>El contingut que desborda es mostra fora de l'element.</td></tr>
+            <tr><td><code>hidden</code></td><td>El contingut que desborda es retalla i no es veu.</td></tr>
+            <tr><td><code>scroll</code></td><td>Mostra barres de desplaçament, encara que el contingut no desbordi.</td></tr>
+            <tr><td><code>auto</code></td><td>Mostra barres de desplaçament només si el contingut desborda.</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div {
+  width: 150px;
+  height: 100px;
+  overflow: scroll;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-overflow-graella">
+          <div>
+            <p class="ex-overflow-nom">visible</p>
+            <div class="ex-overflow ex-visible">Aquest text és massa llarg per a una caixa de 150 per 100 píxels i surt per
+              baix.</div>
+          </div>
+          <div>
+            <p class="ex-overflow-nom">hidden</p>
+            <div class="ex-overflow ex-hidden">Aquest text és massa llarg per a una caixa de 150 per 100 píxels i es
+              retalla.</div>
+          </div>
+          <div>
+            <p class="ex-overflow-nom">scroll</p>
+            <div class="ex-overflow ex-scroll">Aquest text és massa llarg per a una caixa de 150 per 100 píxels: fes-hi
+              scroll.</div>
+          </div>
+          <div>
+            <p class="ex-overflow-nom">auto</p>
+            <div class="ex-overflow ex-auto">Text curt: no hi ha barres.</div>
+          </div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Dimensions i caixes en CSS&lt;/title&gt;
+  &lt;style&gt;
+    .caixa {
+      width: 300px;
+      height: 200px;
+      padding: 20px;
+      border: 5px solid darkblue;
+      margin: 20px;
+      box-sizing: border-box;
+    }
+
+    .desbordament {
+      width: 150px;
+      height: 100px;
+      border: 2px solid red;
+      overflow: scroll;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="caixa"&gt;
+    Aquesta és una caixa amb farcit i vora. Les dimensions totals
+    es calculen amb box-sizing: border-box.
+  &lt;/div&gt;
+  &lt;div class="desbordament"&gt;
+    Aquest és un exemple amb desbordament. Si el contingut és més gran
+    que l'espai disponible, es mostraran barres de desplaçament.
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="caixa">Aquesta és una caixa amb farcit i vora. Les dimensions totals es calculen amb
+          box-sizing: border-box.</div>
+        <div class="desbordament">Aquest és un exemple amb desbordament. Si el contingut és més gran que l'espai disponible,
+          es mostraran barres de desplaçament.</div>
+      </figure>
+      </div>
+        <table>
+          <caption>Resum de les propietats vistes</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>width</code> i <code>height</code></td><td>Defineixen les dimensions d'un element</td></tr>
+            <tr><td><code>box-sizing</code></td><td>Decideix si el farcit i la vora entren dins de les dimensions</td></tr>
+            <tr><td><code>overflow</code></td><td>Controla el contingut que desborda l'element</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Comença el full d'estil amb <code>* { box-sizing: border-box; }</code> per evitar sorpreses amb les mides.</li>
+          <li>Evita fixar l'alçada (<code>height</code>) d'elements amb text: si el text creix, desbordarà. Deixa-la a
+            <code>auto</code>.</li>
+          <li>Prefereix amplades en <code>%</code> a amplades fixes grans: una caixa de 900 px no cap en un mòbil.</li>
+          <li>Fes servir <code>overflow: auto</code> en lloc de <code>scroll</code> perquè les barres només apareguin quan calen.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">El model de caixa</a></li>
+          <li><a href="#apartat-2">1. Dimensions: width i height</a></li>
+          <li><a href="#apartat-3">2. La propietat box-sizing</a></li>
+          <li><a href="#apartat-4">3. Desbordament: overflow</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="colors_fons.html" rel="prev">Colors i fons</a></li>
+        <li><a href="posicionament.html" rel="next">Posicionament bàsic</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

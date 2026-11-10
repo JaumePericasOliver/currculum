@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disseny bàsic amb Flexbox | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Flexbox per distribuir i alinear elements: display flex, flex-direction, justify-content, align-items i flex-grow.">
+  <meta name="keywords" content="CSS, Flexbox, display flex, flex-direction, justify-content, align-items, flex-grow">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Disseny bàsic amb Flexbox">
+  <meta property="og:description" content="Flexbox per distribuir i alinear elements: display flex, flex-direction, justify-content, align-items i flex-grow.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Peces comunes dels exemples */
+    .ex-flex {
+      display: flex;
+      margin-bottom: 6px;
+      padding: 6px;
+      background-color: var(--panel);
+    }
+
+    .ex-flex > div {
+      padding: 8px 12px;
+      margin: 3px;
+      background-color: var(--ink-title);
+      color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .ex-etiqueta {
+      margin: 14px 0 4px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal);
+    }
+
+    /* flex-direction */
+    .ex-row {
+      flex-direction: row;
+    }
+
+    .ex-row-reverse {
+      flex-direction: row-reverse;
+    }
+
+    .ex-column {
+      flex-direction: column;
+    }
+
+    .ex-column-reverse {
+      flex-direction: column-reverse;
+    }
+
+    /* justify-content */
+    .ex-jc-start {
+      justify-content: flex-start;
+    }
+
+    .ex-jc-end {
+      justify-content: flex-end;
+    }
+
+    .ex-jc-center {
+      justify-content: center;
+    }
+
+    .ex-jc-between {
+      justify-content: space-between;
+    }
+
+    .ex-jc-around {
+      justify-content: space-around;
+    }
+
+    /* align-items: els elements tenen alçades diferents */
+    .ex-ai {
+      height: 110px;
+    }
+
+    .ex-ai > div:nth-child(2) {
+      font-size: 24px;
+    }
+
+    .ex-ai > div:nth-child(3) {
+      padding-top: 24px;
+    }
+
+    .ex-ai-stretch {
+      align-items: stretch;
+    }
+
+    .ex-ai-start {
+      align-items: flex-start;
+    }
+
+    .ex-ai-end {
+      align-items: flex-end;
+    }
+
+    .ex-ai-center {
+      align-items: center;
+    }
+
+    .ex-ai-baseline {
+      align-items: baseline;
+    }
+
+    /* flex-grow */
+    .ex-grow-1 {
+      flex-grow: 1;
+    }
+
+    .ex-grow-2 {
+      flex-grow: 2;
+      background-color: var(--teal);
+    }
+
+    /* Exemple complet */
+    .contenidor {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 200px;
+      background-color: lightgray;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 20px;
+      margin: 5px;
+    }
+
+    .element-gran {
+      flex-grow: 2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="flexbox.html" aria-current="page">Disseny bàsic amb Flexbox</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 09</p>
+        <h1>Disseny bàsic amb Flexbox</h1>
+        <p>Flexbox per distribuir i alinear elements: display flex, flex-direction, justify-content, align-items i flex-grow.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">9 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Què és Flexbox?</h2>
+        <p><strong>Flexbox</strong> és un sistema de disseny de CSS que permet distribuir l'espai entre els elements i alinear-los
+          dins d'un contenidor, fins i tot quan la mida dels elements és desconeguda o canvia. És ideal per a dissenys adaptables,
+          perquè facilita l'alineació, la distribució i l'ordre dels elements.</p>
+        <p>Flexbox treballa sobre dos eixos:</p>
+        <ul>
+          <li><strong>Eix principal</strong>: la direcció en què es col·loquen els elements (horitzontal per defecte).</li>
+          <li><strong>Eix transversal</strong>: el perpendicular a l'eix principal (vertical per defecte).</li>
+        </ul>
+        <p>Per aprofundir-hi, són molt útils la guia <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+          target="_blank"><i lang="en">A Complete Guide to Flexbox</i></a> de CSS-Tricks i la documentació de <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex" target="_blank">MDN Web Docs</a>.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. El contenidor flex: <code>display: flex</code></h2>
+        <p>El punt de partida és posar <code>display: flex</code> a l'element <strong>contenidor</strong>. Aquest element passa a
+          ser un <strong>contenidor flex</strong> i els seus fills directes, <strong>elements flex</strong>. Només amb això, els
+          fills es col·loquen en fila.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.contenidor {
+  display: flex;
+}
+
+&lt;div class="contenidor"&gt;
+  &lt;div&gt;Element 1&lt;/div&gt;
+  &lt;div&gt;Element 2&lt;/div&gt;
+  &lt;div&gt;Element 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-flex">
+          <div>Element 1</div>
+          <div>Element 2</div>
+          <div>Element 3</div>
+        </div>
+      </figure>
+      </div>
+        <p>Sense <code>display: flex</code>, els tres <code>div</code> es posarien un davall l'altre, perquè són elements de
+          bloc.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Direcció del flux: <code>flex-direction</code></h2>
+        <p>Defineix la direcció de l'eix principal, és a dir, si els elements es col·loquen en fila o en columna.</p>
+        <table>
+          <caption>Valors de flex-direction</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Disposició</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>row</code> (per defecte)</td><td>En fila, d'esquerra a dreta</td></tr>
+            <tr><td><code>row-reverse</code></td><td>En fila, en ordre invers</td></tr>
+            <tr><td><code>column</code></td><td>En columna, de dalt a baix</td></tr>
+            <tr><td><code>column-reverse</code></td><td>En columna, en ordre invers</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.contenidor {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">flex-direction: row</p>
+        <div class="ex-flex ex-row"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">flex-direction: row-reverse</p>
+        <div class="ex-flex ex-row-reverse"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">flex-direction: column</p>
+        <div class="ex-flex ex-column"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">flex-direction: column-reverse</p>
+        <div class="ex-flex ex-column-reverse"><div>1</div><div>2</div><div>3</div></div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Alineació a l'eix principal: <code>justify-content</code></h2>
+        <p>Controla com es reparteixen els elements al llarg de l'<strong>eix principal</strong> (horitzontal per defecte).</p>
+        <table>
+          <caption>Valors de justify-content</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Distribució</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>flex-start</code></td><td>Al començament del contenidor</td></tr>
+            <tr><td><code>flex-end</code></td><td>Al final del contenidor</td></tr>
+            <tr><td><code>center</code></td><td>Centrats</td></tr>
+            <tr><td><code>space-between</code></td><td>El primer a l'inici, l'últim al final i el mateix espai entre ells</td></tr>
+            <tr><td><code>space-around</code></td><td>Cada element té el mateix espai al seu voltant</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.contenidor {
+  display: flex;
+  justify-content: center;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">justify-content: flex-start</p>
+        <div class="ex-flex ex-jc-start"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">justify-content: flex-end</p>
+        <div class="ex-flex ex-jc-end"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">justify-content: center</p>
+        <div class="ex-flex ex-jc-center"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">justify-content: space-between</p>
+        <div class="ex-flex ex-jc-between"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">justify-content: space-around</p>
+        <div class="ex-flex ex-jc-around"><div>1</div><div>2</div><div>3</div></div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. Alineació a l'eix transversal: <code>align-items</code></h2>
+        <p>Controla com s'alineen els elements al llarg de l'<strong>eix transversal</strong> (vertical si la direcció és
+          horitzontal), és a dir, en relació amb l'alçada del contenidor.</p>
+        <table>
+          <caption>Valors d'align-items</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Alineació</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>stretch</code> (per defecte)</td><td>S'estiren per omplir l'alçada del contenidor</td></tr>
+            <tr><td><code>flex-start</code></td><td>A la part superior</td></tr>
+            <tr><td><code>flex-end</code></td><td>A la part inferior</td></tr>
+            <tr><td><code>center</code></td><td>Centrats verticalment</td></tr>
+            <tr><td><code>baseline</code></td><td>Alineats per la línia de base del text</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.contenidor {
+  display: flex;
+  align-items: center;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">align-items: stretch</p>
+        <div class="ex-flex ex-ai ex-ai-stretch"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">align-items: flex-start</p>
+        <div class="ex-flex ex-ai ex-ai-start"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">align-items: flex-end</p>
+        <div class="ex-flex ex-ai ex-ai-end"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">align-items: center</p>
+        <div class="ex-flex ex-ai ex-ai-center"><div>1</div><div>2</div><div>3</div></div>
+        <p class="ex-etiqueta">align-items: baseline</p>
+        <div class="ex-flex ex-ai ex-ai-baseline"><div>1</div><div>2</div><div>3</div></div>
+      </figure>
+      </div>
+        <p>Els elements tenen mides diferents a propòsit: així es veu la diferència entre <code>center</code> i
+          <code>baseline</code>, on el que s'alinea és la base del text.</p>
+      </section>
+
+      <section id="apartat-6">
+        <h2>5. Espai de cada element: <code>flex-grow</code></h2>
+        <p>Indica quant <strong>creix</strong> un element per ocupar l'espai lliure del contenidor, en relació amb els altres. Si
+          tots tenen <code>flex-grow: 1</code>, l'espai lliure es reparteix a parts iguals; un element amb
+          <code>flex-grow: 2</code> en rep el doble.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.element {
+  flex-grow: 1;
+}
+
+.element-gran {
+  flex-grow: 2;  /* Rep el doble d'espai lliure que els altres */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">sense flex-grow</p>
+        <div class="ex-flex"><div>A</div><div>B</div><div>C</div></div>
+        <p class="ex-etiqueta">tots flex-grow: 1</p>
+        <div class="ex-flex"><div class="ex-grow-1">A</div><div class="ex-grow-1">B</div><div class="ex-grow-1">C</div></div>
+        <p class="ex-etiqueta">B amb flex-grow: 2</p>
+        <div class="ex-flex"><div class="ex-grow-1">A</div><div class="ex-grow-2">B</div><div class="ex-grow-1">C</div></div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-7">
+        <h2>Exemple complet</h2>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Flexbox bàsic&lt;/title&gt;
+  &lt;style&gt;
+    .contenidor {
+      display: flex;
+      flex-direction: row;           /* Col·loca els elements en fila */
+      justify-content: space-around; /* Espai al voltant de cada element */
+      align-items: center;           /* Centra els elements verticalment */
+      height: 200px;
+      background-color: lightgray;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 20px;
+      margin: 5px;
+    }
+
+    .element-gran {
+      flex-grow: 2;                  /* Ocupa l'espai lliure */
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="contenidor"&gt;
+    &lt;div class="element"&gt;Element 1&lt;/div&gt;
+    &lt;div class="element element-gran"&gt;Element 2 (Gran)&lt;/div&gt;
+    &lt;div class="element"&gt;Element 3&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="contenidor">
+          <div class="element">Element 1</div>
+          <div class="element element-gran">Element 2 (Gran)</div>
+          <div class="element">Element 3</div>
+        </div>
+      </figure>
+      </div>
+        <p>Fixa't que, com que només l'element 2 té <code>flex-grow</code>, és l'únic que creix i es menja tot l'espai lliure:
+          per això <code>space-around</code> ja no té espai per repartir.</p>
+        <table>
+          <caption>Resum de les propietats vistes</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">S'aplica a</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>display: flex</code></td><td>Contenidor</td><td>Activa Flexbox</td></tr>
+            <tr><td><code>flex-direction</code></td><td>Contenidor</td><td>Fila o columna</td></tr>
+            <tr><td><code>justify-content</code></td><td>Contenidor</td><td>Alineació a l'eix principal</td></tr>
+            <tr><td><code>align-items</code></td><td>Contenidor</td><td>Alineació a l'eix transversal</td></tr>
+            <tr><td><code>flex-grow</code></td><td>Elements fills</td><td>Quant creix cada element</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Recorda que <code>display: flex</code> va al <strong>pare</strong>, i afecta només els fills directes.</li>
+          <li>Pensa en eixos, no en "horitzontal" i "vertical": si canvies a <code>flex-direction: column</code>,
+            <code>justify-content</code> passa a treballar en vertical.</li>
+          <li>Fes servir Flexbox per a components en una dimensió: menús, barres d'eines, files de targetes.</li>
+          <li>Aquests mateixos apunts fan servir Flexbox al menú, a la ruta de navegació i a la paginació del peu.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Què és Flexbox?</a></li>
+          <li><a href="#apartat-2">1. El contenidor flex: display: flex</a></li>
+          <li><a href="#apartat-3">2. Direcció del flux: flex-direction</a></li>
+          <li><a href="#apartat-4">3. Alineació a l'eix principal: justify-content</a></li>
+          <li><a href="#apartat-5">4. Alineació a l'eix transversal: align-items</a></li>
+          <li><a href="#apartat-6">5. Espai de cada element: flex-grow</a></li>
+          <li><a href="#apartat-7">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="posicionament.html" rel="prev">Posicionament bàsic</a></li>
+        <li><a href="media_queries.html" rel="next">Media queries</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

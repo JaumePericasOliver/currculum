@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Interfície d'usuari (UI) i experiència d'usuari (UX): claredat, jerarquia visual, feedback, microinteraccions, flux d'usuari i proves d'usabilitat.">
+  <meta name="keywords" content="UI, UX, interfície d'usuari, experiència d'usuari, feedback visual, microinteraccions, usabilitat, tests A/B">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="UI/UX">
+  <meta property="og:description" content="Interfície d'usuari (UI) i experiència d'usuari (UX): claredat, jerarquia visual, feedback, microinteraccions, flux d'usuari i proves d'usabilitat.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Jerarquia visual: una targeta de producte */
+    .producte {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      width: 280px;
+      padding: var(--space-4);
+      border: var(--stroke-card) solid var(--ink);
+      border-radius: var(--radius-card);
+    }
+
+    .producte-nom {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink-title);
+    }
+
+    .producte-preu {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--teal-deep);
+    }
+
+    .producte-detall {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    /* Feedback visual i microinteracció */
+    .boto-accio {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 12px 20px;
+      background-color: var(--teal-deep);
+      color: var(--surface);
+      border: none;
+      border-radius: var(--radius-code);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color var(--transicio);
+    }
+
+    .boto-accio::after {
+      content: "→";
+      transition: transform var(--transicio);
+    }
+
+    .boto-accio:hover {
+      background-color: var(--ink-title);
+    }
+
+    .boto-accio:hover::after {
+      transform: translateX(6px);
+    }
+
+    /* Flux d'usuari: formulari amb els camps essencials primer */
+    .ex-formulari {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .ex-formulari label {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-title);
+    }
+
+    .ex-formulari input {
+      padding: var(--space-2) var(--space-3);
+      border: var(--stroke-card) solid var(--ink);
+      border-radius: var(--radius-code);
+      font-family: var(--font-sans);
+      font-size: 16px;
+    }
+
+    .ex-opcional {
+      padding: var(--space-3);
+      background-color: var(--surface-mist);
+      border-radius: var(--radius-code);
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="ui_ux.html" aria-current="page">UI/UX</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 09</p>
+        <h1>UI/UX</h1>
+        <p>Interfície d'usuari (UI) i experiència d'usuari (UX): claredat, jerarquia visual, feedback, microinteraccions, flux d'usuari i proves d'usabilitat.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">9 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>UI i UX: dues cares del mateix disseny</h2>
+        <table>
+          <caption>Diferència entre UI i UX</caption>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">UI (<i lang="en">User Interface</i>)</th><th scope="col">UX (<i lang="en">User Experience</i>)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Què és</strong></td><td>La interfície d'usuari: el que l'usuari veu</td><td>L'experiència d'usuari: com se sent fent-la servir</td></tr>
+            <tr><td><strong>Objectiu</strong></td><td>Que l'experiència visual sigui clara i atractiva</td><td>Que l'usuari aconsegueixi els seus objectius de manera intuïtiva</td></tr>
+            <tr><td><strong>Exemple</strong></td><td>El color i la mida del botó de compra</td><td>Quants passos calen per comprar</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. UI: interfície d'usuari</h2>
+        <ul>
+          <li><strong>Principi de claredat</strong>: cada element de la interfície ha de tenir un propòsit clar. Evita elements
+            innecessaris que distreguin l'usuari.</li>
+          <li><strong>Contrast i jerarquia visual</strong>: fes servir el color i la mida per donar importància a les parts més
+            destacades, com els botons d'acció o les seccions principals.</li>
+          <li><strong>Feedback visual</strong>: els elements interactius (botons, formularis, enllaços) han de respondre quan
+            l'usuari hi interactua, per exemple amb un canvi de color.</li>
+          <li><strong>Microinteraccions</strong>: petites animacions en les interaccions, com botons que canvien de color o icones
+            que es mouen, fan l'experiència més agradable.</li>
+        </ul>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.boto-accio {
+  background-color: var(--teal-deep);
+  transition: background-color 0.2s ease;
+}
+
+/* Feedback visual: canvia el color */
+.boto-accio:hover {
+  background-color: var(--ink-title);
+}
+
+/* Microinteracció: la fletxa avança */
+.boto-accio::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+
+.boto-accio:hover::after {
+  transform: translateX(6px);
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: passa el ratolí pel botó</figcaption>
+        <div class="producte">
+          <p class="producte-nom">Curs de CSS</p>
+          <p class="producte-preu">49 €</p>
+          <p class="producte-detall">20 hores · Certificat inclòs</p>
+          <button class="boto-accio">Afegir a la cistella</button>
+        </div>
+      </figure>
+      </div>
+        <p>La jerarquia és clara: el preu és el més gran, el nom va després i el detall és petit i gris. El botó és l'únic element
+          de color fort, perquè és l'acció principal.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. UX: experiència d'usuari</h2>
+        <ul>
+          <li><strong>Coneixement de l'usuari</strong>: dissenya pensant en les necessitats i expectatives dels usuaris. En una
+            botiga, per exemple, destaca els botons d'acció com "Afegir a la cistella".</li>
+          <li><strong>Flux d'usuari</strong>: organitza els passos d'una tasca de manera clara. En un formulari de registre,
+            posa primer els camps essencials i després les opcions addicionals.</li>
+          <li><strong>Evitar friccions</strong>: simplifica processos com la navegació o la compra. Elimina passos innecessaris.</li>
+          <li><strong>Adaptabilitat i responsivitat</strong>: molts usuaris arriben des de mòbils i tauletes; el contingut ha de
+            ser fàcil d'utilitzar en pantalles petites.</li>
+        </ul>
+      <figure class="resultat">
+        <figcaption>Flux d'usuari: essencial primer</figcaption>
+        <form class="ex-formulari" action="#">
+          <label>Correu electrònic
+            <input type="email" placeholder="nom@exemple.cat">
+          </label>
+          <label>Contrasenya
+            <input type="password">
+          </label>
+          <p class="ex-opcional">Opcional: nom, foto de perfil i preferències. Ho podràs completar més tard.</p>
+          <button class="boto-accio" type="button">Crear el compte</button>
+        </form>
+      </figure>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Proves d'usabilitat</h2>
+        <ul>
+          <li><strong>Feedback dels usuaris</strong>: recull opinions per entendre com interactuen amb el lloc i trobar punts de
+            millora.</li>
+          <li><strong>Tests A/B</strong>: prova dues versions d'un element o d'una pàgina per veure quina funciona millor.</li>
+          <li><strong>Optimització contínua</strong>: la UX és un procés continu. A mesura que reculls informació, aplica-hi
+            millores.</li>
+        </ul>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Cada pantalla ha de tenir una acció principal clara i visualment destacada.</li>
+          <li>Tots els elements interactius han de canviar d'aspecte en passar-hi el ratolí: l'usuari ha de saber que s'hi pot fer
+            clic.</li>
+          <li>Prova la teva pàgina amb persones reals: el que és evident per a tu no ho és per a tothom.</li>
+          <li>Pensa primer en el mòbil: si funciona en una pantalla petita, funcionarà a tot arreu.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">UI i UX: dues cares del mateix disseny</a></li>
+          <li><a href="#apartat-2">1. UI: interfície d'usuari</a></li>
+          <li><a href="#apartat-3">2. UX: experiència d'usuari</a></li>
+          <li><a href="#apartat-4">3. Proves d'usabilitat</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="disseny.html" rel="prev">Disseny atractiu i coherent</a></li>
+        <li><a href="optimitzacio.html" rel="next">Optimització i rendiment</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

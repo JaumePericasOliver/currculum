@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propietats de text i fonts | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Propietats CSS per controlar el text: font-family, font-size, color, text-align, font-weight i font-style.">
+  <meta name="keywords" content="CSS, font-family, font-size, color, text-align, font-weight, font-style, tipografia">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Propietats de text i fonts">
+  <meta property="og:description" content="Propietats CSS per controlar el text: font-family, font-size, color, text-align, font-weight i font-style.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Estils dels exemples d'aquesta pàgina */
+    .ex-arial {
+      font-family: "Arial", sans-serif;
+    }
+
+    .ex-georgia {
+      font-family: Georgia, serif;
+    }
+
+    .ex-mono {
+      font-family: "Courier New", monospace;
+    }
+
+    #ex-mida h1 {
+      font-size: 32px;
+    }
+
+    #ex-mida p {
+      font-size: 14px;
+    }
+
+    .ex-color-nom {
+      color: red;
+    }
+
+    .ex-color-hex {
+      color: #00FF00;
+    }
+
+    .ex-color-rgb {
+      color: rgb(0, 0, 255);
+    }
+
+    #ex-alineacio p {
+      padding: 6px;
+      border: 1px dotted var(--ink-muted);
+    }
+
+    .ex-left {
+      text-align: left;
+    }
+
+    .ex-right {
+      text-align: right;
+    }
+
+    .ex-center {
+      text-align: center;
+    }
+
+    .ex-justify {
+      text-align: justify;
+    }
+
+    .ex-pes-100 {
+      font-weight: 100;
+    }
+
+    .ex-pes-400 {
+      font-weight: 400;
+    }
+
+    .ex-pes-700 {
+      font-weight: 700;
+    }
+
+    .ex-pes-900 {
+      font-weight: 900;
+    }
+
+    .ex-normal {
+      font-style: normal;
+    }
+
+    .ex-italic {
+      font-style: italic;
+    }
+
+    .ex-oblique {
+      font-style: oblique;
+    }
+
+    #ex-pes p {
+      font-family: Arial, sans-serif;
+      font-size: 22px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-basic">CSS bàsic</a></li>
+        <li><a href="text_fonts.html" aria-current="page">Propietats de text i fonts</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS bàsic · 04</p>
+        <h1>Propietats de text i fonts</h1>
+        <p>Propietats CSS per controlar el text: font-family, font-size, color, text-align, font-weight i font-style.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">4 <span>/ 10</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Controlar el text amb CSS</h2>
+        <p>El CSS permet controlar com es mostren els textos d'una pàgina web. Amb diverses propietats podem canviar la font, el
+          color, l'alineació, la mida del text i altres aspectes visuals per millorar la llegibilitat i l'estètica del
+          contingut.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. <code>font-family</code></h2>
+        <p>Defineix el tipus de lletra (tipografia) d'un element. Es poden indicar <strong>una o més fonts</strong> separades
+          per comes: el navegador aplica la primera que estigui disponible al sistema de l'usuari. Per això l'última sol ser una
+          família genèrica (<code>serif</code>, <code>sans-serif</code> o <code>monospace</code>) que sempre existeix.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  font-family: "Arial", sans-serif;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-arial">Arial, sans-serif: lletra de pal sec, sense remats.</p>
+        <p class="ex-georgia">Georgia, serif: lletra amb remats (serifes).</p>
+        <p class="ex-mono">"Courier New", monospace: totes les lletres fan el mateix ample.</p>
+      </figure>
+      </div>
+        <p>Els noms de font que tenen espais s'escriuen entre cometes: <code>"Courier New"</code>.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. <code>font-size</code></h2>
+        <p>Controla la mida de la lletra. Els valors es poden definir en diverses unitats: píxels (<code>px</code>), ems
+          (<code>em</code>), punts (<code>pt</code>) o percentatges (<code>%</code>).</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  font-size: 32px;
+}
+
+p {
+  font-size: 14px;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-mida">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Títol de 32 píxels</h1>
+        <p>Paràgraf de 14 píxels.</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. <code>color</code></h2>
+        <p>Defineix el color del <strong>text</strong>. Es poden utilitzar noms de colors predefinits, valors en hexadecimal o
+          les funcions <code>rgb()</code> i <code>rgba()</code>. Els veurem amb més detall a l'apunt de colors i fons.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  color: red;            /* Amb nom de color */
+}
+
+h1 {
+  color: #00FF00;        /* Amb codi hexadecimal */
+}
+
+span {
+  color: rgb(0, 0, 255); /* Amb codi RGB */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-color-nom">color: red</p>
+        <p class="ex-color-hex">color: #00FF00</p>
+        <p class="ex-color-rgb">color: rgb(0, 0, 255)</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. <code>text-align</code></h2>
+        <p>Controla l'alineació del text dins de l'element que el conté.</p>
+        <table>
+          <caption>Valors de text-align</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Alineació</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>left</code></td><td>A l'esquerra</td></tr>
+            <tr><td><code>right</code></td><td>A la dreta</td></tr>
+            <tr><td><code>center</code></td><td>Centrat</td></tr>
+            <tr><td><code>justify</code></td><td>Justificat: les línies ocupen tota l'amplada</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-alineacio">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-left">left: el text comença a l'esquerra.</p>
+        <p class="ex-center">center: el text queda centrat.</p>
+        <p class="ex-right">right: el text s'alinea a la dreta.</p>
+        <p class="ex-justify">justify: el navegador reparteix l'espai entre les paraules perquè cada línia ocupi tota l'amplada
+          de la caixa, com en els diaris i els llibres. Només es nota quan el text ocupa més d'una línia.</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-6">
+        <h2>5. <code>font-weight</code></h2>
+        <p>Controla el gruix de la lletra. Els valors més comuns són:</p>
+        <ul>
+          <li><code>normal</code>: valor per defecte.</li>
+          <li><code>bold</code>: text en negreta.</li>
+          <li>Números entre <code>100</code> i <code>900</code>: <code>400</code> equival a <code>normal</code> i
+            <code>700</code> a <code>bold</code>.</li>
+        </ul>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  font-weight: bold;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-pes">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-pes-100">font-weight: 100</p>
+        <p class="ex-pes-400">font-weight: 400 (normal)</p>
+        <p class="ex-pes-700">font-weight: 700 (bold)</p>
+        <p class="ex-pes-900">font-weight: 900</p>
+      </figure>
+      </div>
+        <p>Si la font no té un gruix concret, el navegador fa servir el més proper que tingui disponible.</p>
+      </section>
+
+      <section id="apartat-7">
+        <h2>6. <code>font-style</code></h2>
+        <p>Controla l'estil de la font: si el text és normal o en cursiva.</p>
+        <ul>
+          <li><code>normal</code>: text normal.</li>
+          <li><code>italic</code>: text en cursiva.</li>
+          <li><code>oblique</code>: text inclinat.</li>
+        </ul>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>span {
+  font-style: italic;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-normal">font-style: normal</p>
+        <p class="ex-italic">font-style: italic</p>
+        <p class="ex-oblique">font-style: oblique</p>
+      </figure>
+      </div>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Acaba sempre <code>font-family</code> amb una família genèrica (<code>serif</code>, <code>sans-serif</code> o
+            <code>monospace</code>).</li>
+          <li>Defineix la font i la mida base a <code>body</code> i deixa que la resta d'elements l'heretin.</li>
+          <li>Evita el text justificat en columnes estretes: apareixen forats grans entre paraules.</li>
+          <li>Fes servir la negreta i la cursiva amb moderació: si tot destaca, res no destaca.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Controlar el text amb CSS</a></li>
+          <li><a href="#apartat-2">1. font-family</a></li>
+          <li><a href="#apartat-3">2. font-size</a></li>
+          <li><a href="#apartat-4">3. color</a></li>
+          <li><a href="#apartat-5">4. text-align</a></li>
+          <li><a href="#apartat-6">5. font-weight</a></li>
+          <li><a href="#apartat-7">6. font-style</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="sintaxi.html" rel="prev">Sintaxi bàsica del CSS</a></li>
+        <li><a href="marges_farcits_vores.html" rel="next">Marges, farcits i vores</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

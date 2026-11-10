@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selectors avançats | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Selectors avançats de CSS: selectors d'atribut, combinadors, pseudoclasses (:hover, :nth-child, :first-of-type, :not) i pseudoelements (::before, ::after).">
+  <meta name="keywords" content="CSS, selectors d'atribut, combinadors, pseudoclasses, hover, nth-child, first-of-type, not, pseudoelements, before, after">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Selectors avançats">
+  <meta property="og:description" content="Selectors avançats de CSS: selectors d'atribut, combinadors, pseudoclasses (:hover, :nth-child, :first-of-type, :not) i pseudoelements (::before, ::after).">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Selectors d'atribut */
+    #ex-atribut input[type="text"] {
+      border: 1px solid blue;
+    }
+
+    #ex-atribut a[href*="example"] {
+      color: green;
+    }
+
+    #ex-atribut img[src^="https"] {
+      border: 2px solid black;
+    }
+
+    #ex-atribut [data-personalitzat] {
+      border: 1px solid red;
+      padding: 4px;
+    }
+
+    #ex-atribut p {
+      margin: 8px 0;
+    }
+
+    /* Combinadors */
+    #ex-descendent div p {
+      color: red;
+    }
+
+    #ex-fill div > p {
+      color: blue;
+    }
+
+    #ex-adjacent h1 + p {
+      font-weight: bold;
+    }
+
+    #ex-germans h2 ~ p {
+      color: gray;
+    }
+
+    .ex-niu {
+      padding: 4px 12px;
+      border-left: 3px solid var(--ink-muted);
+    }
+
+    .ex-combinador h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .ex-combinador h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .ex-combinador p {
+      margin: 6px 0;
+    }
+
+    /* Pseudoclasses */
+    #ex-hover a:hover {
+      color: red;
+    }
+
+    #ex-nth table {
+      margin: 0;
+    }
+
+    #ex-nth tr:nth-child(odd) {
+      background-color: lightgray;
+    }
+
+    #ex-nth tr:nth-child(even) {
+      background-color: var(--surface);
+    }
+
+    #ex-first p:first-of-type {
+      font-weight: bold;
+    }
+
+    #ex-not div {
+      padding: 6px 10px;
+      margin: 4px 0;
+      border: 1px solid var(--ink-muted);
+    }
+
+    #ex-not div:not(.important) {
+      background-color: yellow;
+    }
+
+    /* Pseudoelements */
+    #ex-before h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    #ex-before h1::before {
+      content: "★ ";
+      color: gold;
+    }
+
+    #ex-after p::after {
+      content: " (Final)";
+      color: gray;
+    }
+
+    /* Exemple complet */
+    #ex-complet input[type="text"] {
+      border: 2px solid blue;
+    }
+
+    #ex-complet div > p {
+      color: green;
+    }
+
+    #ex-complet a:hover {
+      color: red;
+    }
+
+    #ex-complet h1 {
+      font-size: 24px;
+    }
+
+    #ex-complet h1::before {
+      content: "🔹 ";
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="selectors_avancats.html" aria-current="page">Selectors avançats</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 02</p>
+        <h1>Selectors avançats</h1>
+        <p>Selectors d'atribut, combinadors, pseudoclasses (:hover, :nth-child, :first-of-type, :not) i pseudoelements (::before, ::after).</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">2 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Per què selectors avançats?</h2>
+        <p>Els selectors bàsics (tipus, classe, id i universal) es queden curts en pàgines complexes. Els selectors avançats
+          permeten triar elements amb molta més precisió: segons els seus <strong>atributs</strong>, la seva
+          <strong>relació</strong> amb altres elements, el seu <strong>estat</strong> o la seva <strong>posició</strong>.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Selectors d'atribut</h2>
+        <p>Seleccionen els elements que tenen un atribut concret o un valor d'atribut concret. Són especialment útils per donar
+          estil als formularis o a elements amb atributs personalitzats.</p>
+        <table>
+          <caption>Tipus de selector d'atribut</caption>
+          <thead>
+            <tr><th scope="col">Selector</th><th scope="col">Selecciona els elements...</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>[atribut]</code></td><td>que tenen l'atribut, amb qualsevol valor</td></tr>
+            <tr><td><code>[atribut="valor"]</code></td><td>amb l'atribut exactament igual a <code>valor</code></td></tr>
+            <tr><td><code>[atribut*="valor"]</code></td><td>amb l'atribut que <strong>conté</strong> <code>valor</code></td></tr>
+            <tr><td><code>[atribut^="valor"]</code></td><td>amb l'atribut que <strong>comença</strong> per <code>valor</code></td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>/* Els input amb type="text" tenen vora blava */
+input[type="text"] {
+  border: 1px solid blue;
+}
+
+/* Els enllaços amb "example" dins de l'href són verds */
+a[href*="example"] {
+  color: green;
+}
+
+/* Les imatges amb un src que comença per "https" tenen vora negra */
+img[src^="https"] {
+  border: 2px solid black;
+}
+
+/* Tots els elements amb l'atribut data-personalitzat tenen vora vermella */
+[data-personalitzat] {
+  border: 1px solid red;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-atribut">
+        <figcaption>Resultat al navegador</figcaption>
+        <p><input type="text" placeholder="type=&quot;text&quot;"> <input type="password" placeholder="type=&quot;password&quot;"></p>
+        <p><a href="https://www.example.com" target="_blank">www.example.com</a> · <a href="https://www.paucasesnovescifp.cat" target="_blank">www.paucasesnovescifp.cat</a></p>
+        <p><span data-personalitzat="si">Aquest span té l'atribut data-personalitzat</span></p>
+      </figure>
+      </div>
+        <p>Els noms d'atributs personalitzats han de començar per <code>data-</code> perquè l'HTML sigui vàlid.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Combinadors</h2>
+        <p>Els combinadors seleccionen elements segons la seva <strong>relació</strong> amb altres elements dins del document.</p>
+        <table>
+          <caption>Combinadors</caption>
+          <thead>
+            <tr><th scope="col">Símbol</th><th scope="col">Nom</th><th scope="col">Exemple</th><th scope="col">Selecciona</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>(espai)</td><td>Descendent</td><td><code>div p</code></td><td>Tots els <code>p</code> dins d'un <code>div</code>, a qualsevol nivell</td></tr>
+            <tr><td><code>&gt;</code></td><td>Fill directe</td><td><code>div &gt; p</code></td><td>Només els <code>p</code> fills immediats d'un <code>div</code></td></tr>
+            <tr><td><code>+</code></td><td>Germà adjacent</td><td><code>h1 + p</code></td><td>El <code>p</code> que va just després d'un <code>h1</code></td></tr>
+            <tr><td><code>~</code></td><td>Germans generals</td><td><code>h2 ~ p</code></td><td>Tots els <code>p</code> que segueixen un <code>h2</code> dins del mateix pare</td></tr>
+          </tbody>
+        </table>
+
+        <h3>a) Descendent (espai)</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div p {
+  color: red;
+}</code></pre>
+      </figure>
+      <figure class="resultat ex-combinador" id="ex-descendent">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>
+          <p>Fill del div: vermell.</p>
+          <section class="ex-niu">
+            <p>Net del div: també vermell.</p>
+          </section>
+        </div>
+        <p>Fora del div: no canvia.</p>
+      </figure>
+      </div>
+
+        <h3>b) Fill directe (<code>&gt;</code>)</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div &gt; p {
+  color: blue;
+}</code></pre>
+      </figure>
+      <figure class="resultat ex-combinador" id="ex-fill">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>
+          <p>Fill directe del div: blau.</p>
+          <section class="ex-niu">
+            <p>Net del div: no canvia.</p>
+          </section>
+        </div>
+      </figure>
+      </div>
+
+        <h3>c) Germà adjacent (<code>+</code>)</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 + p {
+  font-weight: bold;
+}</code></pre>
+      </figure>
+      <figure class="resultat ex-combinador" id="ex-adjacent">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Títol h1</h1>
+        <p>Paràgraf just després del h1: negreta.</p>
+        <p>Segon paràgraf: no canvia.</p>
+      </figure>
+      </div>
+
+        <h3>d) Germans generals (<code>~</code>)</h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h2 ~ p {
+  color: gray;
+}</code></pre>
+      </figure>
+      <figure class="resultat ex-combinador" id="ex-germans">
+        <figcaption>Resultat al navegador</figcaption>
+        <p>Paràgraf abans del h2: no canvia.</p>
+        <h2>Títol h2</h2>
+        <p>Primer paràgraf després del h2: gris.</p>
+        <p>Segon paràgraf després del h2: també gris.</p>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Pseudoclasses</h2>
+        <p>Les pseudoclasses s'escriuen amb <strong>dos punts</strong> (<code>:</code>) i seleccionen un element quan és en un
+          <strong>estat</strong> concret (per exemple, quan l'usuari hi passa el ratolí) o quan compleix una
+          <strong>condició</strong> (per exemple, ser el primer del seu tipus).</p>
+
+        <h3><code>:hover</code></h3>
+        <p>Aplica estils quan l'usuari passa el ratolí per sobre de l'element.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>a:hover {
+  color: red;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-hover">
+        <figcaption>Prova-ho: passa el ratolí</figcaption>
+        <p><a href="#ex-hover">Aquest enllaç es torna vermell</a></p>
+      </figure>
+      </div>
+
+        <h3><code>:nth-child()</code></h3>
+        <p>Selecciona elements segons la seva <strong>posició</strong> entre els seus germans. Entre parèntesis es pot posar un
+          número (<code>2</code> és el segon), o les paraules <code>odd</code> (senars) i <code>even</code> (parells).</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>tr:nth-child(2) {
+  color: blue;              /* Només la segona fila */
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;  /* Files senars: 1, 3, 5... */
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-nth">
+        <figcaption>Resultat al navegador</figcaption>
+        <table>
+          <caption>Files alternades amb nth-child(odd)</caption>
+          <tbody>
+            <tr><td>Fila 1</td><td>senar</td></tr>
+            <tr><td>Fila 2</td><td>parell</td></tr>
+            <tr><td>Fila 3</td><td>senar</td></tr>
+            <tr><td>Fila 4</td><td>parell</td></tr>
+            <tr><td>Fila 5</td><td>senar</td></tr>
+          </tbody>
+        </table>
+      </figure>
+      </div>
+        <p>Les taules d'aquests apunts fan servir <code>tr:nth-child(odd)</code> per pintar les files alternes.</p>
+
+        <h3><code>:first-of-type</code></h3>
+        <p>Selecciona el primer element del seu tipus dins del seu pare.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p:first-of-type {
+  font-weight: bold;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-first">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>
+          <p>Primer paràgraf del div: negreta.</p>
+          <p>Segon paràgraf: normal.</p>
+          <p>Tercer paràgraf: normal.</p>
+        </div>
+      </figure>
+      </div>
+
+        <h3><code>:not()</code></h3>
+        <p>Selecciona tots els elements <strong>excepte</strong> els que coincideixen amb el selector entre parèntesis.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>div:not(.important) {
+  background-color: yellow;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-not">
+        <figcaption>Resultat al navegador</figcaption>
+        <div>div normal: fons groc</div>
+        <div class="important">div class="important": no canvia</div>
+        <div>div normal: fons groc</div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-5">
+        <h2>4. Pseudoelements</h2>
+        <p>Els pseudoelements s'escriuen amb <strong>quatre punts</strong> (<code>::</code>) i donen estil a una
+          <strong>part</strong> d'un element. Els més comuns són <code>::before</code> i <code>::after</code>, que afegeixen
+          contingut abans o després del contingut real. Necessiten sempre la propietat <code>content</code>.</p>
+
+        <h3><code>::before</code></h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1::before {
+  content: "★ ";
+  color: gold;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-before">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Títol amb una estrella daurada al davant</h1>
+      </figure>
+      </div>
+
+        <h3><code>::after</code></h3>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p::after {
+  content: " (Final)";
+  color: gray;
+}</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-after">
+        <figcaption>Resultat al navegador</figcaption>
+        <p>Aquest paràgraf acaba amb un afegit gris</p>
+      </figure>
+      </div>
+        <p>El contingut afegit amb <code>content</code> és decoratiu: no es pot seleccionar ni copiar, i molts lectors de
+          pantalla l'ignoren. Mira el títol de cada apartat d'aquests apunts: la clau <code>{</code> del final és un
+          <code>::after</code>.</p>
+      </section>
+
+      <section id="apartat-6">
+        <h2>Exemple complet</h2>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Selectors avançats&lt;/title&gt;
+  &lt;style&gt;
+    /* Selector d'atribut */
+    input[type="text"] {
+      border: 2px solid blue;
+    }
+
+    /* Combinador de fills directes */
+    div &gt; p {
+      color: green;
+    }
+
+    /* Pseudoclasse hover */
+    a:hover {
+      color: red;
+    }
+
+    /* Pseudoelement before */
+    h1::before {
+      content: "🔹 ";
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Selectors avançats en CSS&lt;/h1&gt;
+  &lt;div&gt;
+    &lt;p&gt;Aquest paràgraf és fill directe d'un div i és de color verd.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;input type="text" placeholder="Escriu alguna cosa"&gt;
+  &lt;a href="#"&gt;Enllaç amb hover vermell&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-complet">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Selectors avançats en CSS</h1>
+        <div>
+          <p>Aquest paràgraf és fill directe d'un div i és de color verd.</p>
+        </div>
+        <input type="text" placeholder="Escriu alguna cosa">
+        <a href="#ex-complet">Enllaç amb hover vermell</a>
+      </figure>
+      </div>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Fes servir selectors d'atribut per als formularis: <code>input[type="email"]</code> evita haver de posar una classe a
+            cada camp.</li>
+          <li>Prefereix <code>&gt;</code> al combinador descendent quan vulguis afectar només un nivell: és més previsible.</li>
+          <li>No posis text important amb <code>::before</code> o <code>::after</code>: el contingut ha d'estar a l'HTML.</li>
+          <li>Evita cadenes de selectors massa llargues: són difícils de llegir i tenen una especificitat molt alta.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Per què selectors avançats?</a></li>
+          <li><a href="#apartat-2">1. Selectors d'atribut</a></li>
+          <li><a href="#apartat-3">2. Combinadors</a></li>
+          <li><a href="#apartat-4">3. Pseudoclasses</a></li>
+          <li><a href="#apartat-5">4. Pseudoelements</a></li>
+          <li><a href="#apartat-6">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="introduccio.html" rel="prev">CSS avançat: introducció</a></li>
+        <li><a href="tipografia.html" rel="next">Fonts i tipografia avançades</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

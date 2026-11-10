@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popover API | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="La Popover API: contingut emergent natiu amb els atributs popover, popovertarget i popovertargetaction, i el pseudoelement ::backdrop.">
+  <meta name="keywords" content="CSS, HTML, Popover API, popover, popovertarget, popovertargetaction, backdrop, contingut emergent">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Popover API">
+  <meta property="og:description" content="La Popover API: contingut emergent natiu amb els atributs popover, popovertarget i popovertargetaction, i el pseudoelement ::backdrop.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Botó activador */
+    .trigger {
+      padding: 10px 20px;
+      background-color: var(--teal-deep);
+      color: var(--surface);
+      border: none;
+      border-radius: var(--radius-code);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color var(--transicio);
+    }
+
+    .trigger:hover {
+      background-color: var(--ink-title);
+    }
+
+    .trigger-secundari {
+      background-color: var(--panel);
+      color: var(--ink);
+    }
+
+    .ex-botons {
+      display: flex;
+      gap: var(--space-3);
+      margin: 0;
+    }
+
+    /* Contingut emergent */
+    #popoverContent {
+      padding: 10px;
+      background-color: var(--ink-title);
+      color: var(--surface);
+      border: none;
+      border-radius: var(--radius-code);
+      width: 220px;
+      text-align: center;
+    }
+
+    #popoverManual {
+      padding: var(--space-4) var(--space-6);
+      background-color: var(--note);
+      color: var(--ink);
+      border: var(--stroke-card) solid var(--ink);
+      border-radius: var(--radius-card);
+      width: 280px;
+    }
+
+    /* Fons desenfocat quan el popover és obert */
+    #popoverContent::backdrop {
+      backdrop-filter: blur(3px);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="popover.html" aria-current="page">Popover API</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 05</p>
+        <h1>Popover API</h1>
+        <p>Contingut emergent natiu amb els atributs popover, popovertarget i popovertargetaction, i el pseudoelement ::backdrop.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">5 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Què és la Popover API?</h2>
+        <p>La <strong>Popover API</strong> és una funcionalitat recent que permet crear contingut emergent (<i lang="en">popovers</i>)
+          de manera nativa, utilitzant <strong>només HTML i CSS</strong>, sense JavaScript. Facilita la creació de components com
+          menús, suggeriments o notificacions que apareixen <strong>damunt</strong> del contingut existent.</p>
+        <p>El navegador s'encarrega de tot: mostrar-lo i amagar-lo, posar-lo al davant de la resta d'elements i tancar-lo quan
+          l'usuari fa clic fora o prem la tecla <kbd>Esc</kbd>.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>Atributs HTML</h2>
+        <table>
+          <caption>Atributs de la Popover API</caption>
+          <thead>
+            <tr><th scope="col">Atribut</th><th scope="col">On es posa</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>popover</code></td><td>Element emergent</td><td>Atribut global que converteix l'element en un popover.</td></tr>
+            <tr><td><code>popovertarget</code></td><td>Botó</td><td>L'<code>id</code> del popover que controla el botó.</td></tr>
+            <tr><td><code>popovertargetaction</code></td><td>Botó</td><td>L'acció que fa el botó sobre el popover.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Valors de <code>popover</code></h3>
+        <ul>
+          <li><code>auto</code> (per defecte): el popover es mostra i s'oculta automàticament; es tanca en fer clic fora o amb
+            <kbd>Esc</kbd>, i només n'hi pot haver un d'obert alhora.</li>
+          <li><code>manual</code>: la visibilitat es controla manualment; només es tanca amb un botó que ho indiqui.</li>
+        </ul>
+
+        <h3>Valors de <code>popovertargetaction</code></h3>
+        <ul>
+          <li><code>show</code>: mostra el popover.</li>
+          <li><code>hide</code>: oculta el popover.</li>
+          <li><code>toggle</code> (per defecte): alterna entre mostrar-lo i ocultar-lo.</li>
+        </ul>
+      </section>
+
+      <section id="apartat-3">
+        <h2>Exemple complet</h2>
+        <ol>
+          <li>El botó amb la classe <code>trigger</code> té l'atribut <code>popovertarget</code> que apunta a l'id
+            <code>popoverContent</code>: aquest botó controla el popover.</li>
+          <li>El <code>div</code> amb l'id <code>popoverContent</code> té l'atribut <code>popover</code>, que el converteix en
+            contingut emergent.</li>
+          <li>Quan l'usuari fa clic al botó, el popover es mostra o s'oculta automàticament.</li>
+          <li>El pseudoelement <code>::backdrop</code> és la capa que queda darrere del popover obert; amb
+            <code>backdrop-filter: blur(3px)</code> desenfoca la pàgina.</li>
+        </ol>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Exemple de Popover API&lt;/title&gt;
+  &lt;style&gt;
+    /* Estils per al botó activador */
+    .trigger {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* Estils per al contingut del popover */
+    #popoverContent {
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      width: 200px;
+      text-align: center;
+    }
+
+    /* Estils per al fons quan el popover està obert */
+    #popoverContent::backdrop {
+      backdrop-filter: blur(3px);
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Botó que activa el popover --&gt;
+  &lt;button class="trigger" popovertarget="popoverContent"&gt;
+    Mostra informació
+  &lt;/button&gt;
+
+  &lt;!-- Contingut del popover --&gt;
+  &lt;div id="popoverContent" popover&gt;
+    &lt;p&gt;Aquest és un popover utilitzant la Popover API!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: fes clic al botó</figcaption>
+        <p class="ex-botons">
+          <button class="trigger" popovertarget="popoverContent">Mostra informació</button>
+        </p>
+        <div id="popoverContent" popover>
+          <p>Aquest és un popover utilitzant la Popover API!</p>
+        </div>
+      </figure>
+      </div>
+        <p>Fixa't que el popover apareix al mig de la finestra i la resta de la pàgina queda desenfocada. Per tancar-lo, fes clic
+          fora o prem <kbd>Esc</kbd>. Si el teu navegador és antic i no admet la Popover API, el botó no farà res.</p>
+      </section>
+
+      <section id="apartat-4">
+        <h2>Popover manual amb <code>popovertargetaction</code></h2>
+        <p>Amb <code>popover="manual"</code> el popover no es tanca sol: cal un botó per mostrar-lo i un altre per amagar-lo.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;button popovertarget="avis" popovertargetaction="show"&gt;Obre l'avís&lt;/button&gt;
+&lt;button popovertarget="avis" popovertargetaction="hide"&gt;Tanca l'avís&lt;/button&gt;
+
+&lt;div id="avis" popover="manual"&gt;
+  Aquest avís només es tanca amb el botó "Tanca l'avís".
+&lt;/div&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Prova-ho: obre i tanca</figcaption>
+        <p class="ex-botons">
+          <button class="trigger" popovertarget="popoverManual" popovertargetaction="show">Obre l'avís</button>
+          <button class="trigger trigger-secundari" popovertarget="popoverManual" popovertargetaction="hide">Tanca l'avís</button>
+        </p>
+        <div id="popoverManual" popover="manual">
+          Aquest avís només es tanca amb el botó "Tanca l'avís". Prova de fer clic fora o de prémer Esc: no passa res.
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Fes servir sempre un <code>&lt;button&gt;</code> com a activador: és accessible amb el teclat.</li>
+          <li>Prefereix <code>popover</code> (<code>auto</code>) per a menús i suggeriments; reserva <code>manual</code> per a
+            avisos que l'usuari ha de tancar expressament.</li>
+          <li>No posis informació imprescindible només dins d'un popover: pot passar desapercebuda.</li>
+          <li>Comprova la compatibilitat amb els navegadors que fan servir els teus usuaris.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Què és la Popover API?</a></li>
+          <li><a href="#apartat-2">Atributs HTML</a></li>
+          <li><a href="#apartat-3">Exemple complet</a></li>
+          <li><a href="#apartat-4">Popover manual amb popovertargetaction</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="flexbox_grid.html" rel="prev">Layouts amb Flexbox i Grid</a></li>
+        <li><a href="variables.html" rel="next">Variables CSS</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

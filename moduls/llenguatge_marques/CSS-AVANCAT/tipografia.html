@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fonts i tipografia avançades | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Fonts web amb @font-face i els formats WOFF i WOFF2, i control avançat del text amb letter-spacing, line-height, font-weight, font-style i text-transform.">
+  <meta name="keywords" content="CSS, @font-face, WOFF, WOFF2, letter-spacing, line-height, font-weight, font-style, text-transform, tipografia">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Fonts i tipografia avançades">
+  <meta property="og:description" content="Fonts web amb @font-face i els formats WOFF i WOFF2, i control avançat del text amb letter-spacing, line-height, font-weight, font-style i text-transform.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Peces comunes */
+    .ex-mostra {
+      margin: 0 0 14px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .ex-etiqueta {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal);
+    }
+
+    /* letter-spacing */
+    .ex-ls-neg {
+      letter-spacing: -1px;
+      font-size: 22px;
+    }
+
+    .ex-ls-0 {
+      letter-spacing: normal;
+      font-size: 22px;
+    }
+
+    .ex-ls-2 {
+      letter-spacing: 2px;
+      font-size: 22px;
+    }
+
+    .ex-ls-6 {
+      letter-spacing: 6px;
+      font-size: 22px;
+    }
+
+    /* line-height: dues columnes per comparar */
+    .ex-dues-columnes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .ex-lh-1 {
+      line-height: 1;
+      font-size: 15px;
+    }
+
+    .ex-lh-16 {
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* font-weight numèric */
+    .ex-w300 {
+      font-weight: 300;
+      font-size: 22px;
+    }
+
+    .ex-w700 {
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    /* text-transform */
+    .ex-upper {
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    .ex-lower {
+      text-transform: lowercase;
+      font-size: 20px;
+    }
+
+    .ex-capitalize {
+      text-transform: capitalize;
+      font-size: 20px;
+    }
+
+    /* Exemple complet (amb les fonts del sistema, perquè no tenim els fitxers Lato) */
+    #ex-complet {
+      font-family: "Lato", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    #ex-complet h1 {
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 26px;
+    }
+
+    #ex-complet p {
+      font-weight: 300;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="tipografia.html" aria-current="page">Fonts i tipografia avançades</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 03</p>
+        <h1>Fonts i tipografia avançades</h1>
+        <p>Fonts web amb @font-face i els formats WOFF i WOFF2, i control avançat del text amb letter-spacing, line-height, font-weight, font-style i text-transform.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">3 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>La tipografia en una pàgina web</h2>
+        <p>El control de la tipografia és clau per garantir una bona <strong>llegibilitat</strong> i una estètica coherent. El CSS
+          avançat ofereix propietats per controlar com es carreguen les fonts, l'espai entre lletres i línies, el gruix i la
+          forma del text.</p>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Fonts web amb <code>@font-face</code></h2>
+        <p>Amb <code>font-family</code> només podem fer servir les fonts instal·lades a l'ordinador de l'usuari. La regla
+          <code>@font-face</code> permet utilitzar <strong>fonts personalitzades</strong>: el navegador les descarrega del teu
+          servidor o d'un servei extern com Google Fonts. Així tots els usuaris veuen la mateixa tipografia, independentment del
+          dispositiu o del navegador.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>/* 1. Declarar la font i on són els fitxers */
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Regular.woff2") format("woff2"),
+       url("fonts/OpenSans-Regular.woff") format("woff");
+}
+
+/* 2. Fer-la servir com qualsevol altra font */
+body {
+  font-family: "Open Sans", sans-serif;
+}</code></pre>
+      </figure>
+        <table>
+          <caption>Parts de @font-face</caption>
+          <thead>
+            <tr><th scope="col">Descriptor</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>font-family</code></td><td>El nom que donem a la font; és el que després escriurem a les regles</td></tr>
+            <tr><td><code>src</code></td><td>La ruta dels fitxers (<code>url()</code>) i el seu format (<code>format()</code>), separats per comes</td></tr>
+          </tbody>
+        </table>
+        <p>El navegador prova els fitxers de <code>src</code> en ordre i es queda amb el primer que entén. Per això el format més
+          modern va primer.</p>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. Formats WOFF i WOFF2</h2>
+        <p><strong>WOFF</strong> i <strong>WOFF2</strong> (<i lang="en">Web Open Font Format</i>) són formats de font comprimits
+          dissenyats per a la web. Pesen menys que els formats tradicionals i fan que la pàgina carregui més ràpid sense perdre
+          qualitat. Es recomana WOFF2, que és el més modern i optimitzat, i deixar WOFF com a alternativa per als navegadors
+          antics.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>@font-face {
+  font-family: "Roboto";
+  src: url("fonts/Roboto-Regular.woff2") format("woff2"),
+       url("fonts/Roboto-Regular.woff") format("woff");
+}</code></pre>
+      </figure>
+      </section>
+
+      <section id="apartat-4">
+        <h2>3. Control avançat de la tipografia</h2>
+
+        <h3>a) <code>letter-spacing</code></h3>
+        <p>Ajusta l'espai entre les lletres. Els valors positius espaien el text; els negatius el comprimeixen.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  letter-spacing: 2px;  /* Augmenta l'espai entre lletres */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">letter-spacing: -1px</p>
+        <p class="ex-mostra ex-ls-neg">Llenguatges de marques</p>
+        <p class="ex-etiqueta">letter-spacing: normal</p>
+        <p class="ex-mostra ex-ls-0">Llenguatges de marques</p>
+        <p class="ex-etiqueta">letter-spacing: 2px</p>
+        <p class="ex-mostra ex-ls-2">Llenguatges de marques</p>
+        <p class="ex-etiqueta">letter-spacing: 6px</p>
+        <p class="ex-mostra ex-ls-6">Llenguatges de marques</p>
+      </figure>
+      </div>
+
+        <h3>b) <code>line-height</code></h3>
+        <p>Controla l'alçada de cada línia de text. Una alçada més gran separa més les línies i normalment millora la
+          llegibilitat. Es recomana escriure-la <strong>sense unitat</strong> (<code>1.6</code>): vol dir 1,6 vegades la mida de
+          la lletra.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>p {
+  line-height: 1.6;  /* Augmenta l'alçada de les línies */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-dues-columnes">
+          <div>
+            <p class="ex-etiqueta">line-height: 1</p>
+            <p class="ex-lh-1">El CSS defineix com s'ha de visualitzar el contingut: disseny, colors, tipografia, espaiat i
+              posicionament dels elements en una pàgina.</p>
+          </div>
+          <div>
+            <p class="ex-etiqueta">line-height: 1.6</p>
+            <p class="ex-lh-16">El CSS defineix com s'ha de visualitzar el contingut: disseny, colors, tipografia, espaiat i
+              posicionament dels elements en una pàgina.</p>
+          </div>
+        </div>
+      </figure>
+      </div>
+
+        <h3>c) <code>font-weight</code> numèric</h3>
+        <p>A més de <code>normal</code> i <code>bold</code>, <code>font-weight</code> accepta valors entre <code>100</code> (molt
+          prim) i <code>900</code> (molt gruixut). Només es noten tots els gruixos si la font els té disponibles.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  font-weight: 700;  /* Gruix equivalent a negreta */
+}
+
+p {
+  font-weight: 300;  /* Gruix més prim */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">font-weight: 300</p>
+        <p class="ex-mostra ex-w300">Text amb gruix 300</p>
+        <p class="ex-etiqueta">font-weight: 700</p>
+        <p class="ex-mostra ex-w700">Text amb gruix 700</p>
+      </figure>
+      </div>
+
+        <h3>d) <code>font-style</code></h3>
+        <p>Defineix si el text es mostra normal, en cursiva (<code>italic</code>) o oblic (<code>oblique</code>). És útil per
+          donar èmfasi.</p>
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>em {
+  font-style: italic;  /* Mostra el text en cursiva */
+}</code></pre>
+      </figure>
+
+        <h3>e) <code>text-transform</code></h3>
+        <p>Canvia les majúscules i minúscules del text <strong>sense tocar l'HTML</strong>:</p>
+        <table>
+          <caption>Valors de text-transform</caption>
+          <thead>
+            <tr><th scope="col">Valor</th><th scope="col">Efecte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>uppercase</code></td><td>Tot el text en majúscules</td></tr>
+            <tr><td><code>lowercase</code></td><td>Tot el text en minúscules</td></tr>
+            <tr><td><code>capitalize</code></td><td>Primera lletra de cada paraula en majúscula</td></tr>
+          </tbody>
+        </table>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>h1 {
+  text-transform: uppercase;  /* Converteix el títol a majúscules */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">uppercase</p>
+        <p class="ex-mostra ex-upper">Fulls d'Estil en cascada</p>
+        <p class="ex-etiqueta">lowercase</p>
+        <p class="ex-mostra ex-lower">Fulls d'Estil en cascada</p>
+        <p class="ex-etiqueta">capitalize</p>
+        <p class="ex-mostra ex-capitalize">Fulls d'Estil en cascada</p>
+      </figure>
+      </div>
+        <p>A l'HTML, els tres paràgrafs tenen exactament el mateix text: "Fulls d'Estil en cascada".</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>Exemple complet</h2>
+        <p>Una pàgina que carrega la font Lato en WOFF2 i WOFF i combina totes les propietats d'aquest apunt.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Propietats avançades de fonts&lt;/title&gt;
+  &lt;style&gt;
+    @font-face {
+      font-family: "Lato";
+      src: url("fonts/Lato-Regular.woff2") format("woff2"),
+           url("fonts/Lato-Regular.woff") format("woff");
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-weight: 300;
+      font-style: italic;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Propietats avançades de fonts&lt;/h1&gt;
+  &lt;p&gt;Aquest és un paràgraf amb estil cursiva i un pes lleuger de font.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat" id="ex-complet">
+        <figcaption>Resultat al navegador</figcaption>
+        <h1>Propietats avançades de fonts</h1>
+        <p>Aquest és un paràgraf amb estil cursiva i un pes lleuger de font.</p>
+      </figure>
+      </div>
+        <p>Aquest resultat no carrega Lato perquè no tenim els fitxers <code>.woff2</code> i <code>.woff</code> a la carpeta
+          <code>fonts/</code>: el navegador fa servir la font següent de la llista. És exactament el que passaria si un fitxer
+          de font no es pogués descarregar.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Carrega només les fonts i els gruixos que facis servir: cada fitxer de font fa la pàgina més lenta.</li>
+          <li>Posa sempre una font alternativa i una família genèrica després de la font personalitzada.</li>
+          <li>Per al text llarg, fes servir un <code>line-height</code> entre 1.4 i 1.7.</li>
+          <li>Fes servir <code>letter-spacing</code> positiu en textos curts en majúscules (títols, menús), no en paràgrafs.</li>
+          <li>Escriu l'HTML amb majúscules normals i deixa que <code>text-transform</code> s'encarregui de l'aspecte.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">La tipografia en una pàgina web</a></li>
+          <li><a href="#apartat-2">1. Fonts web amb @font-face</a></li>
+          <li><a href="#apartat-3">2. Formats WOFF i WOFF2</a></li>
+          <li><a href="#apartat-4">3. Control avançat de la tipografia</a></li>
+          <li><a href="#apartat-5">Exemple complet</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="selectors_avancats.html" rel="prev">Selectors avançats</a></li>
+        <li><a href="flexbox_grid.html" rel="next">Layouts amb Flexbox i Grid</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>

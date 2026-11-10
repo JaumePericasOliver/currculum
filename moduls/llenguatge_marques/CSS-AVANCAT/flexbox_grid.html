@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layouts amb Flexbox i Grid | Apunts de Jaume Joan Pericàs Oliver</title>
+  <meta name="description" content="Flexbox avançat (flex-shrink i align-self), CSS Grid (grid-template-columns, grid-template-rows, grid-column, grid-row i gap) i com combinar-los.">
+  <meta name="keywords" content="CSS, Flexbox, Grid, flex-shrink, align-self, grid-template-columns, grid-template-rows, grid-column, grid-row, gap, fr">
+  <meta name="author" content="Jaume Joan Pericàs Oliver">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Layouts amb Flexbox i Grid">
+  <meta property="og:description" content="Flexbox avançat (flex-shrink i align-self), CSS Grid (grid-template-columns, grid-template-rows, grid-column, grid-row i gap) i com combinar-los.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ca_ES">
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../estils/apunts.css">
+  <style>
+    /* Peces comunes */
+    .ex-flex {
+      display: flex;
+      padding: 6px;
+      background-color: var(--panel);
+    }
+
+    .ex-flex > div {
+      padding: 8px 12px;
+      margin: 3px;
+      background-color: var(--ink-title);
+      color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .ex-etiqueta {
+      margin: 14px 0 4px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal);
+    }
+
+    /* flex-shrink: tres elements del 40% no hi caben (sumen el 120%) */
+    .ex-shrink > div {
+      width: 40%;
+    }
+
+    .ex-shrink > .ex-shrink-0 {
+      flex-shrink: 0;
+      background-color: var(--teal);
+    }
+
+    .ex-shrink > .ex-shrink-3 {
+      flex-shrink: 3;
+    }
+
+    /* align-self */
+    .ex-align {
+      height: 130px;
+      align-items: flex-start;
+    }
+
+    .ex-align > .ex-self-center {
+      align-self: center;
+      background-color: var(--teal);
+    }
+
+    .ex-align > .ex-self-end {
+      align-self: flex-end;
+    }
+
+    .ex-align > .ex-self-stretch {
+      align-self: stretch;
+    }
+
+    /* Grid */
+    .ex-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 100px auto;
+      gap: 20px;
+      padding: 10px;
+      background-color: var(--panel);
+    }
+
+    .ex-grid > div {
+      padding: 10px;
+      background-color: var(--ink-title);
+      color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .ex-grid > .element-gran {
+      grid-column: span 2;
+      grid-row: span 1;
+      background-color: var(--teal);
+    }
+
+    .ex-grid-pagina {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: auto 160px auto;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .ex-grid-pagina > div {
+      padding: 10px;
+      border: 2px solid var(--ink-title);
+    }
+
+    .ex-capcalera {
+      grid-column: span 2;
+      background-color: var(--task-gold);
+    }
+
+    .ex-lateral {
+      background-color: var(--panel);
+    }
+
+    .ex-principal {
+      background-color: var(--surface);
+    }
+
+    .ex-peu {
+      grid-column: span 2;
+      background-color: var(--ink-title);
+      color: var(--surface);
+    }
+
+    /* Exemple bàsic amb Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      height: 400px;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .element-gran {
+      grid-column: span 2;
+    }
+
+    /* Flexbox i Grid combinats */
+    .grid-combinat {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+      height: 300px;
+    }
+
+    .element-combinat {
+      background-color: lightblue;
+      padding: 10px;
+    }
+
+    .flex {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: lightgreen;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p><a href="../../../index.html">Apunts de Jaume Joan Pericàs Oliver</a></p>
+    <nav aria-label="Navegació principal">
+      <ul>
+        <li><a href="../../../index.html">Currículum</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../../programacio/index.html">Programació</a></li>
+        <li><a href="../../bases_dades/index.html">Bases de dades</a></li>
+        <li><a href="../../sistemes_informatics/index.html">Sistemes informàtics</a></li>
+        <li><a href="../../entorns_desenvolupament/index.html">Entorns de desenvolupament</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Ruta de navegació">
+      <ol>
+        <li><a href="../../../index.html">Inici</a></li>
+        <li><a href="../index.html">Llenguatges de marques</a></li>
+        <li><a href="../index.html#css-avancat">CSS avançat</a></li>
+        <li><a href="flexbox_grid.html" aria-current="page">Layouts amb Flexbox i Grid</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <p class="epigraf">CSS avançat · 04</p>
+        <h1>Layouts amb Flexbox i Grid</h1>
+        <p>Flexbox avançat (flex-shrink i align-self), CSS Grid (grid-template-columns, grid-template-rows, grid-column, grid-row i gap) i com combinar-los.</p>
+      </header>
+
+      <div class="progres">
+        <p class="progres-text">Progrés del bloc</p>
+        <p class="progres-num">4 <span>/ 11</span></p>
+        <p class="progres-barra" aria-hidden="true">
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="fet"></span>
+          <span class="actual"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+          <span class="pendent"></span>
+        </p>
+      </div>
+
+      <section id="apartat-1">
+        <h2>Flexbox o Grid?</h2>
+        <p>Flexbox i CSS Grid són les dues eines més potents del CSS per crear dissenys flexibles, adaptables i organitzats. No
+          competeixen: cada una és millor en una situació.</p>
+        <table>
+          <caption>Quan fer servir cada eina</caption>
+          <thead>
+            <tr><th scope="col">Flexbox (una dimensió)</th><th scope="col">Grid (dues dimensions)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alinear elements en una fila o una columna: botons d'una barra de navegació, imatges d'una galeria.</td>
+              <td>Pàgines amb una estructura complexa: capçalera, barra lateral, contingut principal i peu.</td>
+            </tr>
+            <tr>
+              <td>Repartir l'espai entre els elements d'una fila (centrar-los o espaiar-los uniformement).</td>
+              <td>Dissenys en quadrícula amb files i columnes: un tauler de fotos o un catàleg de productes.</td>
+            </tr>
+            <tr>
+              <td>Elements que han de créixer o encongir-se per omplir l'espai: una barra lateral, una fila de targetes.</td>
+              <td>Controlar exactament a quina cel·la de la quadrícula va cada element.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="apartat-2">
+        <h2>1. Flexbox avançat</h2>
+        <p>A l'apunt de <a href="../CSS-BASIC/flexbox.html">Flexbox bàsic</a> vam veure <code>display: flex</code>,
+          <code>flex-direction</code>, <code>justify-content</code>, <code>align-items</code> i <code>flex-grow</code>. Ara hi
+          afegim dues propietats que s'apliquen als <strong>elements fills</strong>.</p>
+
+        <h3><code>flex-shrink</code></h3>
+        <p>És el contrari de <code>flex-grow</code>: controla quant s'<strong>encongeix</strong> un element quan no hi ha prou
+          espai. El valor per defecte és <code>1</code>; com més gran, més s'encongeix; amb <code>0</code> l'element no
+          s'encongeix mai.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.element {
+  flex-shrink: 1;  /* Es redueix quan no hi ha prou espai */
+}
+
+.fix {
+  flex-shrink: 0;  /* No es redueix mai */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <p class="ex-etiqueta">Tres elements amb width: 40% (sumen el 120%)</p>
+        <div class="ex-flex ex-shrink">
+          <div>1</div>
+          <div class="ex-shrink-0">0</div>
+          <div class="ex-shrink-3">3</div>
+        </div>
+      </figure>
+      </div>
+        <p>El número de cada caixa és el seu <code>flex-shrink</code>. L'element vermell (<code>0</code>) manté el seu 40%; el que
+          té <code>flex-shrink: 3</code> s'encongeix tres vegades més que el primer.</p>
+
+        <h3><code>align-self</code></h3>
+        <p>Permet que <strong>un sol element</strong> tingui una alineació diferent de la que marca <code>align-items</code> al
+          contenidor. Accepta els mateixos valors: <code>flex-start</code>, <code>flex-end</code>, <code>center</code>,
+          <code>baseline</code> o <code>stretch</code>.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.contenidor {
+  display: flex;
+  align-items: flex-start;
+}
+
+.element {
+  align-self: center;  /* Centra només aquest element */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-flex ex-align">
+          <div>flex-start</div>
+          <div class="ex-self-center">center</div>
+          <div class="ex-self-end">flex-end</div>
+          <div class="ex-self-stretch">stretch</div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-3">
+        <h2>2. CSS Grid: quadrícules</h2>
+        <p><strong>CSS Grid Layout</strong> crea dissenys en <strong>dues dimensions</strong> (files i columnes) alhora. Permet
+          col·locar els elements en una quadrícula amb molta precisió, controlant la mida de les files i les columnes.</p>
+        <table>
+          <caption>Propietats clau de Grid</caption>
+          <thead>
+            <tr><th scope="col">Propietat</th><th scope="col">S'aplica a</th><th scope="col">Funció</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>display: grid</code></td><td>Contenidor</td><td>Activa Grid</td></tr>
+            <tr><td><code>grid-template-columns</code></td><td>Contenidor</td><td>Nombre i mida de les columnes</td></tr>
+            <tr><td><code>grid-template-rows</code></td><td>Contenidor</td><td>Nombre i mida de les files</td></tr>
+            <tr><td><code>gap</code></td><td>Contenidor</td><td>Espai entre files i columnes</td></tr>
+            <tr><td><code>grid-column</code></td><td>Element fill</td><td>Quantes columnes ocupa (<code>span 2</code>)</td></tr>
+            <tr><td><code>grid-row</code></td><td>Element fill</td><td>Quantes files ocupa</td></tr>
+          </tbody>
+        </table>
+        <p>La unitat <code>fr</code> (fracció) reparteix l'espai disponible: <code>1fr 2fr 1fr</code> fa tres columnes on la del
+          mig és el doble d'ampla que les altres.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;  /* 3 columnes de mida flexible */
+  grid-template-rows: 100px auto;      /* 2 files: una fixa i una automàtica */
+  gap: 20px;                           /* 20px entre files i columnes */
+}
+
+.element-gran {
+  grid-column: span 2;  /* Ocupa 2 columnes */
+  grid-row: span 1;     /* Ocupa només 1 fila */
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-grid">
+          <div>1fr</div>
+          <div>2fr</div>
+          <div>1fr</div>
+          <div class="element-gran">.element-gran (span 2)</div>
+          <div>auto</div>
+        </div>
+      </figure>
+      </div>
+        <p>A codi antic trobaràs <code>grid-gap</code>: és el nom antic de <code>gap</code> i fa el mateix.</p>
+
+        <h3>Una pàgina amb Grid</h3>
+        <p>L'estructura típica d'una pàgina, amb capçalera, barra lateral, contingut principal i peu, es resol amb poques línies:</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>.pagina {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto 160px auto;
+  gap: 8px;
+}
+
+.capcalera {
+  grid-column: span 2;
+}
+
+.peu {
+  grid-column: span 2;
+}</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="ex-grid-pagina">
+          <div class="ex-capcalera">capçalera</div>
+          <div class="ex-lateral">lateral</div>
+          <div class="ex-principal">contingut principal</div>
+          <div class="ex-peu">peu</div>
+        </div>
+      </figure>
+      </div>
+      </section>
+
+      <section id="apartat-4">
+        <h2>Exemple bàsic amb CSS Grid</h2>
+        <p>Una quadrícula de tres columnes iguals on l'element 2 ocupa dues columnes gràcies a <code>grid-column: span 2</code>.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;CSS Grid bàsic&lt;/title&gt;
+  &lt;style&gt;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;  /* 3 columnes iguals */
+      gap: 10px;                           /* Espai entre les cel·les */
+      height: 400px;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .element-gran {
+      grid-column: span 2;                 /* Ocupa dues columnes */
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="grid"&gt;
+    &lt;div class="element"&gt;Element 1&lt;/div&gt;
+    &lt;div class="element element-gran"&gt;Element 2 (Gran)&lt;/div&gt;
+    &lt;div class="element"&gt;Element 3&lt;/div&gt;
+    &lt;div class="element"&gt;Element 4&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="grid">
+          <div class="element">Element 1</div>
+          <div class="element element-gran">Element 2 (Gran)</div>
+          <div class="element">Element 3</div>
+          <div class="element">Element 4</div>
+        </div>
+      </figure>
+      </div>
+        <p>Com que la quadrícula fa 400 píxels d'alçada i té dues files, cada fila s'estira fins a ocupar la meitat.</p>
+      </section>
+
+      <section id="apartat-5">
+        <h2>3. Flexbox i Grid combinats</h2>
+        <p>Sovint el millor és combinar-los: <strong>Grid</strong> per a la disposició general de la pàgina (files i columnes) i
+          <strong>Flexbox</strong> dins d'algunes cel·les per alinear-ne el contingut. A l'exemple, la quadrícula té dues
+          columnes, i la segona cel·la és alhora un contenidor flex que alinea els seus elements en fila.</p>
+      <div class="parella">
+      <figure class="codi">
+        <figcaption>Codi d'exemple</figcaption>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Flexbox i Grid combinats&lt;/title&gt;
+  &lt;style&gt;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+      height: 300px;
+    }
+
+    .element {
+      background-color: lightblue;
+      padding: 10px;
+    }
+
+    .flex {
+      display: flex;                  /* Flexbox dins d'una cel·la del grid */
+      justify-content: space-around;
+      align-items: center;
+      background-color: lightgreen;
+      height: 100%;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="grid"&gt;
+    &lt;div class="element"&gt;Element 1&lt;/div&gt;
+    &lt;div class="flex"&gt;
+      &lt;div&gt;Flex Element 1&lt;/div&gt;
+      &lt;div&gt;Flex Element 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </figure>
+      <figure class="resultat">
+        <figcaption>Resultat al navegador</figcaption>
+        <div class="grid-combinat">
+          <div class="element-combinat">Element 1</div>
+          <div class="flex">
+            <div>Flex Element 1</div>
+            <div>Flex Element 2</div>
+          </div>
+        </div>
+      </figure>
+      </div>
+        <p>Aquests apunts fan el mateix: la capçalera del lloc és una quadrícula i, a dins, el menú és una altra quadrícula en mòbil i una fila flex en
+          pantalles grans.</p>
+      </section>
+
+      <aside>
+        <h2>Bones pràctiques</h2>
+        <ul>
+          <li>Pregunta't si el disseny és d'una dimensió (Flexbox) o de dues (Grid) abans de triar.</li>
+          <li>Fes servir la unitat <code>fr</code> en lloc de percentatges a Grid: té en compte el <code>gap</code> i no
+            desborda.</li>
+          <li>Posa <code>flex-shrink: 0</code> als elements que no s'han de deformar, com icones o imatges petites.</li>
+          <li>Combina Grid i media queries: canviant només <code>grid-template-columns</code> pots passar de tres columnes a una
+            en mòbil.</li>
+        </ul>
+      </aside>
+      <nav class="en-aquest-apunt" aria-label="En aquest apunt">
+        <p>En aquest apunt</p>
+        <ul>
+          <li><a href="#apartat-1">Flexbox o Grid?</a></li>
+          <li><a href="#apartat-2">1. Flexbox avançat</a></li>
+          <li><a href="#apartat-3">2. CSS Grid: quadrícules</a></li>
+          <li><a href="#apartat-4">Exemple bàsic amb CSS Grid</a></li>
+          <li><a href="#apartat-5">3. Flexbox i Grid combinats</a></li>
+        </ul>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <nav aria-label="Paginació dels apunts">
+      <ul>
+        <li><a href="tipografia.html" rel="prev">Fonts i tipografia avançades</a></li>
+        <li><a href="popover.html" rel="next">Popover API</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 Jaume Joan Pericàs Oliver. Contacte: <a href="mailto:poj@paucasesnovescifp.cat">poj@paucasesnovescifp.cat</a></p>
+  </footer>
+</body>
+</html>
